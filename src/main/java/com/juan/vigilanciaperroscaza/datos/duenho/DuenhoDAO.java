@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DuenhoDAO  extends CrudRepository<Duenho, String>{
 
-	List<Duenho> findByIdDuenhos(String id_duenho);
+	//List<Duenho> findByIdDuenhos(String id_duenho);
 	
 
 }

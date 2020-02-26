@@ -31,7 +31,7 @@ public class DuenhoRutas {
 	}
 	
 	
-	@GetMapping("/buscarUsuarios")
+	/*@GetMapping("/buscarUsuarios")
 	public ModelAndView busqueda(String id_duenho) {
 		
 		ModelAndView mav = new ModelAndView();
@@ -46,7 +46,7 @@ public class DuenhoRutas {
 		
 		return mav;
 		
-	}
+	}*/
 	
 	
 }
