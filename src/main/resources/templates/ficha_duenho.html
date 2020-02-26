@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="estiloProyecto.css">
+    <title>Ficha de dueño</title>
+    <!--Si es posible que el titulo se cambie con cada
+    perro y que ponga su id-->
+</head>
+
+<body>
+
+    <!--Borde con css-->
+    <div class="m-2 borde">
+        <form class="m-3">
+            <div class="form-row">
+                <div class="col">
+                    <label for="">Nombre</label>
+                    <input type="text" class="form-control" placeholder="Nombre">
+                </div>
+                <div class="col">
+                    <label for="">Apellidos</label>
+                    <input type="text" class="form-control" placeholder="Apellidos">
+                </div>
+                <div class="col">
+                    <label for="">DNI</label>
+                    <input type="text" class="form-control" placeholder="DNI">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col">
+                    <label for="">Telefono</label>
+                    <input type="text" class="form-control" placeholder="Telefono">
+                </div>
+                <div class="col">
+                    <label for="">Correo</label>
+                    <input type="text" class="form-control" placeholder="Correo">
+                </div>
+                <div class="col">
+                    <label for="">Localidad</label>
+                    <input type="text" class="form-control" placeholder="Localidad">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <label for="">Dirección</label>
+                    <input type="text" class="form-control" placeholder="Dirección">
+                </div>
+
+            </div>
+        </form>
+
+        <div class="pos-f-t mb-5">
+            <nav class="navbar navbar-dark bg-dark">
+                <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#TablaPerros"
+                    aria-controls="TablaPerros" aria-expanded="false" aria-label="Toggle navigation">
+                    
+                Desplegar lista de perros</button>
+            </nav>
+
+            <div class="collapse" id="TablaPerros">
+                <table class="table ">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Id perro</th>
+                            <th scope="col">Nombre perro</th>
+                            <th scope="col">Fecha nacimiento</th>
+                            <th scope="col">Fecha muerte</th>
+                            <th scope="col">Revisión</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="pos-f-t mb-5">
+            <nav class="navbar navbar-dark bg-dark">
+                <button class="navbar-toggler text-white" type="button" data-toggle="collapse" 
+                data-target="#TablaCacerias"
+                    aria-controls="TablaCacerias" aria-expanded="false" aria-label="Toggle navigation">
+                    
+                Desplegar lista de cacerias</button>
+            </nav>
+
+            <div class="collapse" id="TablaCacerias">
+                <table class="table ">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Id caceria</th>
+                        <th scope="col">Provincia</th>
+                        <th scope="col">Fecha</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="estiloProyecto.css">
+    <title>Listado de perros</title>
+</head>
+<body>
+    <!--Meter el borde con CSS-->
+<div class=" m-3 borde">
+    <form class="m-2">
+        <div class="form-row">
+          <div class="col-md-4 mb-3">
+            <label for="validationDefault01">Provincia</label>
+            <select id="Provincia" class="form-control">
+                <option>Selecciona Provincia</option>
+              </select>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="CampoIdDueño">Id dueño</label>
+            <input type="text" class="form-control" id="CampoIdDueño" placeholder="id dueño">
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="CampoIdPerro">Id perro</label>
+            <input type="text" class="form-control" id="CampoIdPerro" placeholder="id perro">
+          </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Buscar</button>
+      </form>
+    </div>
+
+    <!--A poder ser que id del perro sea un link a la ficha del perro
+    al igual que id dueño vaya a la ficha del dueño. También si es posible que se
+    vea el nombre del dueño pero que ese campo sea su id-->
+    <div  class=" m-3 ">
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Id Dueño</th>
+                <th scope="col">Nombre dueño</th>
+                <th scope="col">Fecha nacimiento</th>
+                <th scope="col">Fecha de muerte</th>
+                <th scope="col">Provincia</th>
+              </tr>
+            </thead>
+            <tbody>
+             
+            </tbody>
+          </table>
+    </div>
+</body>
+</html>
