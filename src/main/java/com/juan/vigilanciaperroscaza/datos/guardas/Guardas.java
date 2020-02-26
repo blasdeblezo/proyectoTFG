@@ -1,7 +1,7 @@
 package com.juan.vigilanciaperroscaza.datos.guardas;
 
 import java.util.ArrayList;
-
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,12 +11,16 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import com.juan.vigilanciaperroscaza.datos.cacerias.Cacerias;
 import com.juan.vigilanciaperroscaza.datos.roles.Rol;
 
 //Unir con la tabla de cacerias. Añadir en el proyecto el atributo Email y en los requisitos. 
 @Entity
-public class Guardas {
+public class Guardas implements UserDetails {
 
 	@Id
 	private String id_guarda;
@@ -147,6 +151,49 @@ public class Guardas {
 
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+	    grantedAuthorities.add(new SimpleGrantedAuthority(rolguarda.getNombre()));
+		return null;
+	}
+
+	@Override
+	public String getPassword() {
+		
+		return this.contrasenha;
+	}
+
+	@Override
+	public String getUsername() {
+	
+		return this.id_guarda;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		
+		return true;
 	}
 
 }

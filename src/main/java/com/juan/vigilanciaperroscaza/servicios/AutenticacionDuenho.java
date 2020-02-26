@@ -16,24 +16,18 @@ import com.juan.vigilanciaperroscaza.datos.veterinarios.VeterinariosDAO;
 
 
 @Service
-public class Autenticacion implements UserDetailsService{
+public class AutenticacionDuenho implements UserDetailsService{
 
 	@Autowired
 	private DuenhoDAO duenhoDAO;
 	
-	@Autowired
-	private GuardasDAO guardasDAO;
 	
-	@Autowired
-	private VeterinariosDAO veterinariosDAO;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Optional<Duenho> user = duenhoDAO.findById(username);
-		
-		
-		if(user.isPresent()) {
-			 
+
+		if(user.isPresent()) {	 
 			return user.get();
 		}
 		else throw new  UsernameNotFoundException(""+username);

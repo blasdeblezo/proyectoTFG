@@ -9,7 +9,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.juan.vigilanciaperroscaza.servicios.Autenticacion;
+import com.juan.vigilanciaperroscaza.servicios.AutenticacionDuenho;
+import com.juan.vigilanciaperroscaza.servicios.AutenticacionGuarda;
+import com.juan.vigilanciaperroscaza.servicios.AutenticacionVeterinario;
 
 
 @Configuration
@@ -17,17 +19,33 @@ import com.juan.vigilanciaperroscaza.servicios.Autenticacion;
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 	 @Autowired
-	    private Autenticacion autenticacion;
-
+	 private AutenticacionDuenho autenticacionDuenho;
+	 
+	 @Autowired
+	 private AutenticacionGuarda autenticacionGuarda;
+	 
+	 @Autowired
+	 private AutenticacionVeterinario autenticacionVeterinario;
 	    
 	    @Override
 	    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 	        
-	    	DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-	        provider.setPasswordEncoder(new BCryptPasswordEncoder());
-	        provider.setUserDetailsService(autenticacion);
+	    	DaoAuthenticationProvider providerDuenho = new DaoAuthenticationProvider();
+	        providerDuenho.setPasswordEncoder(new BCryptPasswordEncoder());
+	        providerDuenho.setUserDetailsService(autenticacionDuenho);
+	    	auth.authenticationProvider(providerDuenho);
 	    	
-	    	auth.authenticationProvider(provider);
+	    	DaoAuthenticationProvider providerGuarda = new DaoAuthenticationProvider();
+	    	providerGuarda.setPasswordEncoder(new BCryptPasswordEncoder());
+	    	providerGuarda.setUserDetailsService(autenticacionGuarda);
+	    	auth.authenticationProvider(providerGuarda);
+	    	
+	    	DaoAuthenticationProvider providerVeterinario = new DaoAuthenticationProvider();
+	    	providerVeterinario.setPasswordEncoder(new BCryptPasswordEncoder());
+	    	providerVeterinario.setUserDetailsService(autenticacionVeterinario);
+	    	auth.authenticationProvider(providerVeterinario);
+	    	
+	    	
 	    }   
 	    
 	    
