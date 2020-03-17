@@ -1,6 +1,7 @@
 package com.juan.vigilanciaperroscaza.datos.guardas;
 
 import java.util.ArrayList;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -18,22 +19,124 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.juan.vigilanciaperroscaza.datos.cacerias.Cacerias;
 import com.juan.vigilanciaperroscaza.datos.roles.Rol;
-import com.juan.vigilanciaperroscaza.datos.usuarios.Usuarios;
 
-//Unir con la tabla de cacerias. Añadir en el proyecto el atributo Email y en los requisitos. 
+
 @Entity
-public class Guardas {
+public class Guardas implements UserDetails{
 
 	@Id
-	private String id_guarda;
+	private String usuario;
 
-	@OneToOne
-	private Usuarios usuarios;
+	@Column
+	private String DNI;
+
+	@Column
+	private String nombre;
+
+	@Column
+	private String Apellidos;
+
+	@Column
+	private String Dirección;
+
+	@Column
+	private String provincia;
+
+	@Column
+	private String email;
+
+	@Column
+	private int Telefono;
+
+	@Column
+	private String contrasenha;
+
+	@ManyToOne
+	private Rol rolGuarda = new Rol();
 	
 	@OneToMany(mappedBy = "guardas",cascade = CascadeType.ALL)
 	private List<Cacerias>lisCacerias=new ArrayList<Cacerias>();
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getDNI() {
+		return DNI;
+	}
+
+	public void setDNI(String dNI) {
+		DNI = dNI;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellidos() {
+		return Apellidos;
+	}
+
+	public void setApellidos(String apellidos) {
+		Apellidos = apellidos;
+	}
+
+	public String getDirección() {
+		return Dirección;
+	}
+
+	public void setDirección(String dirección) {
+		Dirección = dirección;
+	}
+
+	public String getProvincia() {
+		return provincia;
+	}
+
+	public void setProvincia(String provincia) {
+		this.provincia = provincia;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public int getTelefono() {
+		return Telefono;
+	}
+
+	public void setTelefono(int telefono) {
+		Telefono = telefono;
+	}
+
+	public String getContrasenha() {
+		return contrasenha;
+	}
+
+	public void setContrasenha(String contrasenha) {
+		this.contrasenha = contrasenha;
+	}
+
 	
-	
+	public Rol getRolGuarda() {
+		return rolGuarda;
+	}
+
+	public void setRolGuarda(Rol rolGuarda) {
+		this.rolGuarda = rolGuarda;
+	}
 
 	public List<Cacerias> getLisCacerias() {
 		return lisCacerias;
@@ -43,21 +146,56 @@ public class Guardas {
 		this.lisCacerias = lisCacerias;
 	}
 
-	public String getId_guarda() {
-		return id_guarda;
+	@Override
+	public String toString() {
+		return "Guardas [usuario=" + usuario + ", DNI=" + DNI + ", nombre=" + nombre + ", Apellidos=" + Apellidos
+				+ ", Dirección=" + Dirección + ", provincia=" + provincia + ", email=" + email + ", Telefono="
+				+ Telefono + ", contrasenha=" + contrasenha + ", rol=" + rolGuarda + ", lisCacerias=" + lisCacerias + "]";
+	}
+	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+	    grantedAuthorities.add(new SimpleGrantedAuthority(rolGuarda.getNombre()));
+		return grantedAuthorities;
 	}
 
-	public void setId_guarda(String id_guarda) {
-		this.id_guarda = id_guarda;
+	@Override
+	public String getPassword() {
+		
+		return this.contrasenha;
 	}
 
-	public Usuarios getUsuarios() {
-		return usuarios;
+	@Override
+	public String getUsername() {
+		
+		return this.usuario;
 	}
 
-	public void setUsuarios(Usuarios usuarios) {
-		this.usuarios = usuarios;
+	@Override
+	public boolean isAccountNonExpired() {
+		
+		return true;
 	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		
+		return true;
+	}
+
 	
 	
 	
