@@ -54,8 +54,8 @@ public class Guardas implements UserDetails{
 	@ManyToOne
 	private Rol rolGuarda = new Rol();
 	
-	@OneToMany(mappedBy = "guardas",cascade = CascadeType.ALL)
-	private List<Cacerias>lisCacerias=new ArrayList<Cacerias>();
+	/*@OneToMany(mappedBy = "guardas",cascade = CascadeType.ALL)
+	private List<Cacerias>lisCacerias=new ArrayList<Cacerias>();*/
 
 	public String getUsuario() {
 		return usuario;
@@ -138,19 +138,19 @@ public class Guardas implements UserDetails{
 		this.rolGuarda = rolGuarda;
 	}
 
-	public List<Cacerias> getLisCacerias() {
+	/*public List<Cacerias> getLisCacerias() {
 		return lisCacerias;
 	}
 
 	public void setLisCacerias(List<Cacerias> lisCacerias) {
 		this.lisCacerias = lisCacerias;
-	}
+	}*/
 
 	@Override
 	public String toString() {
 		return "Guardas [usuario=" + usuario + ", DNI=" + DNI + ", nombre=" + nombre + ", Apellidos=" + Apellidos
 				+ ", Dirección=" + Dirección + ", provincia=" + provincia + ", email=" + email + ", Telefono="
-				+ Telefono + ", contrasenha=" + contrasenha + ", rol=" + rolGuarda + ", lisCacerias=" + lisCacerias + "]";
+				+ Telefono + ", contrasenha=" + contrasenha + ", rol=" + rolGuarda  + "]";
 	}
 	
 	@Override

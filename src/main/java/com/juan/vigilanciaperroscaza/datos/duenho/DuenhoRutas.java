@@ -43,10 +43,16 @@ public class DuenhoRutas {
 		List<Duenho> listaDuenhos = (List<Duenho>)duenhoDAO.findAll();
 		mav.addObject("duenhos",listaDuenhos);
 		System.out.println(listaDuenhos);
-
-	
+		
 		
 		return mav;
+		
+	}
+	
+	@GetMapping("/registrarCazador")
+	public String registrarCazadores() {
+		
+		return "registro_duenho";
 		
 	}
 	

@@ -9,7 +9,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -19,6 +19,7 @@ import javax.persistence.OneToOne;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.juan.vigilanciaperroscaza.datos.cacerias.Cacerias;
 import com.juan.vigilanciaperroscaza.datos.perro.Perros;
@@ -30,6 +31,7 @@ import com.juan.vigilanciaperroscaza.datos.roles.Rol;
  * Falta hacer las uniones con la tabla perros y cacerias.
  * */
 @Entity
+
 public class Duenho implements UserDetails{
 
 	@Id
@@ -42,10 +44,10 @@ public class Duenho implements UserDetails{
 	private String nombre;
 
 	@Column
-	private String Apellidos;
+	private String apellidos;
 
 	@Column
-	private String Dirección;
+	private String dirección;
 
 	@Column
 	private String provincia;
@@ -54,38 +56,26 @@ public class Duenho implements UserDetails{
 	private String email;
 
 	@Column
-	private int Telefono;
+	private int telefono;
 
 	@Column
 	private String contrasenha;
-
+	
+	@Column
+	private int numero_perros;
+	
 	@ManyToOne
 	private Rol rolDuenho = new Rol();
 	
+	/*@ManyToMany(cascade = CascadeType.ALL)
+	private List<Cacerias> cacerias = new ArrayList<Cacerias>();
 	
-	@ManyToMany(mappedBy = "duenhos",cascade = CascadeType.ALL)
-	private List<Cacerias> listaCecerias=new ArrayList<Cacerias>();
 	
-	public void addCacerias(Cacerias caceria) {
-		if(!listaCecerias.contains(caceria)) {
-			listaCecerias.add(caceria);
-			
-			List<Duenho>listaDuenhos=caceria.getDuenhos();
-			if(!listaDuenhos.contains(this)) {
-				listaDuenhos.add(this);
-			}
-		}
-	}
 	
-	@OneToMany(mappedBy ="duenho", cascade = CascadeType.ALL)
-	private List<Perros>listaPerros=new ArrayList<Perros>();
+	@OneToMany(mappedBy ="duenho", fetch=FetchType.EAGER)
+	private List<Perros>listaPerros=new ArrayList<Perros>();*/
 
-	private void addPerros(Perros perro) {
-		if(!listaPerros.contains(perro)) {
-			listaPerros.add(perro);
-			perro.setDuenho(this);
-		}
-	}
+	
 
 	public String getUsuario() {
 		return usuario;
@@ -111,20 +101,22 @@ public class Duenho implements UserDetails{
 		this.nombre = nombre;
 	}
 
+	
+
 	public String getApellidos() {
-		return Apellidos;
+		return apellidos;
 	}
 
 	public void setApellidos(String apellidos) {
-		Apellidos = apellidos;
+		this.apellidos = apellidos;
 	}
 
 	public String getDirección() {
-		return Dirección;
+		return dirección;
 	}
 
 	public void setDirección(String dirección) {
-		Dirección = dirección;
+		this.dirección = dirección;
 	}
 
 	public String getProvincia() {
@@ -143,12 +135,15 @@ public class Duenho implements UserDetails{
 		this.email = email;
 	}
 
+	
+	
+
 	public int getTelefono() {
-		return Telefono;
+		return telefono;
 	}
 
 	public void setTelefono(int telefono) {
-		Telefono = telefono;
+		this.telefono = telefono;
 	}
 
 	public String getContrasenha() {
@@ -161,6 +156,14 @@ public class Duenho implements UserDetails{
 
 	
 
+	public int getNumero_perros() {
+		return numero_perros;
+	}
+
+	public void setNumero_perros(int numero_perros) {
+		this.numero_perros = numero_perros;
+	}
+
 	public Rol getRolDuenho() {
 		return rolDuenho;
 	}
@@ -169,22 +172,23 @@ public class Duenho implements UserDetails{
 		this.rolDuenho = rolDuenho;
 	}
 
-	public List<Perros> getListaPerros() {
+	/*public List<Perros> getListaPerros() {
 		return listaPerros;
 	}
 
 	public void setListaPerros(List<Perros> listaPerros) {
 		this.listaPerros = listaPerros;
 	}
-
-	public List<Cacerias> getListaCecerias() {
-		return listaCecerias;
-	}
-
-	public void setListaCecerias(List<Cacerias> listaCecerias) {
-		this.listaCecerias = listaCecerias;
-	}
 	
+	
+	public List<Cacerias> getCacerias() {
+		return cacerias;
+	}
+
+	public void setCacerias(List<Cacerias> cacerias) {
+		this.cacerias = cacerias;
+	}*/
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
@@ -227,14 +231,17 @@ public class Duenho implements UserDetails{
 		
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Duenho [usuario=" + usuario + ", DNI=" + DNI + ", nombre=" + nombre + ", Apellidos=" + Apellidos
-				+ ", Dirección=" + Dirección + ", provincia=" + provincia + ", email=" + email + ", Telefono="
-				+ Telefono + ", contrasenha=" + contrasenha + ", rol=" + rolDuenho + ", listaPerros=" + listaPerros
-				+ ", listaCecerias=" + listaCecerias + "]";
+		return "Duenho [usuario=" + usuario + ", DNI=" + DNI + ", nombre=" + nombre + ", apellidos=" + apellidos
+				+ ", dirección=" + dirección + ", provincia=" + provincia + ", email=" + email + ", telefono="
+				+ telefono + ", contrasenha=" + contrasenha + ", numero_perros=" + numero_perros + ", rolDuenho="
+				+ rolDuenho + "]";
 	}
+
+	
+
 	
 	
 	

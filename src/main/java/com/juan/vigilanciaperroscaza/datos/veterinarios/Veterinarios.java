@@ -54,7 +54,7 @@ public class Veterinarios implements UserDetails{
 	@ManyToOne
 	private Rol rolVeterinario = new Rol();
 	
-	@ManyToMany(mappedBy = "veterinarios",cascade = CascadeType.ALL )
+	/*@ManyToMany(mappedBy = "veterinarios",cascade = CascadeType.ALL )
 	private List<Perros>lisPerros=new ArrayList<Perros>();
 	
 	public void addPerros(Perros perro) {
@@ -66,7 +66,7 @@ public class Veterinarios implements UserDetails{
 				lisVeterinarios.add(this);
 			}
 		}
-	}
+	}*/
 
 	public String getUsuario() {
 		return usuario;
@@ -150,13 +150,13 @@ public class Veterinarios implements UserDetails{
 		this.rolVeterinario = rolVeterinario;
 	}
 
-	public List<Perros> getLisPerros() {
+	/*public List<Perros> getLisPerros() {
 		return lisPerros;
 	}
 
 	public void setLisPerros(List<Perros> lisPerros) {
 		this.lisPerros = lisPerros;
-	}
+	}*/
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -205,8 +205,7 @@ public class Veterinarios implements UserDetails{
 	public String toString() {
 		return "Veterinarios [usuario=" + usuario + ", DNI=" + DNI + ", nombre=" + nombre + ", Apellidos=" + Apellidos
 				+ ", Dirección=" + Dirección + ", provincia=" + provincia + ", email=" + email + ", Telefono="
-				+ Telefono + ", contrasenha=" + contrasenha + ", rolVeterinario=" + rolVeterinario + ", lisPerros="
-				+ lisPerros + "]";
+				+ Telefono + ", contrasenha=" + contrasenha + ", rolVeterinario=" + rolVeterinario + "]";
 	}
 	
 	

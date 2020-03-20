@@ -35,7 +35,7 @@ public class Perros {
 	@Column
 	private String fecha_muerte;
 	
-	@ManyToOne
+	/*@ManyToOne
 	private Duenho duenho;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
@@ -59,7 +59,7 @@ public class Perros {
 
 	public void setDuenho(Duenho duenho) {
 		this.duenho = duenho;
-	}
+	}*/
 
 	public Long getId_perro() {
 		return id_perro;

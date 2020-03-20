@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -35,8 +36,19 @@ public class Cacerias {
 	@Column
 	private int numero_cazadores;
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	private List<Duenho> duenhos = new ArrayList<Duenho>();
+	/*@ManyToMany(mappedBy = "cacerias",fetch=FetchType.EAGER)
+	private List<Duenho> listaDuenhos=new ArrayList<Duenho>();
+	
+	public void addCacerias(Duenho duenho) {
+		if(!listaDuenhos.contains(duenho)) {
+			listaDuenhos.add(duenho);
+			
+			List<Cacerias>listaCacerias=duenho.getCacerias();
+			if(!listaCacerias.contains(this)) {
+				listaCacerias.add(this);
+			}
+		}
+	}
 
 	@ManyToOne
 	private Guardas guardas;
@@ -49,13 +61,15 @@ public class Cacerias {
 		this.guardas = guardas;
 	}
 
-	public List<Duenho> getDuenhos() {
-		return duenhos;
+	
+
+	public List<Duenho> getListaDuenhos() {
+		return listaDuenhos;
 	}
 
-	public void setDuenhos(List<Duenho> duenhos) {
-		this.duenhos = duenhos;
-	}
+	public void setListaDuenhos(List<Duenho> listaDuenhos) {
+		this.listaDuenhos = listaDuenhos;
+	}*/
 
 	public int getNumero_perros() {
 		return numero_perros;
