@@ -28,16 +28,16 @@ public class Veterinarios implements UserDetails{
 	private String usuario;
 
 	@Column
-	private String DNI;
+	private String dni;
 
 	@Column
 	private String nombre;
 
 	@Column
-	private String Apellidos;
+	private String apellidos;
 
 	@Column
-	private String Dirección;
+	private String direccion;
 
 	@Column
 	private String provincia;
@@ -46,7 +46,7 @@ public class Veterinarios implements UserDetails{
 	private String email;
 
 	@Column
-	private int Telefono;
+	private int telefono;
 
 	@Column
 	private String contrasenha;
@@ -68,6 +68,13 @@ public class Veterinarios implements UserDetails{
 		}
 	}*/
 
+
+	
+
+	public Rol getRolVeterinario() {
+		return rolVeterinario;
+	}
+
 	public String getUsuario() {
 		return usuario;
 	}
@@ -76,12 +83,12 @@ public class Veterinarios implements UserDetails{
 		this.usuario = usuario;
 	}
 
-	public String getDNI() {
-		return DNI;
+	public String getDni() {
+		return dni;
 	}
 
-	public void setDNI(String dNI) {
-		DNI = dNI;
+	public void setDni(String dni) {
+		this.dni = dni;
 	}
 
 	public String getNombre() {
@@ -93,19 +100,19 @@ public class Veterinarios implements UserDetails{
 	}
 
 	public String getApellidos() {
-		return Apellidos;
+		return apellidos;
 	}
 
 	public void setApellidos(String apellidos) {
-		Apellidos = apellidos;
+		this.apellidos = apellidos;
 	}
 
-	public String getDirección() {
-		return Dirección;
+	public String getDireccion() {
+		return direccion;
 	}
 
-	public void setDirección(String dirección) {
-		Dirección = dirección;
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
 	}
 
 	public String getProvincia() {
@@ -125,11 +132,11 @@ public class Veterinarios implements UserDetails{
 	}
 
 	public int getTelefono() {
-		return Telefono;
+		return telefono;
 	}
 
 	public void setTelefono(int telefono) {
-		Telefono = telefono;
+		this.telefono = telefono;
 	}
 
 	public String getContrasenha() {
@@ -138,12 +145,6 @@ public class Veterinarios implements UserDetails{
 
 	public void setContrasenha(String contrasenha) {
 		this.contrasenha = contrasenha;
-	}
-
-	
-
-	public Rol getRolVeterinario() {
-		return rolVeterinario;
 	}
 
 	public void setRolVeterinario(Rol rolVeterinario) {
@@ -203,10 +204,11 @@ public class Veterinarios implements UserDetails{
 
 	@Override
 	public String toString() {
-		return "Veterinarios [usuario=" + usuario + ", DNI=" + DNI + ", nombre=" + nombre + ", Apellidos=" + Apellidos
-				+ ", Dirección=" + Dirección + ", provincia=" + provincia + ", email=" + email + ", Telefono="
-				+ Telefono + ", contrasenha=" + contrasenha + ", rolVeterinario=" + rolVeterinario + "]";
+		return "Veterinarios [usuario=" + usuario + ", dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos
+				+ ", direccion=" + direccion + ", provincia=" + provincia + ", email=" + email + ", telefono="
+				+ telefono + ", contrasenha=" + contrasenha + ", rolVeterinario=" + rolVeterinario + "]";
 	}
+
 	
 	
 	

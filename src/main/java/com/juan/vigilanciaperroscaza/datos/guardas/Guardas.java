@@ -28,16 +28,16 @@ public class Guardas implements UserDetails{
 	private String usuario;
 
 	@Column
-	private String DNI;
+	private String dni;
 
 	@Column
 	private String nombre;
 
 	@Column
-	private String Apellidos;
+	private String apellidos;
 
 	@Column
-	private String Dirección;
+	private String direccion;
 
 	@Column
 	private String provincia;
@@ -46,7 +46,7 @@ public class Guardas implements UserDetails{
 	private String email;
 
 	@Column
-	private int Telefono;
+	private int telefono;
 
 	@Column
 	private String contrasenha;
@@ -57,6 +57,15 @@ public class Guardas implements UserDetails{
 	/*@OneToMany(mappedBy = "guardas",cascade = CascadeType.ALL)
 	private List<Cacerias>lisCacerias=new ArrayList<Cacerias>();*/
 
+	
+
+	
+
+	
+	public Rol getRolGuarda() {
+		return rolGuarda;
+	}
+
 	public String getUsuario() {
 		return usuario;
 	}
@@ -65,12 +74,12 @@ public class Guardas implements UserDetails{
 		this.usuario = usuario;
 	}
 
-	public String getDNI() {
-		return DNI;
+	public String getDni() {
+		return dni;
 	}
 
-	public void setDNI(String dNI) {
-		DNI = dNI;
+	public void setDni(String dni) {
+		this.dni = dni;
 	}
 
 	public String getNombre() {
@@ -82,19 +91,21 @@ public class Guardas implements UserDetails{
 	}
 
 	public String getApellidos() {
-		return Apellidos;
+		return apellidos;
 	}
 
 	public void setApellidos(String apellidos) {
-		Apellidos = apellidos;
+		this.apellidos = apellidos;
 	}
 
-	public String getDirección() {
-		return Dirección;
+	
+
+	public String getDireccion() {
+		return direccion;
 	}
 
-	public void setDirección(String dirección) {
-		Dirección = dirección;
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
 	}
 
 	public String getProvincia() {
@@ -114,11 +125,11 @@ public class Guardas implements UserDetails{
 	}
 
 	public int getTelefono() {
-		return Telefono;
+		return telefono;
 	}
 
 	public void setTelefono(int telefono) {
-		Telefono = telefono;
+		this.telefono = telefono;
 	}
 
 	public String getContrasenha() {
@@ -127,11 +138,6 @@ public class Guardas implements UserDetails{
 
 	public void setContrasenha(String contrasenha) {
 		this.contrasenha = contrasenha;
-	}
-
-	
-	public Rol getRolGuarda() {
-		return rolGuarda;
 	}
 
 	public void setRolGuarda(Rol rolGuarda) {
@@ -146,12 +152,7 @@ public class Guardas implements UserDetails{
 		this.lisCacerias = lisCacerias;
 	}*/
 
-	@Override
-	public String toString() {
-		return "Guardas [usuario=" + usuario + ", DNI=" + DNI + ", nombre=" + nombre + ", Apellidos=" + Apellidos
-				+ ", Dirección=" + Dirección + ", provincia=" + provincia + ", email=" + email + ", Telefono="
-				+ Telefono + ", contrasenha=" + contrasenha + ", rol=" + rolGuarda  + "]";
-	}
+	
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -194,6 +195,13 @@ public class Guardas implements UserDetails{
 	public boolean isEnabled() {
 		
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Guardas [usuario=" + usuario + ", dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos
+				+ ", direccion=" + direccion + ", provincia=" + provincia + ", email=" + email + ", telefono="
+				+ telefono + ", contrasenha=" + contrasenha + ", rolGuarda=" + rolGuarda + "]";
 	}
 
 	

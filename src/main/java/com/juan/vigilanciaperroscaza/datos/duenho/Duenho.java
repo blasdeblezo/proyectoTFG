@@ -38,7 +38,7 @@ public class Duenho implements UserDetails{
 	private String usuario;
 
 	@Column
-	private String DNI;
+	private String dni;
 
 	@Column
 	private String nombre;
@@ -47,7 +47,7 @@ public class Duenho implements UserDetails{
 	private String apellidos;
 
 	@Column
-	private String dirección;
+	private String direccion;
 
 	@Column
 	private String provincia;
@@ -67,15 +67,32 @@ public class Duenho implements UserDetails{
 	@ManyToOne
 	private Rol rolDuenho = new Rol();
 	
-	/*@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Cacerias> cacerias = new ArrayList<Cacerias>();
 	
 	
 	
 	@OneToMany(mappedBy ="duenho", fetch=FetchType.EAGER)
-	private List<Perros>listaPerros=new ArrayList<Perros>();*/
+	private List<Perros>listaPerros=new ArrayList<Perros>();
 
 	
+	
+
+	public List<Cacerias> getCacerias() {
+		return cacerias;
+	}
+
+	public void setCacerias(List<Cacerias> cacerias) {
+		this.cacerias = cacerias;
+	}
+
+	public List<Perros> getListaPerros() {
+		return listaPerros;
+	}
+
+	public void setListaPerros(List<Perros> listaPerros) {
+		this.listaPerros = listaPerros;
+	}
 
 	public String getUsuario() {
 		return usuario;
@@ -85,12 +102,14 @@ public class Duenho implements UserDetails{
 		this.usuario = usuario;
 	}
 
-	public String getDNI() {
-		return DNI;
+	
+
+	public String getDni() {
+		return dni;
 	}
 
-	public void setDNI(String dNI) {
-		DNI = dNI;
+	public void setDni(String dni) {
+		this.dni = dni;
 	}
 
 	public String getNombre() {
@@ -111,12 +130,14 @@ public class Duenho implements UserDetails{
 		this.apellidos = apellidos;
 	}
 
-	public String getDirección() {
-		return dirección;
+	
+
+	public String getDireccion() {
+		return direccion;
 	}
 
-	public void setDirección(String dirección) {
-		this.dirección = dirección;
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
 	}
 
 	public String getProvincia() {
@@ -234,8 +255,8 @@ public class Duenho implements UserDetails{
 
 	@Override
 	public String toString() {
-		return "Duenho [usuario=" + usuario + ", DNI=" + DNI + ", nombre=" + nombre + ", apellidos=" + apellidos
-				+ ", dirección=" + dirección + ", provincia=" + provincia + ", email=" + email + ", telefono="
+		return "Duenho [usuario=" + usuario + ", DNI=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos
+				+ ", dirección=" + direccion + ", provincia=" + provincia + ", email=" + email + ", telefono="
 				+ telefono + ", contrasenha=" + contrasenha + ", numero_perros=" + numero_perros + ", rolDuenho="
 				+ rolDuenho + "]";
 	}

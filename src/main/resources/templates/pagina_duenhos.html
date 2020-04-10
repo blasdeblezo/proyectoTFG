@@ -19,7 +19,7 @@
     <form class="m-2">
         <div class="form-row">
           <div class="col-md-4 mb-3">
-            <label for="validationDefault01">Provincia</label>
+            <label for="CampoProvincia">Provincia</label>
             <select id="Provincia" class="form-control">
                 <option>Selecciona Provincia</option>
               </select>
@@ -33,7 +33,7 @@
             <input type="text" class="form-control" id="Nombre" placeholder="Nombre">
           </div>
         </div>
-        <a type="button" class="btn btn-primary" th:href="@{/buscarDuenhos}" >Buscar</a>
+        <a type="button" class="btn boton" th:href="@{/buscarDuenhos}" >Buscar</a>
       </form>
     </div>
 
@@ -42,7 +42,7 @@
     vea el nombre del dueño pero que ese campo sea su id-->
     <div  class=" m-3 ">
         <table class="table">
-            <thead class="thead-dark">
+            <thead class="fila">
               <tr>
                 <th scope="col">Usuario</th>
                 <th scope="col">Nombre</th>

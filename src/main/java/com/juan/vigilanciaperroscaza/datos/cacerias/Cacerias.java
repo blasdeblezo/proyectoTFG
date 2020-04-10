@@ -36,7 +36,7 @@ public class Cacerias {
 	@Column
 	private int numero_cazadores;
 
-	/*@ManyToMany(mappedBy = "cacerias",fetch=FetchType.EAGER)
+	@ManyToMany(mappedBy = "cacerias",fetch=FetchType.EAGER)
 	private List<Duenho> listaDuenhos=new ArrayList<Duenho>();
 	
 	public void addCacerias(Duenho duenho) {
@@ -69,7 +69,7 @@ public class Cacerias {
 
 	public void setListaDuenhos(List<Duenho> listaDuenhos) {
 		this.listaDuenhos = listaDuenhos;
-	}*/
+	}
 
 	public int getNumero_perros() {
 		return numero_perros;
