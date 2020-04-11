@@ -32,7 +32,7 @@
             <input type="date" class="form-control" id="fechaCaceria" placeholder="Fecha caceria">
           </div>
         </div>
-        <button class="btn boton" type="submit">Buscar</button>
+        <a class="btn boton" type="button" th:href="@{/buscarCacerias}">Buscar</a>
         <button class="btn boton ml-5" type="submit">Añadir</button>
       </form>
     </div>
@@ -40,14 +40,23 @@
     <!--El id del guarda sea el nombre.-->
     <div  class=" m-3 ">
         <table class="table">
-            <thead class="fila">
-              <tr>
+            <thead >
+              <tr class="fila">
                 <th scope="col">Id</th>
                 <th scope="col">Provincia</th>
                 <th scope="col">Fecha</th>
                 <th scope="col">Numero de cazadors</th>
                 <th scope="col">Numero de perros</th>
                 <th scope="col">Guarda</th>
+             
+              </tr>
+              <tr th:each="caceria:${cacerias}">
+                <td ><a th:href="@{fichaCaceria/{id}(id=${caceria.id_caceria})}" th:text="${caceria.id_caceria}"></a></td>
+                <td th:text="${caceria.provincia}">Provincia</td>
+                <td th:text="${caceria.fecha}">Fecha</td>
+                <td th:text="${caceria.numero_cazadores}">Numero de cazadors</td>
+                <td th:text="${caceria.numero_perros}">Numero de perros</td>
+                <td th:text="${caceria.guardas.usuario}">Guarda</td>
              
               </tr>
             </thead>

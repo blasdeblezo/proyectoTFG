@@ -22,7 +22,7 @@ import com.juan.vigilanciaperroscaza.datos.guardas.Guardas;
 public class Cacerias {
 
 	@Id
-	private Long Id_caceria;
+	private Long id_caceria;
 
 	@Column
 	private String provincia;
@@ -31,10 +31,10 @@ public class Cacerias {
 	private String fecha;
 
 	@Column
-	private int numero_perros;
+	private Integer numero_perros;
 
 	@Column
-	private int numero_cazadores;
+	private Integer numero_cazadores;
 
 	@ManyToMany(mappedBy = "cacerias",fetch=FetchType.EAGER)
 	private List<Duenho> listaDuenhos=new ArrayList<Duenho>();
@@ -71,28 +71,32 @@ public class Cacerias {
 		this.listaDuenhos = listaDuenhos;
 	}
 
-	public int getNumero_perros() {
+	
+
+	
+
+	public Integer getNumero_perros() {
 		return numero_perros;
 	}
 
-	public void setNumero_perros(int numero_perros) {
+	public void setNumero_perros(Integer numero_perros) {
 		this.numero_perros = numero_perros;
 	}
 
-	public int getNumero_cazadores() {
+	public Integer getNumero_cazadores() {
 		return numero_cazadores;
 	}
 
-	public void setNumero_cazadores(int numero_cazadores) {
+	public void setNumero_cazadores(Integer numero_cazadores) {
 		this.numero_cazadores = numero_cazadores;
 	}
 
 	public Long getId_caceria() {
-		return Id_caceria;
+		return id_caceria;
 	}
 
 	public void setId_caceria(Long id_caceria) {
-		Id_caceria = id_caceria;
+		this.id_caceria = id_caceria;
 	}
 
 	public String getProvincia() {
@@ -110,5 +114,14 @@ public class Cacerias {
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
+
+	@Override
+	public String toString() {
+		return "Cacerias [id_caceria=" + id_caceria + ", provincia=" + provincia + ", fecha=" + fecha
+				+ ", numero_perros=" + numero_perros + ", numero_cazadores=" + numero_cazadores + ", listaDuenhos="
+				+ listaDuenhos + ", guardas=" + guardas + "]";
+	}
+	
+	
 
 }

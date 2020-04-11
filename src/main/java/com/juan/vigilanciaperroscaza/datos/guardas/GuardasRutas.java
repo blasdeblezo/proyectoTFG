@@ -82,7 +82,7 @@ public class GuardasRutas {
 		
 		List<Guardas> listaGuardas=(List<Guardas>)guardasDAO.findAll();
 		mav.addObject("guardas", listaGuardas);
-		System.out.println(listaGuardas);
+		
 		
 		return mav;
 	}
@@ -99,7 +99,7 @@ public class GuardasRutas {
 		usuarioG.setUsuario(usuario);
 		List<Cacerias> listaCacerias=(List<Cacerias>)caceriasDAO.findByGuardas(usuarioG);
 		mav.addObject("cacerias", listaCacerias);
-		System.out.println(listaCacerias);
+		
 		
 		mav.setViewName("ficha_guarda");
 		
