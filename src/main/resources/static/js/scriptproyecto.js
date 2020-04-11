@@ -18,7 +18,5 @@ function anhadir(){
          option.text = provincias[i];
     x.add(option, x[i+1]);
     }
-   
-    
 
 }
