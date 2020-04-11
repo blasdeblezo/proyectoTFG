@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface GuardasDAO extends CrudRepository<Guardas, String>{
 
+	Guardas findByUsuario(String usuario);
+
 }

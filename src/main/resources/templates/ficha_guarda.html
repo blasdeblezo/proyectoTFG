@@ -11,48 +11,47 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/css/estiloProyecto.css">
     <title>Ficha de guarda</title>
-    <!--Si es posible que el titulo se cambie con cada
-    perro y que ponga su id-->
+    
 </head>
 
 <body>
 
-    <!--Borde con css-->
+  
     <div class="m-2 borde">
         <form class="m-3">
             <div class="form-row">
                 <div class="col">
                     <label for="">Nombre</label>
-                    <input type="text" class="form-control" placeholder="Nombre">
+                    <output type="text" class="form-control"  th:text="${guarda.nombre}"></output>
                 </div>
                 <div class="col">
                     <label for="">Apellidos</label>
-                    <input type="text" class="form-control" placeholder="Apellidos">
+                    <output type="text" class="form-control"  th:text="${guarda.apellidos}"></output>
                 </div>
                 <div class="col">
                     <label for="">DNI</label>
-                    <input type="text" class="form-control" placeholder="DNI">
+                    <output type="text" class="form-control" th:text="${guarda.dni}"></output>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="col">
                     <label for="">Telefono</label>
-                    <input type="text" class="form-control" placeholder="Telefono">
+                    <output type="text" class="form-control"  th:text="${guarda.telefono}"></output>
                 </div>
                 <div class="col">
                     <label for="">Correo</label>
-                    <input type="text" class="form-control" placeholder="Correo">
+                    <output type="text" class="form-control"  th:text="${guarda.email}"></output>
                 </div>
                 <div class="col">
-                    <label for="">Localidad</label>
-                    <input type="text" class="form-control" placeholder="Localidad">
+                    <label for="">Provincia</label>
+                    <output type="text" class="form-control"  th:text="${guarda.provincia}"></output>
                 </div>
             </div>
             <div class="form-row">
                 <div class="col">
                     <label for="">Dirección</label>
-                    <input type="text" class="form-control" placeholder="Dirección">
+                    <output type="text" class="form-control"  th:text="${guarda.direccion}"></output>
                 </div>
             </div>
         </form>
@@ -74,7 +73,11 @@
                         <th scope="col">Id caceria</th>
                         <th scope="col">Provincia</th>
                         <th scope="col">Fecha</th>
-
+                    </tr>
+                     <tr th:each="caceria:${cacerias}">
+                        <td th:text="${caceria.id_caceria}">Id caceria</td>
+                        <td th:text="${caceria.provincia}">Provincia</td>
+                        <td th:text="${caceria.fecha}">Fecha</td>
                     </tr>
                 </thead>
                 <tbody>

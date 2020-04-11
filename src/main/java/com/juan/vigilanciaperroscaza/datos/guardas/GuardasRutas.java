@@ -9,9 +9,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.juan.vigilanciaperroscaza.datos.cacerias.Cacerias;
+import com.juan.vigilanciaperroscaza.datos.cacerias.CaceriasDAO;
 import com.juan.vigilanciaperroscaza.datos.roles.Rol;
 import com.juan.vigilanciaperroscaza.datos.roles.RolDAO;
 
@@ -23,6 +26,9 @@ public class GuardasRutas {
 	
 	@Autowired
 	private RolDAO rolDAO;
+	
+	@Autowired
+	private CaceriasDAO caceriasDAO;
 	
 	@GetMapping("/listaguardas")
 	public String listaguardas() {
@@ -77,6 +83,25 @@ public class GuardasRutas {
 		List<Guardas> listaGuardas=(List<Guardas>)guardasDAO.findAll();
 		mav.addObject("guardas", listaGuardas);
 		System.out.println(listaGuardas);
+		
+		return mav;
+	}
+	
+	@GetMapping("/fichaGuarda/{usuario}")
+	public ModelAndView fichaGuarda(@PathVariable String usuario) {
+		
+		ModelAndView mav=new ModelAndView();
+		Guardas guarda=guardasDAO.findByUsuario(usuario);
+		mav.addObject("guarda", guarda);
+		
+		
+		Guardas usuarioG=new Guardas();
+		usuarioG.setUsuario(usuario);
+		List<Cacerias> listaCacerias=(List<Cacerias>)caceriasDAO.findByGuardas(usuarioG);
+		mav.addObject("cacerias", listaCacerias);
+		System.out.println(listaCacerias);
+		
+		mav.setViewName("ficha_guarda");
 		
 		return mav;
 	}
