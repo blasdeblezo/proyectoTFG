@@ -1,5 +1,7 @@
 package com.juan.vigilanciaperroscaza.datos.guardas;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,7 @@ public class GuardasRutas {
 	private RolDAO rolDAO;
 	
 	@GetMapping("/listaguardas")
-	public String listacacerias() {
+	public String listaguardas() {
 		
 		return "pagina_guardas";
 	}
@@ -65,11 +67,17 @@ public class GuardasRutas {
 		return mav;
 	}
 	
-	@GetMapping("buscarGuardas")
+	@GetMapping("/buscarGuardas")
 	public ModelAndView buscarGuardas() {
 		
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("pagina_guardas");
+		mav.addObject("guarda", new Guardas());
 		
+		List<Guardas> listaGuardas=(List<Guardas>)guardasDAO.findAll();
+		mav.addObject("guardas", listaGuardas);
+		System.out.println(listaGuardas);
 		
-		return null;
+		return mav;
 	}
 }

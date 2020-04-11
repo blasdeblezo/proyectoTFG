@@ -33,21 +33,29 @@
             <input type="text" class="form-control" id="Nombre" placeholder="Nombre">
           </div>
         </div>
-        <button class="btn boton" type="submit">Buscar</button>
+        <a type="button" class="btn boton" th:href="@{/buscarGuardas}" >Buscar</a>
       </form>
     </div>
 
 
     <div  class=" m-3 ">
         <table class="table">
-            <thead class="fila">
-              <tr>
-                <th scope="col">Id</th>
+            <thead >
+              <tr class="fila">
+                <th scope="col">Usuario</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellidos</th>
                 <th scope="col">Dirección</th>
                 <th scope="col">Correo</th>
                 <th scope="col">Telefono</th>
+              </tr>
+               <tr th:each="guarda:${guardas}">
+                <td><a th:href="@{/fichaGuarda/{usuario}(usuario=${guarda.usuario})}" th:text="${guarda.usuario}"></a></td>
+                <td th:text="${guarda.nombre}">Nombre</td>
+                <td th:text="${guarda.apellidos}">Apellidos</td>
+                <td th:text="${guarda.direccion}">Dirección</td>
+                <td th:text="${guarda.email}">Correo</td>
+                <td th:text="${guarda.telefono}">Telefono</td>
               </tr>
             </thead>
             <tbody>
