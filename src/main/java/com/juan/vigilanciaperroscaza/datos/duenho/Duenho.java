@@ -56,13 +56,13 @@ public class Duenho implements UserDetails{
 	private String email;
 
 	@Column
-	private int telefono;
+	private Integer telefono;
 
 	@Column
 	private String contrasenha;
 	
 	@Column
-	private int numero_perros;
+	private Integer numero_perros;
 	
 	@ManyToOne
 	private Rol rolDuenho = new Rol();
@@ -156,14 +156,11 @@ public class Duenho implements UserDetails{
 		this.email = email;
 	}
 
-	
-	
-
-	public int getTelefono() {
+	public Integer getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(int telefono) {
+	public void setTelefono(Integer telefono) {
 		this.telefono = telefono;
 	}
 
@@ -177,11 +174,11 @@ public class Duenho implements UserDetails{
 
 	
 
-	public int getNumero_perros() {
+	public Integer getNumero_perros() {
 		return numero_perros;
 	}
 
-	public void setNumero_perros(int numero_perros) {
+	public void setNumero_perros(Integer numero_perros) {
 		this.numero_perros = numero_perros;
 	}
 
@@ -192,23 +189,6 @@ public class Duenho implements UserDetails{
 	public void setRolDuenho(Rol rolDuenho) {
 		this.rolDuenho = rolDuenho;
 	}
-
-	/*public List<Perros> getListaPerros() {
-		return listaPerros;
-	}
-
-	public void setListaPerros(List<Perros> listaPerros) {
-		this.listaPerros = listaPerros;
-	}
-	
-	
-	public List<Cacerias> getCacerias() {
-		return cacerias;
-	}
-
-	public void setCacerias(List<Cacerias> cacerias) {
-		this.cacerias = cacerias;
-	}*/
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

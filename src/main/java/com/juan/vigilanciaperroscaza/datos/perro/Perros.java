@@ -35,23 +35,22 @@ public class Perros {
 	@Column
 	private String fecha_muerte;
 	
+	@Column
+	private String revision;
+	
 	@ManyToOne
 	private Duenho duenho;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	private List<Veterinarios> veterinarios=new ArrayList<Veterinarios>();
+	/*@ManyToMany(cascade = CascadeType.ALL)
+	private List<Veterinarios> veterinarios=new ArrayList<Veterinarios>()
 	
-	
-	
-
-
 	public List<Veterinarios> getVeterinarios() {
 		return veterinarios;
 	}
 
 	public void setVeterinarios(List<Veterinarios> veterinarios) {
 		this.veterinarios = veterinarios;
-	}
+	};*/
 
 	public Duenho getDuenho() {
 		return duenho;
@@ -100,6 +99,25 @@ public class Perros {
 	public void setFecha_muerte(String fecha_muerte) {
 		this.fecha_muerte = fecha_muerte;
 	}
+	
+	
+
+	public String getRevision() {
+		return revision;
+	}
+
+	public void setRevision(String revision) {
+		this.revision = revision;
+	}
+
+	@Override
+	public String toString() {
+		return "Perros [id_perro=" + id_perro + ", nombre=" + nombre + ", raza=" + raza + ", fecha_nacimiento="
+				+ fecha_nacimiento + ", fecha_muerte=" + fecha_muerte + ", revision=" + revision + ", duenho=" + duenho
+				/*+ ", veterinarios=" + veterinarios*/ + "]";
+	}
+
+	
 	
 	
 }

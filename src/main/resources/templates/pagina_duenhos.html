@@ -51,7 +51,7 @@
                 <th scope="col">Numero de perros</th>
               </tr>
               <tr th:each="duenho:${duenhos}">
-              <td th:text="${duenho.usuario}"></td>
+              <td ><a th:href="@{/fichaDuenho/{usuario}(usuario=${duenho.usuario})}" th:text="${duenho.usuario}"></a></td>
                 <td th:text="${duenho.nombre}">Nombre</td>
                 <td th:text="${duenho.apellidos}">Apellidos</td>
                 <td th:text="${duenho.provincia}">Provincia</td>
