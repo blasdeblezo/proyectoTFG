@@ -3,12 +3,12 @@ package com.juan.vigilanciaperroscaza.datos.duenho;
 import java.util.List;
 
 
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -128,6 +128,33 @@ public class DuenhoRutas {
 		System.out.println(perros);
 		
 		mav.setViewName("ficha_duenho");
+		return mav;
+	}
+	
+	@GetMapping("/editarDuenho/{usuario}")
+	public ModelAndView editarDuenho(@PathVariable String usuario) {
+		
+		Duenho duenho=duenhoDAO.findById(usuario).get();
+		
+		
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("editar_duenho");
+		mav.addObject("duenhoEditado", duenho);
+	
+		
+		return mav;
+	}
+	
+	@PostMapping("/duenhoEditado")
+	public ModelAndView duenhoEditado(
+			@Valid @ModelAttribute("duenhoEditado") Duenho duenho) {
+		
+		System.out.println(duenho);
+		
+		ModelAndView mav=new ModelAndView();
+		duenhoDAO.save(duenho);
+		mav.setViewName("pagina_duenhos");
+		
 		return mav;
 	}
 	

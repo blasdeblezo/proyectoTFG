@@ -48,7 +48,8 @@
                 <th scope="col">Numero de cazadors</th>
                 <th scope="col">Numero de perros</th>
                 <th scope="col">Guarda</th>
-             
+              </thead>
+               <tbody>
               </tr>
               <tr th:each="caceria:${cacerias}">
                 <td ><a th:href="@{fichaCaceria/{id}(id=${caceria.id_caceria})}" th:text="${caceria.id_caceria}"></a></td>
@@ -59,8 +60,7 @@
                 <td th:text="${caceria.guardas.usuario}">Guarda</td>
              
               </tr>
-            </thead>
-            <tbody>
+
              
             </tbody>
           </table>

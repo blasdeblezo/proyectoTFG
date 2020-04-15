@@ -47,7 +47,10 @@
                 <th scope="col">Provincia</th>
                 <th scope="col">Numero de perros</th>
                 <th scope="col"></th>
+                <th scope="col"></th>
               </tr>
+              </thead>
+               <tbody>
               <tr th:each="duenho:${duenhos}">
               <td ><a th:href="@{/fichaDuenho/{usuario}(usuario=${duenho.usuario})}" th:text="${duenho.usuario}"></a></td>
                 <td th:text="${duenho.nombre}">Nombre</td>
@@ -55,10 +58,15 @@
                 <td th:text="${duenho.provincia}">Provincia</td>
                 <td th:text="${duenho.numero_perros}">Numero de perros</td>
                 <td ><a type="button" class="btn btn-danger" 
-                th:href="@{/eliminarDuenho/{usuario}(usuario=${duenho.usuario})}" th:text="Eliminar"></a></td>
+                th:href="@{/eliminarDuenho/{usuario}(usuario=${duenho.usuario})}" th:text="Eliminar">
+                <a type="button" class="btn btn-primary" 
+                th:href="@{/editarDuenho/{usuario}(usuario=${duenho.usuario})}" th:text="Editar"></a></td>
+                <td >
+                <a type="button" class="btn btn-primary" 
+                th:href="@{/editarDuenho/{usuario}(usuario=${duenho.usuario})}" th:text="Editar"></a></td>
               </tr>
-            </thead>
-            <tbody>
+            
+         
              
             </tbody>
           </table>
