@@ -16,44 +16,44 @@
 <body onload="anhadir()">
 
     <div class="borde m-3">
-        <form class="m-3">
+        <form class="m-3" action="#" th:action="@{/guardarCaceria}" th:object="${caceriaRegistrada}">
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <label for="campoId">Id del guarda</label>
-                    <input type="text" class="form-control" id="campoId" placeholder="id guarda">
+                    <label for="campoId">Usuario del guarda</label>
+                    <input type="text" class="form-control" id="campoId" placeholder="usuario guarda" th:field="*{guardas}">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="campoNombre">Nombre del guarda</label>
-                    <input type="text" class="form-control" id="campoNombre" placeholder="Nombre guarda">
+                    <input type="text" class="form-control" id="campoNombre" placeholder="Nombre guarda" th:field="*{guardas.nombre}">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="campoProvincia">Provincia</label>
-                    <select id="Provincia" class="form-control">
-                <option>Selecciona Provincia</option>
+                    <select id="Provincia" class="form-control" th:field="*{provincia}">
+               
               </select>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="campoFecha">Fecha</label>
-                    <input type="date" class="form-control" id="campoFecha" placeholder="Fecha">
+                    <input type="date" class="form-control" id="campoFecha" placeholder="Fecha" th:field="*{fecha}">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="campoNumeroCazadores">Numero de cazadores</label>
                     <input type="number" class="form-control" id="campoNumeroCazadores"
-                        placeholder="campoNumeroCazadores">
+                        placeholder="campoNumeroCazadores" th:field="*{numero_cazadores}">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="campoNumeroPerros">Numero de perros</label>
-                    <input type="number" class="form-control" id="campoNumeroPerros" placeholder="Numero de perros">
+                    <input type="number" class="form-control" id="campoNumeroPerros" placeholder="Numero de perros" th:field="*{numero_perros}">
                 </div>
             </div>
 
 
             <div class="form-row">
                 <div class=" col-md-4 ">
-                    <label for="campoIdCazador">Id cazador</label>
-                    <input type="text" class="form-control" id="campoIdCazador" placeholder="id cazador">
+                    <label for="campoIdCazador">Usuario cazador</label>
+                    <input type="text" class="form-control" id="campoIdCazador" placeholder="id cazador" th:field="*{listaDuenhos.usuarios}">
                     <button type="submit" class="btn boton col-md-4 mt-3">añadir cazador</button>
                 </div>
 
@@ -62,13 +62,15 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="campoIdPerro">Id perros</label>
-                    <input type="text" class="form-control" id="campoIdPerro" placeholder="Id perros">
+                    <input type="text" class="form-control" id="campoIdPerro" placeholder="Id perros" 
+                    th:field="*{listaDuehos.listaPerros.id_perro}">
                     <button type="submit" class="btn boton col-md-4 mt-3">añadir perro</button>
                 </div>
 
             </div>
 
-            <button type="submit" class="btn boton col-md-4 mt-3">añadir caceria</button>
+            <input type="submit" value="Añadir"
+						class="btn boton float-right">
 
     </div>
 

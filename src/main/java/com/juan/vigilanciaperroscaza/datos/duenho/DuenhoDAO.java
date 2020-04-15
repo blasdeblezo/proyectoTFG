@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 public interface DuenhoDAO  extends CrudRepository<Duenho, String>{
 
 	Duenho findByUsuario(String usuario);
+
 	
 
 }

@@ -34,4 +34,14 @@ public class CaceriasRutas {
 		
 		return mav;
 	}
+	
+	@GetMapping("/registrarCaceria")
+	public ModelAndView registroCacerias() {
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("caceriaRegistrada", new Cacerias());
+		mav.setViewName("registro_caceria");
+		
+		return mav;
+	}
 }

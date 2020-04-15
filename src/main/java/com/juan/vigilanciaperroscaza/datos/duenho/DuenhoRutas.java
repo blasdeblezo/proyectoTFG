@@ -131,4 +131,16 @@ public class DuenhoRutas {
 		return mav;
 	}
 	
+	@GetMapping("/eliminarDuenho/{usuario}")
+	public ModelAndView eliminarDuenho(@PathVariable String usuario) {
+		duenhoDAO.deleteById(usuario);
+		
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("pagina_duenhos");
+		
+		return mav;
+		
+		
+	}
+	
 }
