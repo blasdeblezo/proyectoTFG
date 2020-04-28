@@ -7,9 +7,9 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 //Hay que hacer las consultas a la base de datos
 @Repository
-public interface DuenhoDAO  extends CrudRepository<Duenho, String>{
+public interface DuenhoDAO  extends CrudRepository<DuenhoBD, String>{
 
-	Duenho findByUsuario(String usuario);
+	DuenhoBD findByUsuario(String usuario);
 
 	
 

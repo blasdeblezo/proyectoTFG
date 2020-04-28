@@ -24,9 +24,9 @@ public class CaceriasRutas {
 	public ModelAndView buscarCacerias() {
 		
 		ModelAndView mav=new ModelAndView();
-		mav.addObject("caceria", new Cacerias());
+		mav.addObject("caceria", new CaceriasBD());
 		
-		List<Cacerias>listaCacerias=(List<Cacerias>)caceriasDAO.findAll();
+		List<CaceriasBD>listaCacerias=(List<CaceriasBD>)caceriasDAO.findAll();
 		mav.addObject("cacerias", listaCacerias);
 		System.out.println(listaCacerias);
 		
@@ -39,7 +39,7 @@ public class CaceriasRutas {
 	public ModelAndView registroCacerias() {
 		
 		ModelAndView mav=new ModelAndView();
-		mav.addObject("caceriaRegistrada", new Cacerias());
+		mav.addObject("caceriaRegistrada", new CaceriasBD());
 		mav.setViewName("registro_caceria");
 		
 		return mav;

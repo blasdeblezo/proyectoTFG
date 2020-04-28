@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.juan.vigilanciaperroscaza.datos.cacerias.Cacerias;
+import com.juan.vigilanciaperroscaza.datos.cacerias.CaceriasBD;
 import com.juan.vigilanciaperroscaza.datos.cacerias.CaceriasDAO;
 import com.juan.vigilanciaperroscaza.datos.roles.Rol;
 import com.juan.vigilanciaperroscaza.datos.roles.RolDAO;
@@ -40,21 +40,21 @@ public class GuardasRutas {
 	public ModelAndView registrarGuarda() {
 		
 		ModelAndView mav=new ModelAndView();
-		mav.addObject("guardaRegistrado", new GuardasGeneral());
+		mav.addObject("guardaRegistrado", new Guardas());
 		mav.setViewName("registro_guardas");
 		
 		return mav;
 	}
 	
 	@PostMapping("/guardarGuarda")
-	public ModelAndView guardadGuarda(@Valid @ModelAttribute("guardaRegistrado") GuardasGeneral guardaRegistrado) {
+	public ModelAndView guardadGuarda(@Valid @ModelAttribute("guardaRegistrado") Guardas guardaRegistrado) {
 		
 		Rol rol=new Rol();
 		rol=rolDAO.buscarDuenho("guarda");
 		
 		ModelAndView mav=new ModelAndView();
 		
-		Guardas guarda=new Guardas();
+		GuardasBD guarda=new GuardasBD();
 		guarda.setUsuario(guardaRegistrado.getUsuario());
 		guarda.setNombre(guardaRegistrado.getNombre());
 		guarda.setApellidos(guardaRegistrado.getApellidos());
@@ -78,9 +78,9 @@ public class GuardasRutas {
 		
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("pagina_guardas");
-		mav.addObject("guarda", new Guardas());
+		mav.addObject("guarda", new GuardasBD());
 		
-		List<Guardas> listaGuardas=(List<Guardas>)guardasDAO.findAll();
+		List<GuardasBD> listaGuardas=(List<GuardasBD>)guardasDAO.findAll();
 		mav.addObject("guardas", listaGuardas);
 		
 		
@@ -91,13 +91,13 @@ public class GuardasRutas {
 	public ModelAndView fichaGuarda(@PathVariable String usuario) {
 		
 		ModelAndView mav=new ModelAndView();
-		Guardas guarda=guardasDAO.findByUsuario(usuario);
+		GuardasBD guarda=guardasDAO.findByUsuario(usuario);
 		mav.addObject("guarda", guarda);
 		
 		
-		Guardas usuarioG=new Guardas();
+		GuardasBD usuarioG=new GuardasBD();
 		usuarioG.setUsuario(usuario);
-		List<Cacerias> listaCacerias=(List<Cacerias>)caceriasDAO.findByGuardas(usuarioG);
+		List<CaceriasBD> listaCacerias=(List<CaceriasBD>)caceriasDAO.findByGuardas(usuarioG);
 		mav.addObject("cacerias", listaCacerias);
 		
 		

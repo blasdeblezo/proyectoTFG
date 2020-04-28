@@ -1,7 +1,7 @@
 package com.juan.vigilanciaperroscaza.datos.duenho;
 
 
-public class DuenhosGeneral {
+public class Duenhos {
 	
 
 	private String usuario;

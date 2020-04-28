@@ -10,15 +10,15 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-import com.juan.vigilanciaperroscaza.datos.duenho.Duenho;
-import com.juan.vigilanciaperroscaza.datos.veterinarios.Veterinarios;
+import com.juan.vigilanciaperroscaza.datos.duenho.DuenhoBD;
+import com.juan.vigilanciaperroscaza.datos.veterinarios.VeterinariosBD;
 
 /*
  * Hay que cambiar, si se puede, el tipo de las fechas de String a date.
  * Falta hacer la unión con la tabla de dueño
  * */
 @Entity
-public class Perros {
+public class PerrosBD {
 
 	@Id
 	private Long id_perro;
@@ -39,7 +39,7 @@ public class Perros {
 	private String revision;
 	
 	@ManyToOne
-	private Duenho duenho;
+	private DuenhoBD duenho;
 	
 	/*@ManyToMany(cascade = CascadeType.ALL)
 	private List<Veterinarios> veterinarios=new ArrayList<Veterinarios>()
@@ -52,11 +52,11 @@ public class Perros {
 		this.veterinarios = veterinarios;
 	};*/
 
-	public Duenho getDuenho() {
+	public DuenhoBD getDuenho() {
 		return duenho;
 	}
 
-	public void setDuenho(Duenho duenho) {
+	public void setDuenho(DuenhoBD duenho) {
 		this.duenho = duenho;
 	}
 

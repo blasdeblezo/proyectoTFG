@@ -13,9 +13,9 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.juan.vigilanciaperroscaza.datos.duenho.Duenho;
-import com.juan.vigilanciaperroscaza.datos.guardas.Guardas;
-import com.juan.vigilanciaperroscaza.datos.veterinarios.Veterinarios;
+import com.juan.vigilanciaperroscaza.datos.duenho.DuenhoBD;
+import com.juan.vigilanciaperroscaza.datos.guardas.GuardasBD;
+import com.juan.vigilanciaperroscaza.datos.veterinarios.VeterinariosBD;
 
 
 
@@ -26,9 +26,9 @@ public class Rol {
 	private String nombre;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "rolVeterinario")
-	private List<Veterinarios> veterinarios = new ArrayList<Veterinarios>();
+	private List<VeterinariosBD> veterinarios = new ArrayList<VeterinariosBD>();
 	
-	public void addVeterinarios(Veterinarios veterinario) {
+	public void addVeterinarios(VeterinariosBD veterinario) {
 
 		if(!veterinarios.contains(veterinario)) {
 			
@@ -37,9 +37,9 @@ public class Rol {
 	}	
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "rolGuarda")
-	private List<Guardas> guardas = new ArrayList<Guardas>();
+	private List<GuardasBD> guardas = new ArrayList<GuardasBD>();
 	
-	public void addGuardas(Guardas guarda) {
+	public void addGuardas(GuardasBD guarda) {
 
 		if(!guardas.contains(guarda)) {
 			
@@ -49,9 +49,9 @@ public class Rol {
 	
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "rolDuenho")
-	private List<Duenho> duenhos = new ArrayList<Duenho>();
+	private List<DuenhoBD> duenhos = new ArrayList<DuenhoBD>();
 	
-	public void addDuenho(Duenho duenho) {
+	public void addDuenho(DuenhoBD duenho) {
 
 		if(!duenhos.contains(duenho)) {
 			
@@ -67,27 +67,27 @@ public class Rol {
 		this.nombre = nombre;
 	}
 
-	public List<Veterinarios> getVeterinarios() {
+	public List<VeterinariosBD> getVeterinarios() {
 		return veterinarios;
 	}
 
-	public void setVeterinarios(List<Veterinarios> veterinarios) {
+	public void setVeterinarios(List<VeterinariosBD> veterinarios) {
 		this.veterinarios = veterinarios;
 	}
 
-	public List<Guardas> getGuardas() {
+	public List<GuardasBD> getGuardas() {
 		return guardas;
 	}
 
-	public void setGuardas(List<Guardas> guardas) {
+	public void setGuardas(List<GuardasBD> guardas) {
 		this.guardas = guardas;
 	}
 
-	public List<Duenho> getDuenhos() {
+	public List<DuenhoBD> getDuenhos() {
 		return duenhos;
 	}
 
-	public void setDuenhos(List<Duenho> duenhos) {
+	public void setDuenhos(List<DuenhoBD> duenhos) {
 		this.duenhos = duenhos;
 	}	
 	

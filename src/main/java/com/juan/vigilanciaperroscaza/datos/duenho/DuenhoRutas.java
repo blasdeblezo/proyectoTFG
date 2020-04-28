@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.juan.vigilanciaperroscaza.datos.perro.Perros;
+import com.juan.vigilanciaperroscaza.datos.perro.PerrosBD;
 import com.juan.vigilanciaperroscaza.datos.perro.PerrosDAO;
 import com.juan.vigilanciaperroscaza.datos.roles.Rol;
 import com.juan.vigilanciaperroscaza.datos.roles.RolDAO;
@@ -51,10 +51,10 @@ public class DuenhoRutas {
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("pagina_duenhos");
-		mav.addObject("duenho",new Duenho());
+		mav.addObject("duenho",new DuenhoBD());
 		
 		
-		List<Duenho> listaDuenhos = (List<Duenho>)duenhoDAO.findAll();
+		List<DuenhoBD> listaDuenhos = (List<DuenhoBD>)duenhoDAO.findAll();
 		mav.addObject("duenhos",listaDuenhos);
 		
 		
@@ -68,7 +68,7 @@ public class DuenhoRutas {
 		
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("registro_duenho");
-		mav.addObject("duenhoregistro", new DuenhosGeneral());
+		mav.addObject("duenhoregistro", new Duenhos());
 		
 		
 		return mav;
@@ -79,7 +79,7 @@ public class DuenhoRutas {
 	
 	@PostMapping("/guardarDuenho")
 	public ModelAndView guardarDuenhos(
-			@Valid @ModelAttribute("duenhoregistro") DuenhosGeneral duenhoregistro,
+			@Valid @ModelAttribute("duenhoregistro") Duenhos duenhoregistro,
 								Errors errores) {
 		
 		Rol rol=new Rol();
@@ -89,7 +89,7 @@ public class DuenhoRutas {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		Duenho duenho=new Duenho();
+		DuenhoBD duenho=new DuenhoBD();
 		duenho.setUsuario(duenhoregistro.getUsuario());
 		duenho.setDni(duenhoregistro.getDni());
 		duenho.setNombre(duenhoregistro.getNombre());
@@ -103,7 +103,7 @@ public class DuenhoRutas {
 		duenho.setNumero_perros(n);
 		duenho.setRolDuenho(rol);
 		mav.setViewName("registro_duenho");
-		
+		duenho.getListaPerros().size();
 		
 		duenhoDAO.save(duenho);
 		
@@ -117,13 +117,13 @@ public class DuenhoRutas {
 		
 		ModelAndView mav=new ModelAndView();
 		
-		Duenho duenho=duenhoDAO.findByUsuario(usuario);
+		DuenhoBD duenho=duenhoDAO.findByUsuario(usuario);
 		mav.addObject("duenhoFicha", duenho);
 		System.out.println(duenho);
 		
-		Duenho usuarioD=new Duenho();
+		DuenhoBD usuarioD=new DuenhoBD();
 		usuarioD.setUsuario(usuario);
-		List<Perros> perros=(List<Perros>)perrosDAO.findByDuenho(usuarioD);
+		List<PerrosBD> perros=(List<PerrosBD>)perrosDAO.findByDuenho(usuarioD);
 		mav.addObject("perros", perros);
 		System.out.println(perros);
 		
@@ -134,7 +134,7 @@ public class DuenhoRutas {
 	@GetMapping("/editarDuenho/{usuario}")
 	public ModelAndView editarDuenho(@PathVariable String usuario) {
 		
-		Duenho duenho=duenhoDAO.findById(usuario).get();
+		DuenhoBD duenho=duenhoDAO.findById(usuario).get();
 		
 		
 		ModelAndView mav=new ModelAndView();
@@ -147,7 +147,7 @@ public class DuenhoRutas {
 	
 	@PostMapping("/duenhoEditado")
 	public ModelAndView duenhoEditado(
-			@Valid @ModelAttribute("duenhoEditado") Duenho duenho) {
+			@Valid @ModelAttribute("duenhoEditado") DuenhoBD duenho) {
 		
 		System.out.println(duenho);
 		

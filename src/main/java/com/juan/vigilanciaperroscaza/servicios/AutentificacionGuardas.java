@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.juan.vigilanciaperroscaza.datos.guardas.Guardas;
+import com.juan.vigilanciaperroscaza.datos.guardas.GuardasBD;
 import com.juan.vigilanciaperroscaza.datos.guardas.GuardasDAO;
 
 @Service
@@ -19,7 +19,7 @@ public class AutentificacionGuardas implements UserDetailsService{
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-	Optional<Guardas> user = guardasDAO.findById(username);
+	Optional<GuardasBD> user = guardasDAO.findById(username);
 		
 		if(user.isPresent()) {
 			

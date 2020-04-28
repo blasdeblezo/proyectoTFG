@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.juan.vigilanciaperroscaza.datos.veterinarios.Veterinarios;
+import com.juan.vigilanciaperroscaza.datos.veterinarios.VeterinariosBD;
 import com.juan.vigilanciaperroscaza.datos.veterinarios.VeterinariosDAO;
 
 
@@ -20,7 +20,7 @@ public class AutentificacionVeterinarios implements UserDetailsService{
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-	Optional<Veterinarios> user = veterinariosDAO.findById(username);
+	Optional<VeterinariosBD> user = veterinariosDAO.findById(username);
 		
 		if(user.isPresent()) {
 			

@@ -4,8 +4,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface GuardasDAO extends CrudRepository<Guardas, String>{
+public interface GuardasDAO extends CrudRepository<GuardasBD, String>{
 
-	Guardas findByUsuario(String usuario);
+	GuardasBD findByUsuario(String usuario);
 
 }

@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 
-public interface VeterinariosDAO extends CrudRepository<Veterinarios, String>{
+public interface VeterinariosDAO extends CrudRepository<VeterinariosBD, String>{
 
 }

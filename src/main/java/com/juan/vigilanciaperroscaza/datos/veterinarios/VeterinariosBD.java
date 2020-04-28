@@ -1,7 +1,6 @@
-package com.juan.vigilanciaperroscaza.datos.duenho;
+package com.juan.vigilanciaperroscaza.datos.veterinarios;
 
 import java.util.ArrayList;
-
 
 import java.util.Collection;
 import java.util.List;
@@ -9,31 +8,22 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.juan.vigilanciaperroscaza.datos.cacerias.Cacerias;
-import com.juan.vigilanciaperroscaza.datos.perro.Perros;
+import com.juan.vigilanciaperroscaza.datos.perro.PerrosBD;
 import com.juan.vigilanciaperroscaza.datos.roles.Rol;
 
-
-
-/*
- * Falta hacer las uniones con la tabla perros y cacerias.
- * */
+// Unir con la tabla perros
 @Entity
-
-public class Duenho implements UserDetails{
-
+public class VeterinariosBD implements UserDetails{
+	
 	@Id
 	private String usuario;
 
@@ -56,42 +46,33 @@ public class Duenho implements UserDetails{
 	private String email;
 
 	@Column
-	private Integer telefono;
+	private int telefono;
 
 	@Column
 	private String contrasenha;
-	
-	@Column
-	private Integer numero_perros;
-	
+
 	@ManyToOne
-	private Rol rolDuenho = new Rol();
+	private Rol rolVeterinario = new Rol();
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	private List<Cacerias> cacerias = new ArrayList<Cacerias>();
+	/*@ManyToMany(mappedBy = "veterinarios",cascade = CascadeType.ALL )
+	private List<Perros>lisPerros=new ArrayList<Perros>();
 	
-	
-	
-	@OneToMany(mappedBy ="duenho", fetch=FetchType.EAGER)
-	private List<Perros>listaPerros=new ArrayList<Perros>();
+	public void addPerros(Perros perro) {
+		if(!lisPerros.contains(perro)) {
+			lisPerros.add(perro);
+			
+			List<Veterinarios>lisVeterinarios=perro.getVeterinarios();
+			if(!lisVeterinarios.contains(this)) {
+				lisVeterinarios.add(this);
+			}
+		}
+	}*/
+
 
 	
-	
 
-	public List<Cacerias> getCacerias() {
-		return cacerias;
-	}
-
-	public void setCacerias(List<Cacerias> cacerias) {
-		this.cacerias = cacerias;
-	}
-
-	public List<Perros> getListaPerros() {
-		return listaPerros;
-	}
-
-	public void setListaPerros(List<Perros> listaPerros) {
-		this.listaPerros = listaPerros;
+	public Rol getRolVeterinario() {
+		return rolVeterinario;
 	}
 
 	public String getUsuario() {
@@ -101,8 +82,6 @@ public class Duenho implements UserDetails{
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
-
-	
 
 	public String getDni() {
 		return dni;
@@ -120,8 +99,6 @@ public class Duenho implements UserDetails{
 		this.nombre = nombre;
 	}
 
-	
-
 	public String getApellidos() {
 		return apellidos;
 	}
@@ -129,8 +106,6 @@ public class Duenho implements UserDetails{
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
-
-	
 
 	public String getDireccion() {
 		return direccion;
@@ -156,11 +131,11 @@ public class Duenho implements UserDetails{
 		this.email = email;
 	}
 
-	public Integer getTelefono() {
+	public int getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(Integer telefono) {
+	public void setTelefono(int telefono) {
 		this.telefono = telefono;
 	}
 
@@ -172,28 +147,22 @@ public class Duenho implements UserDetails{
 		this.contrasenha = contrasenha;
 	}
 
-	
-
-	public Integer getNumero_perros() {
-		return numero_perros;
+	public void setRolVeterinario(Rol rolVeterinario) {
+		this.rolVeterinario = rolVeterinario;
 	}
 
-	public void setNumero_perros(Integer numero_perros) {
-		this.numero_perros = numero_perros;
+	/*public List<Perros> getLisPerros() {
+		return lisPerros;
 	}
 
-	public Rol getRolDuenho() {
-		return rolDuenho;
-	}
-
-	public void setRolDuenho(Rol rolDuenho) {
-		this.rolDuenho = rolDuenho;
-	}
+	public void setLisPerros(List<Perros> lisPerros) {
+		this.lisPerros = lisPerros;
+	}*/
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-	    grantedAuthorities.add(new SimpleGrantedAuthority(rolDuenho.getNombre()));
+	    grantedAuthorities.add(new SimpleGrantedAuthority(rolVeterinario.getNombre()));
 		return grantedAuthorities;
 	}
 
@@ -235,22 +204,13 @@ public class Duenho implements UserDetails{
 
 	@Override
 	public String toString() {
-		return "Duenho [usuario=" + usuario + ", DNI=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos
-				+ ", dirección=" + direccion + ", provincia=" + provincia + ", email=" + email + ", telefono="
-				+ telefono + ", contrasenha=" + contrasenha + ", numero_perros=" + numero_perros + ", rolDuenho="
-				+ rolDuenho + "]";
+		return "Veterinarios [usuario=" + usuario + ", dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos
+				+ ", direccion=" + direccion + ", provincia=" + provincia + ", email=" + email + ", telefono="
+				+ telefono + ", contrasenha=" + contrasenha + ", rolVeterinario=" + rolVeterinario + "]";
 	}
 
 	
-
 	
 	
 	
-
-
-
-	
-
-	
-
 }

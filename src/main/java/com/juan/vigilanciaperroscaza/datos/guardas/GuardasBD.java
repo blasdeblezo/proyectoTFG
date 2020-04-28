@@ -1,4 +1,4 @@
-package com.juan.vigilanciaperroscaza.datos.veterinarios;
+package com.juan.vigilanciaperroscaza.datos.guardas;
 
 import java.util.ArrayList;
 
@@ -9,21 +9,21 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.juan.vigilanciaperroscaza.datos.perro.Perros;
+import com.juan.vigilanciaperroscaza.datos.cacerias.CaceriasBD;
 import com.juan.vigilanciaperroscaza.datos.roles.Rol;
 
-// Unir con la tabla perros
+
 @Entity
-public class Veterinarios implements UserDetails{
-	
+public class GuardasBD implements UserDetails{
+
 	@Id
 	private String usuario;
 
@@ -52,27 +52,18 @@ public class Veterinarios implements UserDetails{
 	private String contrasenha;
 
 	@ManyToOne
-	private Rol rolVeterinario = new Rol();
+	private Rol rolGuarda = new Rol();
 	
-	/*@ManyToMany(mappedBy = "veterinarios",cascade = CascadeType.ALL )
-	private List<Perros>lisPerros=new ArrayList<Perros>();
-	
-	public void addPerros(Perros perro) {
-		if(!lisPerros.contains(perro)) {
-			lisPerros.add(perro);
-			
-			List<Veterinarios>lisVeterinarios=perro.getVeterinarios();
-			if(!lisVeterinarios.contains(this)) {
-				lisVeterinarios.add(this);
-			}
-		}
-	}*/
-
+	/*@OneToMany(mappedBy = "guardas",cascade = CascadeType.ALL)
+	private List<Cacerias>lisCacerias=new ArrayList<Cacerias>();*/
 
 	
 
-	public Rol getRolVeterinario() {
-		return rolVeterinario;
+	
+
+	
+	public Rol getRolGuarda() {
+		return rolGuarda;
 	}
 
 	public String getUsuario() {
@@ -106,6 +97,8 @@ public class Veterinarios implements UserDetails{
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
+
+	
 
 	public String getDireccion() {
 		return direccion;
@@ -147,22 +140,24 @@ public class Veterinarios implements UserDetails{
 		this.contrasenha = contrasenha;
 	}
 
-	public void setRolVeterinario(Rol rolVeterinario) {
-		this.rolVeterinario = rolVeterinario;
+	public void setRolGuarda(Rol rolGuarda) {
+		this.rolGuarda = rolGuarda;
 	}
 
-	/*public List<Perros> getLisPerros() {
-		return lisPerros;
+	/*public List<Cacerias> getLisCacerias() {
+		return lisCacerias;
 	}
 
-	public void setLisPerros(List<Perros> lisPerros) {
-		this.lisPerros = lisPerros;
+	public void setLisCacerias(List<Cacerias> lisCacerias) {
+		this.lisCacerias = lisCacerias;
 	}*/
 
+	
+	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-	    grantedAuthorities.add(new SimpleGrantedAuthority(rolVeterinario.getNombre()));
+	    grantedAuthorities.add(new SimpleGrantedAuthority(rolGuarda.getNombre()));
 		return grantedAuthorities;
 	}
 
@@ -204,13 +199,14 @@ public class Veterinarios implements UserDetails{
 
 	@Override
 	public String toString() {
-		return "Veterinarios [usuario=" + usuario + ", dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos
+		return "Guardas [usuario=" + usuario + ", dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos
 				+ ", direccion=" + direccion + ", provincia=" + provincia + ", email=" + email + ", telefono="
-				+ telefono + ", contrasenha=" + contrasenha + ", rolVeterinario=" + rolVeterinario + "]";
+				+ telefono + ", contrasenha=" + contrasenha + ", rolGuarda=" + rolGuarda + "]";
 	}
 
 	
 	
 	
-	
+
+
 }

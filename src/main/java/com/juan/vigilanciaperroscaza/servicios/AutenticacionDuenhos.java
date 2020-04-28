@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.juan.vigilanciaperroscaza.datos.duenho.Duenho;
+import com.juan.vigilanciaperroscaza.datos.duenho.DuenhoBD;
 import com.juan.vigilanciaperroscaza.datos.duenho.DuenhoDAO;
 
 
@@ -23,7 +23,7 @@ public class AutenticacionDuenhos implements UserDetailsService{
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-	Optional<Duenho> user = duenhoDAO.findById(username);
+	Optional<DuenhoBD> user = duenhoDAO.findById(username);
 		
 		if(user.isPresent()) {
 			
