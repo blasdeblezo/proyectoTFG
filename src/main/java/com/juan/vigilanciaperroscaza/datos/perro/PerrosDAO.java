@@ -15,7 +15,7 @@ import com.juan.vigilanciaperroscaza.datos.duenho.DuenhoBD;
 @Repository
 public interface PerrosDAO extends CrudRepository<PerrosBD, Long>{
 
-	@Transactional @Query(value="SELECT COUNT(*) FROM perros WHERE duenho_usuario=:nombre",nativeQuery=true)
+	@Transactional @Query(value="SELECT COUNT(*) FROM perrosbd WHERE duenho_usuario=:nombre",nativeQuery=true)
 	Integer numerodeperros(@Param("nombre") String nombre);
 
 	List<PerrosBD> findByDuenho(DuenhoBD usuario);

@@ -8,10 +8,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/css/estiloProyecto.css">
     <script src="/js/scriptproyecto.js" type="text/javascript"></script>
-  
-    <title>Listado de dueños</title>
+    <link rel="stylesheet" href="/css/estiloProyecto.css">
+    <title>Listado de veterinarios</title>
 </head>
 <body onload="anhadir()">
     <!--Meter el borde con CSS-->
@@ -19,43 +18,35 @@
     <form class="m-2">
         <div class="form-row">
           <div class="col-md-4 mb-3">
-            <label for="CampoProvincia">Provincia</label>
+            <label for="validationDefault01">Provincia</label>
             <select id="Provincia" class="form-control">
                 <option>Selecciona Provincia</option>
               </select>
           </div>
           <div class="col-md-4 mb-3">
-            <label for="CampoIdDueño">Id dueño</label>
-            <input type="text" class="form-control" id="CampoIdDueño" placeholder="id dueño">
+            <label for="CampoIdVeterinario">Id veterinario</label>
+            <input type="text" class="form-control" id="CampoIdGuarda" placeholder="id veterinario">
           </div>
           <div class="col-md-4 mb-3">
             <label for="Nombre">Nombre</label>
             <input type="text" class="form-control" id="Nombre" placeholder="Nombre">
           </div>
         </div>
-        <a type="button" class="btn boton" th:href="@{/buscarDuenhos}" >Buscar</a>
+        <button class="btn boton" type="submit">Buscar</button>
       </form>
     </div>
 
+
     <div  class=" m-3 ">
         <table class="table">
-            <thead >
-              <tr class="fila">
-                <th scope="col">Usuario</th>
+            <thead class="fila">
+              <tr>
+                <th scope="col">Id</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellidos</th>
-                <th scope="col">Provincia</th>
-                <th scope="col">Numero de perros</th>
-                <th scope="col"></th>
-              </tr>
-              <tr th:each="duenho:${duenhos}">
-              <td ><a th:href="@{/fichaDuenho/{usuario}(usuario=${duenho.usuario})}" th:text="${duenho.usuario}"></a></td>
-                <td th:text="${duenho.nombre}">Nombre</td>
-                <td th:text="${duenho.apellidos}">Apellidos</td>
-                <td th:text="${duenho.provincia}">Provincia</td>
-                <td th:text="${duenho.numero_perros}">Numero de perros</td>
-                <td ><a type="button" class="btn btn-danger" 
-                th:href="@{/eliminarDuenho/{usuario}(usuario=${duenho.usuario})}" th:text="Eliminar"></a></td>
+                <th scope="col">Dirección</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Telefono</th>
               </tr>
             </thead>
             <tbody>

@@ -74,14 +74,13 @@
                         <th scope="col">Provincia</th>
                         <th scope="col">Fecha</th>
                     </tr>
-                       </thead>
-           				 <tbody>
                      <tr th:each="caceria:${cacerias}">
                         <td th:text="${caceria.id_caceria}">Id caceria</td>
                         <td th:text="${caceria.provincia}">Provincia</td>
                         <td th:text="${caceria.fecha}">Fecha</td>
                     </tr>
-             
+                </thead>
+                <tbody>
                 </tbody>
                 </table>
             </div>

@@ -32,6 +32,8 @@ public class Duenhos {
 	
 
 	private int numero_perros;
+	
+	private String aviso;
 
 	private String rol;
 
@@ -46,6 +48,16 @@ public class Duenhos {
 
 
 	
+
+
+	public String getAviso() {
+		return aviso;
+	}
+
+
+	public void setAviso(String aviso) {
+		this.aviso = aviso;
+	}
 
 
 	public String getDni() {

@@ -3,12 +3,12 @@ package com.juan.vigilanciaperroscaza.datos.duenho;
 import java.util.List;
 
 
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -81,36 +81,21 @@ public class DuenhoRutas {
 	public ModelAndView guardarDuenhos(
 			@Valid @ModelAttribute("duenhoregistro") Duenhos duenhoregistro,
 								Errors errores) {
-		
 		Rol rol=new Rol();
 		rol=rolDAO.buscarDuenho("usuario");
 		
-		int n=perrosDAO.numerodeperros(duenhoregistro.getUsuario());
-		
-		ModelAndView mav = new ModelAndView();
-		
-		DuenhoBD duenho=new DuenhoBD();
-		duenho.setUsuario(duenhoregistro.getUsuario());
-		duenho.setDni(duenhoregistro.getDni());
-		duenho.setNombre(duenhoregistro.getNombre());
-		duenho.setApellidos(duenhoregistro.getApellidos());
-		duenho.setDireccion(duenhoregistro.getDireccion());
-		duenho.setProvincia(duenhoregistro.getProvincia());
-		duenho.setEmail(duenhoregistro.getEmail());
-		duenho.setTelefono(duenhoregistro.getTelefono());
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		duenho.setContrasenha((passwordEncoder.encode(duenhoregistro.getContrasenha())));
-		duenho.setNumero_perros(n);
-		duenho.setRolDuenho(rol);
-		mav.setViewName("registro_duenho");
-		duenho.getListaPerros().size();
+		ModelAndView mav = new ModelAndView();	
+		DuenhoBD duenho = GenerarDuenho(duenhoregistro, rol);
 		
 		duenhoDAO.save(duenho);
 		
+		mav.setViewName("registro_duenho");
 		return mav;
 		
 	}
-	
+
+
+
 	@GetMapping("/fichaDuenho/{usuario}")
 	public ModelAndView fichaDuenho(
 			@PathVariable String usuario) {
@@ -131,6 +116,7 @@ public class DuenhoRutas {
 		return mav;
 	}
 	
+
 	@GetMapping("/editarDuenho/{usuario}")
 	public ModelAndView editarDuenho(@PathVariable String usuario) {
 		
@@ -158,6 +144,7 @@ public class DuenhoRutas {
 		return mav;
 	}
 	
+
 	@GetMapping("/eliminarDuenho/{usuario}")
 	public ModelAndView eliminarDuenho(@PathVariable String usuario) {
 		duenhoDAO.deleteById(usuario);
@@ -169,5 +156,24 @@ public class DuenhoRutas {
 		
 		
 	}
+	
+	public DuenhoBD GenerarDuenho(Duenhos duenhoregistro, Rol rol) {
+		DuenhoBD duenho=new DuenhoBD();
+		duenho.setUsuario(duenhoregistro.getUsuario());
+		duenho.setDni(duenhoregistro.getDni());
+		duenho.setNombre(duenhoregistro.getNombre());
+		duenho.setApellidos(duenhoregistro.getApellidos());
+		duenho.setDireccion(duenhoregistro.getDireccion());
+		duenho.setProvincia(duenhoregistro.getProvincia());
+		duenho.setEmail(duenhoregistro.getEmail());
+		duenho.setTelefono(duenhoregistro.getTelefono());
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		duenho.setContrasenha((passwordEncoder.encode(duenhoregistro.getContrasenha())));
+		duenho.setNumero_perros(duenho.getListaPerros().size());
+		duenho.setRolDuenho(rol);
+		duenho.setAviso(duenhoregistro.getAviso());
+		return duenho;
+	}
+	
 	
 }

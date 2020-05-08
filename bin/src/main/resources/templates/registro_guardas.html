@@ -19,8 +19,8 @@
 <body onload="anhadir()">
 
 	<div class="borde m-3">
-		<form class="m-3" action="#" th:action="@{/guardarDuenho}"
-			th:object="${duenhoregistro}" method="post">
+		<form class="m-3" action="#" th:action="@{/guardarGuarda}"
+			th:object="${guardaRegistrado}" method="post">
 			<div class="form-row">
 				<div class="form-group col-md-4">
 					<label for="campoId">Usuario</label> <input type="text"
@@ -75,16 +75,6 @@
 						type="password" class="form-control" id="campoContrasenha"
 						placeholder="Contrasña" th:field="*{contrasenha}">
 
-				</div>
-				
-				<div class="form-group col-md-4">
-					<label for="campoProvincia">Aviso</label> <select
-						id="Provincia" class="form-control" th:field="*{aviso}">
-						<option value="null">Selccionar aviso</option>
-						<option value="correo">Correo</option>
-						<option value="telefono">Teléfono</option>
-
-					</select>
 				</div>
 			</div>
 			<div class="form-row">

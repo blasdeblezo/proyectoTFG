@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/estiloProyecto.css">
+    <title>Ficha de dueño</title>
+    
+</head>
+
+<body>
+
+    
+    <div class="m-2 borde">
+        <form class="m-3" action="#" th:action="@{/duenhoEditado}" th:object="${duenhoEditado}" method="post">
+            <div class="form-row">
+                <div class="col">
+                    <label for="">Nombre</label>
+                    <input type="text" class="form-control"  th:field="*{nombre}">
+                </div>
+                <div class="col">
+                    <label for="">Apellidos</label>
+                    <input type="text" class="form-control"  th:field="*{apellidos}">
+                </div>
+                <div class="col">
+                    <label for="">DNI</label>
+                    <input type="text" class="form-control"  th:field="*{dni}">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col">
+                    <label for="">Telefono</label>
+                    <input type="text" class="form-control"  th:field="*{telefono}">
+                </div>
+                <div class="col">
+                    <label for="">Correo</label>
+                    <input type="text" class="form-control"  th:field="*{email}">
+                </div>
+                <div class="col">
+                    <label for="">Provincia</label>
+                    <input type="text" class="form-control"  th:field="*{provincia}">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-8">
+                    <label for="">Dirección</label>
+                    <input type="text" class="form-control" th:field="*{direccion}">
+                </div>
+                 <div class="col-3">
+                    <label for="">Usuario</label>
+                    <input type="text" class="form-control" th:field="*{usuario}">
+                </div>
+
+            </div>
+              <div class="form-row">
+                <div class="col-3">
+                    <label for="">Numero de perros</label>
+                    <input type="text" class="form-control" th:field="*{numero_perros}">
+                </div>
+                 <div class="col-3">
+                    <label for="">Rol</label>
+                    <input type="text" class="form-control" th:field="*{rolDuenho}">
+                </div>
+
+            </div>
+            
+             <div class="modal-footer">
+                <input type="submit" value="Guardar" class="btn boton float-right" >
+				<a type="button" class="btn btn-danger" th:href="@{/listaduenhos}">Cancelar</a>
+        	 </div>
+        </form>
+        
+        
+
+</body>
+
+</html>

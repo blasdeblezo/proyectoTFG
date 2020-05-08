@@ -62,6 +62,9 @@ public class DuenhoBD implements UserDetails{
 	private String contrasenha;
 	
 	@Column
+	private String aviso;
+	
+	@Column
 	private Integer numero_perros;
 	
 	@ManyToOne
@@ -174,6 +177,14 @@ public class DuenhoBD implements UserDetails{
 
 	
 
+	public String getAviso() {
+		return aviso;
+	}
+
+	public void setAviso(String aviso) {
+		this.aviso = aviso;
+	}
+
 	public Integer getNumero_perros() {
 		return numero_perros;
 	}
@@ -235,22 +246,12 @@ public class DuenhoBD implements UserDetails{
 
 	@Override
 	public String toString() {
-		return "Duenho [usuario=" + usuario + ", DNI=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos
-				+ ", dirección=" + direccion + ", provincia=" + provincia + ", email=" + email + ", telefono="
-				+ telefono + ", contrasenha=" + contrasenha + ", numero_perros=" + numero_perros + ", rolDuenho="
-				+ rolDuenho + "]";
+		return "DuenhoBD [usuario=" + usuario + ", dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos
+				+ ", direccion=" + direccion + ", provincia=" + provincia + ", email=" + email + ", telefono="
+				+ telefono + ", contrasenha=" + contrasenha + ", aviso=" + aviso + ", numero_perros=" + numero_perros
+				+ ", rolDuenho=" + rolDuenho + ", cacerias=" + cacerias + ", listaPerros=" + listaPerros + "]";
 	}
 
-	
 
-	
-	
-	
-
-
-
-	
-
-	
 
 }

@@ -53,7 +53,6 @@ public class GuardasRutas {
 		rol=rolDAO.buscarDuenho("guarda");
 		
 		ModelAndView mav=new ModelAndView();
-		
 		GuardasBD guarda=new GuardasBD();
 		guarda.setUsuario(guardaRegistrado.getUsuario());
 		guarda.setNombre(guardaRegistrado.getNombre());

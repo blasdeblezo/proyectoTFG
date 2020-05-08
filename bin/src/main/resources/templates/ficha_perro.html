@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="/css/estiloProyecto.css">
+    <title>Ficha del perro</title>
+    <!--Si es posible que el titulo se cambie con cada
+    perro y que ponga su id-->
+</head>
+
+<body>
+
+    <!--Borde con css-->
+    <div class="m-2 borde">
+        <form class="m-3">
+            <div class="form-row">
+                <div class="col">
+                    <label for="">Nombre perro</label>
+                    <input type="text" class="form-control" placeholder="Nombre perro">
+                </div>
+                <div class="col">
+                    <label for="">Nombre dueño</label>
+                    <input type="text" class="form-control" placeholder="Dueño">
+                </div>
+                <div class="col">
+                    <label for="">Id dueño</label>
+                    <input type="text" class="form-control" placeholder="Id Dueño">
+                </div>
+            </div>
+        </form>
+
+        <div class="d-flex justify-content-around">
+            <table class="table ">
+                <thead class="fila">
+                    <tr>
+                        <th scope="col">Fecha revision</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Diagnostico</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+        </div>
+
+
+        <div class="d-flex justify-content-center">
+            <form class="form-inline ">
+                <div class="form-group mx-sm-3 mb-2">
+                    <label for="FechaRevision" class="mr-3">Nueva Fecha</label>
+                    <label for="FechaRevision" class="sr-only">Fecha</label>
+                    <input type="date" class="form-control" id="FechaRevision" placeholder="Fecha">
+                </div>
+                <button type="submit" class="btn boton mb-2">Insertar</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

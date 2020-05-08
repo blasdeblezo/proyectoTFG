@@ -1,0 +1,19 @@
+body{
+    background-color: #e6ffe6;
+    font-family: sans-serif;
+   
+}
+
+.boton{
+    background-color: #a6c732;
+}
+.borde{
+   
+    border-radius: 3ch;
+    font-weight: 700;
+}
+
+.fila{
+    background-color: #a6c732;
+    font-weight: 700;
+}
