@@ -18,6 +18,8 @@ import com.juan.vigilanciaperroscaza.datos.cacerias.CaceriasDAO;
 import com.juan.vigilanciaperroscaza.datos.roles.Rol;
 import com.juan.vigilanciaperroscaza.datos.roles.RolDAO;
 
+import antlr.debug.GuessingEvent;
+
 @Controller
 public class GuardasRutas {
 
@@ -53,24 +55,15 @@ public class GuardasRutas {
 		rol=rolDAO.buscarDuenho("guarda");
 		
 		ModelAndView mav=new ModelAndView();
-		GuardasBD guarda=new GuardasBD();
-		guarda.setUsuario(guardaRegistrado.getUsuario());
-		guarda.setNombre(guardaRegistrado.getNombre());
-		guarda.setApellidos(guardaRegistrado.getApellidos());
-		guarda.setDireccion(guardaRegistrado.getDireccion());
-		guarda.setDni(guardaRegistrado.getDni());
-		guarda.setEmail(guardaRegistrado.getEmail());
-		guarda.setProvincia(guardaRegistrado.getProvincia());
-		guarda.setTelefono(guardaRegistrado.getTelefono());
-		guarda.setRolGuarda(rol);
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		guarda.setContrasenha(passwordEncoder.encode(guardaRegistrado.getContrasenha()));
+		GuardasBD guarda = CrearGuarda(guardaRegistrado, rol);
 		
 		guardasDAO.save(guarda);
 		mav.setViewName("registro_guardas");
 		
 		return mav;
 	}
+
+
 	
 	@GetMapping("/buscarGuardas")
 	public ModelAndView buscarGuardas() {
@@ -103,5 +96,50 @@ public class GuardasRutas {
 		mav.setViewName("ficha_guarda");
 		
 		return mav;
+	}
+	
+	@GetMapping("/editarGuarda/{usuario}")
+	public ModelAndView editarGuarda(@PathVariable String usuario) {
+		
+		ModelAndView mav=new ModelAndView();
+		GuardasBD guarda=guardasDAO.findByUsuario(usuario);
+		System.out.println(guarda);
+		mav.addObject("guarda", guarda);
+		
+		
+		mav.setViewName("editar_guarda");
+		
+		return mav;
+	}
+	
+	@PostMapping("/guardaEditado")
+	public ModelAndView guardaEditado(
+			@Valid @ModelAttribute("guarda") GuardasBD guardasBD) {
+			System.out.println(guardasBD);
+			
+			ModelAndView mav=new ModelAndView();
+			guardasDAO.save(guardasBD);
+			mav.setViewName("ficha_guarda");
+			
+			return mav;
+		
+	}
+	
+	
+	
+	public GuardasBD CrearGuarda(Guardas guardaRegistrado, Rol rol) {
+		GuardasBD guarda=new GuardasBD();
+		guarda.setUsuario(guardaRegistrado.getUsuario());
+		guarda.setNombre(guardaRegistrado.getNombre());
+		guarda.setApellidos(guardaRegistrado.getApellidos());
+		guarda.setDireccion(guardaRegistrado.getDireccion());
+		guarda.setDni(guardaRegistrado.getDni());
+		guarda.setEmail(guardaRegistrado.getEmail());
+		guarda.setProvincia(guardaRegistrado.getProvincia());
+		guarda.setTelefono(guardaRegistrado.getTelefono());
+		guarda.setRolGuarda(rol);
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		guarda.setContrasenha(passwordEncoder.encode(guardaRegistrado.getContrasenha()));
+		return guarda;
 	}
 }

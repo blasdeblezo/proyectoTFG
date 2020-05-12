@@ -70,8 +70,8 @@ public class DuenhoBD implements UserDetails{
 	@ManyToOne
 	private Rol rolDuenho = new Rol();
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	private List<CaceriasBD> cacerias = new ArrayList<CaceriasBD>();
+	/*@ManyToMany(cascade = CascadeType.ALL)
+	private List<CaceriasBD> cacerias = new ArrayList<CaceriasBD>();*/
 	
 	
 	
@@ -81,13 +81,13 @@ public class DuenhoBD implements UserDetails{
 	
 	
 
-	public List<CaceriasBD> getCacerias() {
+	/*public List<CaceriasBD> getCacerias() {
 		return cacerias;
 	}
 
 	public void setCacerias(List<CaceriasBD> cacerias) {
 		this.cacerias = cacerias;
-	}
+	}*/
 
 	public List<PerrosBD> getListaPerros() {
 		return listaPerros;
@@ -249,7 +249,7 @@ public class DuenhoBD implements UserDetails{
 		return "DuenhoBD [usuario=" + usuario + ", dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos
 				+ ", direccion=" + direccion + ", provincia=" + provincia + ", email=" + email + ", telefono="
 				+ telefono + ", contrasenha=" + contrasenha + ", aviso=" + aviso + ", numero_perros=" + numero_perros
-				+ ", rolDuenho=" + rolDuenho + ", cacerias=" + cacerias + ", listaPerros=" + listaPerros + "]";
+				+ ", rolDuenho=" + rolDuenho  + ", listaPerros=" + listaPerros + "]";
 	}
 
 

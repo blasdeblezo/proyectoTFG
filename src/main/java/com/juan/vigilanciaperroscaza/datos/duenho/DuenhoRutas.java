@@ -1,7 +1,8 @@
 package com.juan.vigilanciaperroscaza.datos.duenho;
 
+import java.io.Console;
 import java.util.List;
-
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -103,14 +104,16 @@ public class DuenhoRutas {
 		ModelAndView mav=new ModelAndView();
 		
 		DuenhoBD duenho=duenhoDAO.findByUsuario(usuario);
-		mav.addObject("duenhoFicha", duenho);
 		System.out.println(duenho);
+		mav.addObject("duenhoFicha", duenho);
 		
-		DuenhoBD usuarioD=new DuenhoBD();
+		
+		
+		/*DuenhoBD usuarioD=new DuenhoBD();
 		usuarioD.setUsuario(usuario);
 		List<PerrosBD> perros=(List<PerrosBD>)perrosDAO.findByDuenho(usuarioD);
 		mav.addObject("perros", perros);
-		System.out.println(perros);
+		System.out.println(perros);*/
 		
 		mav.setViewName("ficha_duenho");
 		return mav;

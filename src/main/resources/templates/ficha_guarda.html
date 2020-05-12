@@ -2,90 +2,104 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/css/estiloProyecto.css">
-    <title>Ficha de guarda</title>
-    
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/css/estiloProyecto.css">
+<title>Ficha de guarda</title>
+
 </head>
 
 <body>
 
-  
-    <div class="m-2 borde">
-        <form class="m-3">
-            <div class="form-row">
-                <div class="col">
-                    <label for="">Nombre</label>
-                    <output type="text" class="form-control"  th:text="${guarda.nombre}"></output>
-                </div>
-                <div class="col">
-                    <label for="">Apellidos</label>
-                    <output type="text" class="form-control"  th:text="${guarda.apellidos}"></output>
-                </div>
-                <div class="col">
-                    <label for="">DNI</label>
-                    <output type="text" class="form-control" th:text="${guarda.dni}"></output>
-                </div>
-            </div>
 
-            <div class="form-row">
-                <div class="col">
-                    <label for="">Telefono</label>
-                    <output type="text" class="form-control"  th:text="${guarda.telefono}"></output>
-                </div>
-                <div class="col">
-                    <label for="">Correo</label>
-                    <output type="text" class="form-control"  th:text="${guarda.email}"></output>
-                </div>
-                <div class="col">
-                    <label for="">Provincia</label>
-                    <output type="text" class="form-control"  th:text="${guarda.provincia}"></output>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="col">
-                    <label for="">Dirección</label>
-                    <output type="text" class="form-control"  th:text="${guarda.direccion}"></output>
-                </div>
-            </div>
-        </form>
+	<div class="m-2 borde">
+		<form class="m-3">
+			<div class="form-row">
+				<div class="col">
+					<label for="">Nombre</label>
+					<output type="text" class="form-control" th:text="${guarda.nombre}"></output>
+				</div>
+				<div class="col">
+					<label for="">Apellidos</label>
+					<output type="text" class="form-control"
+						th:text="${guarda.apellidos}"></output>
+				</div>
+				<div class="col">
+					<label for="">DNI</label>
+					<output type="text" class="form-control" th:text="${guarda.dni}"></output>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col">
+					<label for="">Telefono</label>
+					<output type="text" class="form-control"
+						th:text="${guarda.telefono}"></output>
+				</div>
+				<div class="col">
+					<label for="">Correo</label>
+					<output type="text" class="form-control" th:text="${guarda.email}"></output>
+				</div>
+				<div class="col">
+					<label for="">Provincia</label>
+					<output type="text" class="form-control"
+						th:text="${guarda.provincia}"></output>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="col">
+					<label for="">Dirección</label>
+					<output type="text" class="form-control"
+						th:text="${guarda.direccion}"></output>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-3">
+					<a type="button" class="btn boton"
+						th:href="@{/editarGuarda/{usuario}(usuario=${guarda.usuario})}">Editar</a>
+				</div>
+			</div>
+		</form>
 
 
-        <div class="pos-f-t mb-5">
-            <nav class="navbar navbar-dark bg-dark">
-                <button class="navbar-toggler text-white" type="button" data-toggle="collapse" 
-                data-target="#TablaCacerias"
-                    aria-controls="TablaCacerias" aria-expanded="false" aria-label="Toggle navigation">
-                    
-                Desplegar lista de cacerias</button>
-            </nav>
+		<div class="pos-f-t mb-5">
+			<nav class="navbar navbar-dark bg-dark">
+				<button class="navbar-toggler text-white" type="button"
+					data-toggle="collapse" data-target="#TablaCacerias"
+					aria-controls="TablaCacerias" aria-expanded="false"
+					aria-label="Toggle navigation">Desplegar lista de cacerias</button>
+			</nav>
 
-            <div class="collapse" id="TablaCacerias">
-                <table class="table ">
-                <thead class="fila">
-                    <tr>
-                        <th scope="col">Id caceria</th>
-                        <th scope="col">Provincia</th>
-                        <th scope="col">Fecha</th>
-                    </tr>
-                     <tr th:each="caceria:${cacerias}">
-                        <td th:text="${caceria.id_caceria}">Id caceria</td>
-                        <td th:text="${caceria.provincia}">Provincia</td>
-                        <td th:text="${caceria.fecha}">Fecha</td>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+			<div class="collapse" id="TablaCacerias">
+				<table class="table ">
+					<thead class="fila">
+						<tr>
+							<th scope="col">Id caceria</th>
+							<th scope="col">Provincia</th>
+							<th scope="col">Fecha</th>
+						</tr>
+						<tr th:each="caceria:${cacerias}">
+							<td th:text="${caceria.id_caceria}">Id caceria</td>
+							<td th:text="${caceria.provincia}">Provincia</td>
+							<td th:text="${caceria.fecha}">Fecha</td>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 
 
 </body>

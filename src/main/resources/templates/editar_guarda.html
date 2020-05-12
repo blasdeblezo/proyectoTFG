@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/estiloProyecto.css">
+    <script src="/js/scriptproyecto.js" type="text/javascript"></script>
+    <title>Ficha de guarda</title>
+    
+</head>
+
+<body>
+
+  
+    <div class="m-2 borde">
+        <form class="m-3" action="#" th:action="@{/guardaEditado}"
+			th:object="${guarda}" method="post">
+            <div class="form-row">
+				<div class="form-group col-md-4">
+					<label for="campoId">Usuario</label> <input type="text"
+						class="form-control" id="campoId" placeholder="usuario"
+						th:field="*{usuario}" readonly>
+				</div>
+				<div class="form-group col-md-4">
+					<label for="campoNombre">Nombre</label> <input type="text"
+						class="form-control" id="campoNombre" placeholder="Nombre"
+						th:field="*{nombre}">
+				</div>
+				<div class="form-group col-md-4">
+					<label for="campoApellidos">Apellidos</label> <input type="text"
+						class="form-control" id="campoApellidos" placeholder="Apellidos"
+						th:field="*{apellidos}">
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-8">
+					<label for="campoDirección">Dirección</label> <input type="text"
+						class="form-control" id="campoDirección" placeholder="Dirección"
+						th:field="*{direccion}">
+				</div>
+
+				<div class="form-group col-md-4">
+					<label for="campoDNI">DNI</label> <input type="text"
+						class="form-control" id="campoDNI" placeholder="DNI"
+						th:field="*{dni}" readonly>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-4">
+					<label for="campoTelefono">Telefono</label> <input type="text"
+						class="form-control" id="campoTelefono" placeholder="Telefono"
+						th:field="*{telefono}">
+				</div>
+				<div class="form-group col-md-4">
+					<label for="campoCorreo">Correo</label> <input type="email"
+						class="form-control" id="campoCorreo" placeholder="Correo"
+						th:field="*{email}">
+				</div>
+				<div class="form-group col-md-4">
+					<label for="campoProvincia">Provincia</label> <select
+						id="Provincia" class="form-control" th:field="*{provincia}">
+						<option th:value="*{provincia}" th:text="*{provincia}"></option>
+
+					</select>
+				</div>
+			</div>
+			<div class="form-row" style="display: none">
+				<div class="form-group col-md-4">
+					<label for="campoContrasenha">Contrasña</label> <input
+						type="password" class="form-control" id="campoContrasenha"
+						placeholder="Contraseña" th:field="*{contrasenha}" readonly>
+
+				</div>
+				<div class="form-group col-md-4">
+					<label for="campoContrasenha">Rol</label> <input
+						type="text" class="form-control" id="campoRol"
+						placeholder="rol" th:field="*{rolGuarda}" readonly>
+
+				</div>
+				
+			</div>
+            <div class="form-row mt-3">
+            <div class="col-3">
+            	<input type="submit" value="Guardar"
+						class="btn boton float-right">
+						<a type="button" class="btn btn-danger" 
+						th:href="@{/fichaGuarda/{usuario}(usuario=*{usuario})}">Cancelar</a>
+						</div>
+            </div>
+        </form>
+
+    </div>
+
+
+</body>
+
+</html>

@@ -1,5 +1,8 @@
 package com.juan.vigilanciaperroscaza.datos.guardas;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import com.juan.vigilanciaperroscaza.datos.roles.Rol;
 
 public class Guardas {
 	
@@ -127,7 +130,6 @@ public class Guardas {
 				+ ", direccion=" + direccion + ", provincia=" + provincia + ", email=" + email + ", telefono="
 				+ telefono + ", contrasenha=" + contrasenha + "]";
 	}
-	
 	
 	
 }
