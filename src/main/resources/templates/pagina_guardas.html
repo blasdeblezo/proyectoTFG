@@ -48,6 +48,7 @@
                 <th scope="col">Dirección</th>
                 <th scope="col">Correo</th>
                 <th scope="col">Telefono</th>
+                 <th scope="col"></th>
               </tr>
                <tr th:each="guarda:${guardas}">
                 <td><a th:href="@{/fichaGuarda/{usuario}(usuario=${guarda.usuario})}" th:text="${guarda.usuario}"></a></td>
@@ -56,6 +57,8 @@
                 <td th:text="${guarda.direccion}">Dirección</td>
                 <td th:text="${guarda.email}">Correo</td>
                 <td th:text="${guarda.telefono}">Telefono</td>
+                <td ><a type="button" class="btn btn-danger" 
+                th:href="@{/eliminarGuarda/{usuario}(usuario=${guarda.usuario})}" th:text="Eliminar"></a></td>
               </tr>
             </thead>
             <tbody>

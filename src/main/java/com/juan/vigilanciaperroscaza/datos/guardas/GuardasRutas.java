@@ -124,7 +124,17 @@ public class GuardasRutas {
 			return mav;
 		
 	}
-	
+	@GetMapping("/eliminarGuarda/{usuario}")
+	public ModelAndView eliminarGuerda(@PathVariable String usuario) {
+		guardasDAO.deleteById(usuario);
+		
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("pagina_guardas");
+		
+		return mav;
+		
+		
+	}
 	
 	
 	public GuardasBD CrearGuarda(Guardas guardaRegistrado, Rol rol) {
