@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 
 public interface VeterinariosDAO extends CrudRepository<VeterinariosBD, String>{
 
+	VeterinariosBD findByUsuario(String usuario);
+
 }

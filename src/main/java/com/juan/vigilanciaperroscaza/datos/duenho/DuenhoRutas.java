@@ -103,7 +103,7 @@ public class DuenhoRutas {
 		
 		ModelAndView mav=new ModelAndView();
 		
-		DuenhoBD duenho=duenhoDAO.findByUsuario(usuario);
+		Optional<DuenhoBD> duenho=duenhoDAO.findById(usuario);
 		System.out.println(duenho);
 		mav.addObject("duenhoFicha", duenho);
 		

@@ -1,6 +1,7 @@
 package com.juan.vigilanciaperroscaza.datos.veterinarios;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -66,6 +67,21 @@ public class VeterinariosRutas {
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("listaVeterinarios", listaVeteriniarios);
 		mav.setViewName("pagina_veterinarios");
+		
+		return mav;
+	}
+	
+	@GetMapping("fichaVeterinario/{usuario}")
+	public ModelAndView fichaVeterinario(@PathVariable String usuario) {
+		
+		
+		VeterinariosBD veterinariosBD=veterinariosDAO.findByUsuario(usuario);
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("veterinario", veterinariosBD);
+		System.out.println(veterinariosBD);
+		mav.setViewName("ficha_veterinario");
+		
 		
 		return mav;
 	}
