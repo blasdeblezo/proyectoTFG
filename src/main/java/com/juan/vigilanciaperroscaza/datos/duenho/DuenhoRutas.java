@@ -52,7 +52,7 @@ public class DuenhoRutas {
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("pagina_duenhos");
-		mav.addObject("duenho",new DuenhoBD());
+		
 		
 		
 		List<DuenhoBD> listaDuenhos = (List<DuenhoBD>)duenhoDAO.findAll();
@@ -83,7 +83,7 @@ public class DuenhoRutas {
 			@Valid @ModelAttribute("duenhoregistro") Duenhos duenhoregistro,
 								Errors errores) {
 		Rol rol=new Rol();
-		rol=rolDAO.buscarDuenho("usuario");
+		rol=rolDAO.buscarRol("usuario");
 		
 		ModelAndView mav = new ModelAndView();	
 		DuenhoBD duenho = GenerarDuenho(duenhoregistro, rol);

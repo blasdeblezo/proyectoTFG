@@ -32,7 +32,7 @@
             <input type="text" class="form-control" id="Nombre" placeholder="Nombre">
           </div>
         </div>
-        <button class="btn boton" type="submit">Buscar</button>
+        <a class="btn boton" type="button" th:href="@{/buscarVeterinarios}">Buscar</a>
       </form>
     </div>
 
@@ -41,16 +41,27 @@
         <table class="table">
             <thead class="fila">
               <tr>
-                <th scope="col">Id</th>
+                <th scope="col">Usuario</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellidos</th>
                 <th scope="col">Dirección</th>
                 <th scope="col">Correo</th>
                 <th scope="col">Telefono</th>
+                <th></th>
+              </tr> 
+              </thead>
+               <tbody>
+               <tr th:each="veterinario:${listaVeterinarios}">
+                <td><a th:href="@{/fichaVeterinario/{usuario}(usuario=${veterinario.usuario})}" th:text="${veterinario.usuario}"></a></td>
+                <td th:text="${veterinario.nombre}">Nombre</td>
+                <td th:text="${veterinario.apellidos}">Apellidos</td>
+                <td th:text="${veterinario.direccion}">Dirección</td>
+                <td th:text="${veterinario.email}">Correo</td>
+                <td th:text="${veterinario.telefono}">Telefono</td>
+                <td ><a type="button" class="btn btn-danger" 
+                th:href="@{/eliminarVeterinario/{usuario}(usuario=${veterinario.usuario})}" th:text="Eliminar"></a></td>
               </tr>
-            </thead>
-            <tbody>
-             
+
             </tbody>
           </table>
     </div>

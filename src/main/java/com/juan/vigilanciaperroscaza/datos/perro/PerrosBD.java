@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.juan.vigilanciaperroscaza.datos.duenho.DuenhoBD;
 import com.juan.vigilanciaperroscaza.datos.veterinarios.VeterinariosBD;
 
@@ -30,6 +32,7 @@ public class PerrosBD {
 	private String raza;
 	
 	@Column
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private String fecha_nacimiento;
 	
 	@Column

@@ -17,36 +17,34 @@
 
     <div class="borde m-3">
         <form class="m-3">
-            <div class="form-row">
+            <div class="form-row" action="#" th:action="@{/guardarPerro}" th:object="${perroRegistrado}" method="post">
                 <div class="form-group col-md-4">
                     <label for="campoIdPerro">Id del perro</label>
-                    <input type="text" class="form-control" id="campoIdPerro" placeholder="idperro">
+                    <input type="text" class="form-control" id="campoIdPerro" placeholder="idperro" th:field="*{id_perro}">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="campoNombrePerro">Nombre del perro</label>
-                    <input type="text" class="form-control" id="campoNombrePerro" placeholder="Nombre del perro">
+                    <input type="text" class="form-control" id="campoNombrePerro" placeholder="Nombre del perro" th:field="*{nombre}">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="campoRaza">Raza</label>
-                    <input type="text" class="form-control" id="campoRaza" placeholder="Raza">
+                    <input type="text" class="form-control" id="campoRaza" placeholder="Raza" th:field="*{raza}">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="campoFecha">Fecha nacimiento</label>
-                    <input type="date" class="form-control" id="campoFecha" placeholder="fecha">
+                    <input type="date" class="form-control" id="campoFecha" placeholder="fecha" >
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="campoIdDueño">Id dueño</label>
-                    <input type="text" class="form-control" id="campoIdDueño" placeholder="Id dueño">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="campoNombreduenho">Nombre dueño</label>
-                    <input type="text" class="form-control" id="campoNombreduenho" placeholder="nombre dueño">
+                    <label for="campoUsuarioDueño">Usuario</label>
+                   <select id="usuarioPerro" class="form-control" th:field="*{duenho}" th:each="duenho:${listaduenhos}">
+                   <option  th:text="${duenho.usuario}" value="${duenho.usuario}" ></option>
+                   </select>
                 </div>
             </div>
 
-            <button type="submit" class="btn boton col-md-4 mt-3">Registrar</button>
+            <input type="submit" class="btn boton col-md-4 mt-3" >
     </div>
     </div>
     </form>

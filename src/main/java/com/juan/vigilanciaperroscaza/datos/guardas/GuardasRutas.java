@@ -52,7 +52,7 @@ public class GuardasRutas {
 	public ModelAndView guardadGuarda(@Valid @ModelAttribute("guardaRegistrado") Guardas guardaRegistrado) {
 		
 		Rol rol=new Rol();
-		rol=rolDAO.buscarDuenho("guarda");
+		rol=rolDAO.buscarRol("guarda");
 		
 		ModelAndView mav=new ModelAndView();
 		GuardasBD guarda = CrearGuarda(guardaRegistrado, rol);
