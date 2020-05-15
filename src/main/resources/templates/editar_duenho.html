@@ -17,68 +17,94 @@
 <body>
 
     
+   
     <div class="m-2 borde">
-        <form class="m-3" action="#" th:action="@{/duenhoEditado}" th:object="${duenhoEditado}" method="post">
+        <form class="m-3" action="#" th:action="@{/duenhoEditado}"
+			th:object="${duenhoEditado}" method="post">
             <div class="form-row">
-                <div class="col">
-                    <label for="">Nombre</label>
-                    <input type="text" class="form-control"  th:field="*{nombre}">
-                </div>
-                <div class="col">
-                    <label for="">Apellidos</label>
-                    <input type="text" class="form-control"  th:field="*{apellidos}">
-                </div>
-                <div class="col">
-                    <label for="">DNI</label>
-                    <input type="text" class="form-control"  th:field="*{dni}">
-                </div>
-            </div>
+				<div class="form-group col-md-4">
+					<label for="campoId">Usuario</label> <input type="text"
+						class="form-control" id="campoId" placeholder="usuario"
+						th:field="*{usuario}" readonly>
+				</div>
+				<div class="form-group col-md-4">
+					<label for="campoNombre">Nombre</label> <input type="text"
+						class="form-control" id="campoNombre" placeholder="Nombre"
+						th:field="*{nombre}">
+				</div>
+				<div class="form-group col-md-4">
+					<label for="campoApellidos">Apellidos</label> <input type="text"
+						class="form-control" id="campoApellidos" placeholder="Apellidos"
+						th:field="*{apellidos}">
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="campoDirección">Dirección</label> <input type="text"
+						class="form-control" id="campoDirección" placeholder="Dirección"
+						th:field="*{direccion}">
+				</div>
 
-            <div class="form-row">
-                <div class="col">
-                    <label for="">Telefono</label>
-                    <input type="text" class="form-control"  th:field="*{telefono}">
-                </div>
-                <div class="col">
-                    <label for="">Correo</label>
-                    <input type="text" class="form-control"  th:field="*{email}">
-                </div>
-                <div class="col">
-                    <label for="">Provincia</label>
-                    <input type="text" class="form-control"  th:field="*{provincia}">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="col-8">
-                    <label for="">Dirección</label>
-                    <input type="text" class="form-control" th:field="*{direccion}">
-                </div>
-                 <div class="col-3">
-                    <label for="">Usuario</label>
-                    <input type="text" class="form-control" th:field="*{usuario}">
-                </div>
+				<div class="form-group col-md-3">
+					<label for="campoDNI">DNI</label> <input type="text"
+						class="form-control" id="campoDNI" placeholder="DNI"
+						th:field="*{dni}" readonly>
+				</div>
+				
+				<div class="form-group col-md-3">
+					<label for="campoTelefono">Telefono</label> <input type="text"
+						class="form-control" id="campoTelefono" placeholder="Telefono"
+						th:field="*{telefono}">
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-4">
+					<label for="campoAviso">Aviso</label> <select type="text"
+						class="form-control" id="campoAviso" 
+						th:field="*{aviso}">
+						<option value="null">Selccionar aviso</option>
+						<option value="correo">Correo</option>
+						<option value="telefono">Teléfono</option>
+						
+						</select>
+				</div>
+				<div class="form-group col-md-4">
+					<label for="campoCorreo">Correo</label> <input type="email"
+						class="form-control" id="campoCorreo" placeholder="Correo"
+						th:field="*{email}">
+				</div>
+				<div class="form-group col-md-4">
+					<label for="campoProvincia">Provincia</label> <select
+						id="Provincia" class="form-control" th:field="*{provincia}">
+						<option th:value="*{provincia}" th:text="*{provincia}"></option>
 
-            </div>
-              <div class="form-row">
-                <div class="col-3">
-                    <label for="">Numero de perros</label>
-                    <input type="text" class="form-control" th:field="*{numero_perros}">
-                </div>
-                 <div class="col-3">
-                    <label for="">Rol</label>
-                    <input type="text" class="form-control" th:field="*{rolDuenho}">
-                </div>
+					</select>
+				</div>
+			</div>
+			<div class="form-row" style=" ">
+				<div class="form-group col-md-4">
+					<label for="campoContrasenha">Contrasña</label> <input
+						type="password" class="form-control" id="campoContrasenha"
+						 th:field="*{contrasenha}" >
 
+				</div>
+				<div class="form-group col-md-4">
+					<label for="campoContrasenha">Rol</label> <input
+						type="text" class="form-control" id="campoRol"
+						placeholder="rol" th:field="*{rolDuenho}" >
+
+				</div>
+				
+			</div>
+            <div class="form-row mt-3">
+            <div class="col-3">
+            	<input type="submit" value="Guardar"
+						class="btn boton float-right">
+						<a type="button" class="btn btn-danger" 
+						th:href="@{/fichaDuenho/{usuario}(usuario=*{usuario})}">Cancelar</a>
+						</div>
             </div>
-            
-             <div class="form-row">
-                <input type="submit" value="Guardar" class="btn boton float-right" >
-				<a type="button" class="btn btn-danger" th:href="@{/listaduenhos}">Cancelar</a>
-        	 </div>
         </form>
-        
-        
 
-</body>
-
+    </div>
 </html>

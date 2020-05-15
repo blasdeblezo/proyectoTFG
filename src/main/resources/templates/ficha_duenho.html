@@ -53,11 +53,18 @@
                     <label for="">Dirección</label>
                     <output type="text" class="form-control" th:text="${duenhoFicha.direccion}"></output>
                 </div>
+                </div>
+                <div class="form-row">
+				<div class="col-3">
+					<a type="button" class="btn boton"
+						th:href="@{/editarDuenho/{usuario}(usuario=${duenhoFicha.usuario})}">Editar</a>
+				</div>
 
             </div>
+        
         </form>
 
-       <!--  <div class="pos-f-t mb-5">
+        <div class="pos-f-t mb-5">
             <nav class="navbar navbar-dark bg-dark">
                 <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#TablaPerros"
                     aria-controls="TablaPerros" aria-expanded="false" aria-label="Toggle navigation">
@@ -87,10 +94,10 @@
                     </tbody>
                 </table>
             </div>
-        </div>-->
+        </div>
 
 
-       <!--  <div class="pos-f-t mb-5">
+        <div class="pos-f-t mb-5">
             <nav class="navbar navbar-dark bg-dark">
                 <button class="navbar-toggler text-white" type="button" data-toggle="collapse" 
                 data-target="#TablaCacerias"
@@ -113,7 +120,7 @@
                 </tbody>
                 </table>
             </div>
-        </div> -->
+        </div> 
         
     </div>
 

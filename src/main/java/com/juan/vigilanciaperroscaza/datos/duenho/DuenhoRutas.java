@@ -83,7 +83,7 @@ public class DuenhoRutas {
 			@Valid @ModelAttribute("duenhoregistro") Duenhos duenhoregistro,
 								Errors errores) {
 		Rol rol=new Rol();
-		rol=rolDAO.buscarRol("usuario");
+		rol=rolDAO.buscarRol("cazador/dueño");
 		
 		ModelAndView mav = new ModelAndView();	
 		DuenhoBD duenho = GenerarDuenho(duenhoregistro, rol);
@@ -101,10 +101,10 @@ public class DuenhoRutas {
 	public ModelAndView fichaDuenho(
 			@PathVariable String usuario) {
 		
-		ModelAndView mav=new ModelAndView();
 		
-		Optional<DuenhoBD> duenho=duenhoDAO.findById(usuario);
-		System.out.println(duenho);
+		
+		ModelAndView mav=new ModelAndView();
+		DuenhoBD duenho=duenhoDAO.findByUsuario(usuario);
 		mav.addObject("duenhoFicha", duenho);
 		
 		
@@ -125,7 +125,9 @@ public class DuenhoRutas {
 		
 		DuenhoBD duenho=duenhoDAO.findById(usuario).get();
 		
+	
 		
+		System.out.println(duenho);
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("editar_duenho");
 		mav.addObject("duenhoEditado", duenho);
@@ -139,6 +141,9 @@ public class DuenhoRutas {
 			@Valid @ModelAttribute("duenhoEditado") DuenhoBD duenho) {
 		
 		System.out.println(duenho);
+		
+		BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
+		duenho.setContrasenha(passwordEncoder.encode(duenho.getPassword()));
 		
 		ModelAndView mav=new ModelAndView();
 		duenhoDAO.save(duenho);

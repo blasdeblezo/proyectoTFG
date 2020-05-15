@@ -249,7 +249,7 @@ public class DuenhoBD implements UserDetails{
 		return "DuenhoBD [usuario=" + usuario + ", dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos
 				+ ", direccion=" + direccion + ", provincia=" + provincia + ", email=" + email + ", telefono="
 				+ telefono + ", contrasenha=" + contrasenha + ", aviso=" + aviso + ", numero_perros=" + numero_perros
-				+ ", rolDuenho=" + rolDuenho  + ", listaPerros=" + listaPerros + "]";
+				+ ", rolDuenho=" + rolDuenho + "]";
 	}
 
 
