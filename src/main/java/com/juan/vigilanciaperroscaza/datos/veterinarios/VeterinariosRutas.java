@@ -86,6 +86,31 @@ public class VeterinariosRutas {
 		return mav;
 	}
 	
+	@GetMapping("/editarVeterinario/{usuarui}")
+	public ModelAndView editarVeterinario(@PathVariable String usuario) {
+		VeterinariosBD veterinario=veterinariosDAO.findByUsuario(usuario);
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("veterinario", veterinario);
+		mav.setViewName("editar_veterinario");
+		
+		
+		return mav;
+	}
+	
+	@PostMapping("/veterinarioEditado")
+	public ModelAndView veterinarioEditado(
+			@Valid @ModelAttribute("veterinario") VeterinariosBD veterinariosBD) {
+		
+		veterinariosDAO.save(veterinariosBD);
+		
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("ficha_veterinario");
+		
+		return mav;
+		
+	}
+	
 	@GetMapping("/eliminarVeterinario/{usuario}")
 	public ModelAndView eliminarVeterinario(@PathVariable String usuario) {
 		veterinariosDAO.deleteById(usuario);
