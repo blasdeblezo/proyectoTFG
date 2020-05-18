@@ -2,53 +2,68 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-   <link rel="stylesheet" href="/css/estiloProyecto.css">
-    <title>Registro</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/css/estiloProyecto.css">
+<title>Registro</title>
 </head>
 
 <body>
 
-    <div class="borde m-3">
-        <form class="m-3">
-            <div class="form-row" action="#" th:action="@{/guardarPerro}" th:object="${perroRegistrado}" method="post">
-                <div class="form-group col-md-4">
-                    <label for="campoIdPerro">Id del perro</label>
-                    <input type="text" class="form-control" id="campoIdPerro" placeholder="idperro" th:field="*{id_perro}">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="campoNombrePerro">Nombre del perro</label>
-                    <input type="text" class="form-control" id="campoNombrePerro" placeholder="Nombre del perro" th:field="*{nombre}">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="campoRaza">Raza</label>
-                    <input type="text" class="form-control" id="campoRaza" placeholder="Raza" th:field="*{raza}">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="campoFecha">Fecha nacimiento</label>
-                    <input type="date" class="form-control" id="campoFecha" placeholder="fecha" >
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="campoUsuarioDueño">Usuario</label>
-                   <select id="usuarioPerro" class="form-control" th:field="*{duenho}" th:each="duenho:${listaduenhos}">
-                   <option  th:text="${duenho.usuario}" value="${duenho.usuario}" ></option>
-                   </select>
-                </div>
-            </div>
+	<div class="borde m-3">
+		<form class="m-3">
+			<div class="form-row" action="#" th:action="@{/guardarPerro}"
+				th:object="${perroRegistrado}" method="post">
+				<div class="form-group col-md-4">
+					<label for="campoIdPerro">Id del perro</label> <input type="text"
+						class="form-control" id="campoIdPerro" placeholder="idperro"
+						th:field="*{id_perro}">
+				</div>
+				<div class="form-group col-md-4">
+					<label for="campoNombrePerro">Nombre del perro</label> <input
+						type="text" class="form-control" id="campoNombrePerro"
+						placeholder="Nombre del perro" th:field="*{nombre}">
+				</div>
+				<div class="form-group col-md-4">
+					<label for="campoRaza">Raza</label> <input type="text"
+						class="form-control" id="campoRaza" placeholder="Raza"
+						th:field="*{raza}">
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-4">
+					<label for="campoFecha">Fecha nacimiento</label> <input type="date"
+						class="form-control" id="campoFecha" placeholder="fecha">
+				</div>
+				<div class="form-group col-md-4">
+					<label for="campoUsuarioDueño">Usuario</label> <select
+						id="usuarioPerro" class="form-control"
+						th:field="${perroRegistrado.duenho.usuario}">
+						<option value="null">Selccionar duenho</option>
+						<option th:each="duenhos:${listaduenhos}"
+							th:text="${duenhos.usuario}" value="${duenhos.usuario}"></option>
+					</select>
+				</div>
+			</div>
 
-            <input type="submit" class="btn boton col-md-4 mt-3" >
-    </div>
-    </div>
-    </form>
-    </div>
+			<div class="form-row">
+				<input type="submit" value="Añadir" class="btn boton float-right">
+			</div>
+
+		</form>
+	</div>
+
+
+
 </body>
 
 </html>

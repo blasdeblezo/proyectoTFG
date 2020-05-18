@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -45,14 +46,16 @@ public class PerrosRutas {
 	}
 	
 	@PostMapping("/guardarPerro")
-	public String guardarPerro(@Valid @ModelAttribute("perroRegistrado") PerrosBD perroBD) {
+	public ModelAndView guardarPerro(@Valid @ModelAttribute("perroRegistrado") PerrosBD perroBD) {
+		
+		ModelAndView mav=new ModelAndView();
 		
 		System.out.println(perroBD);
 		perrosDAO.save(perroBD);
 		
+		mav.setViewName("paginadeinicio");
 		
-		
-		return "redirect:/registarPerro";
+		return mav;
 	}
 	
 	@GetMapping("/buscarPerro")
@@ -64,21 +67,23 @@ public class PerrosRutas {
 		mav.addObject("listaPerros", listaPerros);
 		System.out.println(listaPerros);
 		mav.setViewName("pagina_perros");
+
 		
 		
 		return mav;
 	}
 	
-	
+	@GetMapping("eliminarPerro/{id}")
+	public ModelAndView eliminarPerro(@PathVariable Long id) {
+		
+		perrosDAO.deleteById(id);
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("pagina_perros");
+		return mav;
+	}
 
-	/*public PerrosBD CrearPerro(Perros perros) {
-		PerrosBD perro=new PerrosBD();
-		perro.setId_perro(perros.getId_perro());
-		perro.setNombre(perros.getNombre());
-		//perro.setFecha_nacimiento(perros.getFecha_nacimiento());
-		perro.setRaza(perros.getRaza());
-		return perro;
-	}*/
+
+
 
 	
 }

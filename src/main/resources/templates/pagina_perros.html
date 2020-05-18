@@ -46,24 +46,26 @@
               <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Nombre</th>
-                <th scope="col">usuario Dueño</th>
+                <th scope="col">Usuario dueño</th>
                 <th scope="col">Nombre dueño</th>
                 <th scope="col">Fecha nacimiento</th>
                 <th scope="col">Fecha de muerte</th>
                 <th scope="col">Provincia</th>
+                <th></th>
               </tr>
+               </thead>
+                   <tbody>
               <tr th:each="perro:${listaPerros}">
-                <td ><a th:href="@{/fichaPerro/{id}(id=${perro.id_perro})}" th:text="${perro.id_perro}"></a>Id</td>
+                <td ><a th:href="@{/fichaPerro/{id}(id=${perro.id_perro})}" th:text="${perro.id_perro}">id</a></td>
                 <td th:text="${perro.nombre}">Nombre</td>
                 <td th:text="${perro.duenho.usuario}">Usuario Dueño</td>
                 <td th:text="${perro.duenho.nombre}">Nombre dueño</td>
                 <td th:text="${perro.fecha_nacimiento}">Fecha nacimiento</td>
                 <td th:text="${perro.fecha_muerte}">Fecha de muerte</td>
                 <td th:text="${perro.duenho.provincia}">Provincia</td>
+                <td><a type="button" class="btn btn-danger" th:href="@{eliminarPerro/{id}(id=${perro.id_perro})}" th:text="Eliminar"></a></td>
               </tr>
-            </thead>
-            <tbody>
-             
+ 
             </tbody>
           </table>
     </div>
