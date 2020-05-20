@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.juan.vigilanciaperroscaza.datos.provincias.Provincias;
+import com.juan.vigilanciaperroscaza.datos.provincias.ProvinciasDAO;
 import com.juan.vigilanciaperroscaza.datos.roles.Rol;
 import com.juan.vigilanciaperroscaza.datos.roles.RolDAO;
 
@@ -27,19 +29,25 @@ public class VeterinariosRutas {
 	@Autowired
 	private RolDAO rolDAO;
 	
+	@Autowired
+	private ProvinciasDAO provinciasDAO;
+	
 	@GetMapping("/listaveterinarios")
-	public String listaVeterinarios() {
-		
-		return "pagina_veterinarios";
+	public ModelAndView listaVeterinarios() {
+		List<Provincias> provincia=(List<Provincias>)provinciasDAO.findAll();
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("listaprovincias", provincia);
+		mav.setViewName( "pagina_veterinarios");
+		return mav;
 	}
 	
 	@GetMapping("/registrarVeterinario")
 	public ModelAndView registrarVeterinario() {
-		
+		List<Provincias> provincia=(List<Provincias>) provinciasDAO.findAll();
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("veterinario", new Veterinarios());
 		mav.setViewName("registrar_veterinarios");
-		
+		mav.addObject("listaprovincias", provincia);
 		return mav;
 		
 	}
@@ -63,9 +71,10 @@ public class VeterinariosRutas {
 	@GetMapping("/buscarVeterinarios")
 	public ModelAndView buscarVeterinarios() {
 		List<VeterinariosBD> listaVeteriniarios=(List<VeterinariosBD>) veterinariosDAO.findAll();
-		
+		List<Provincias> provincia=(List<Provincias>) provinciasDAO.findAll();
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("listaVeterinarios", listaVeteriniarios);
+		mav.addObject("listaprovincias",provincia);
 		mav.setViewName("pagina_veterinarios");
 		
 		return mav;
@@ -74,24 +83,28 @@ public class VeterinariosRutas {
 	@GetMapping("fichaVeterinario/{usuario}")
 	public ModelAndView fichaVeterinario(@PathVariable String usuario) {
 		
-		
+		System.out.println(usuario);
 		VeterinariosBD veterinariosBD=veterinariosDAO.findByUsuario(usuario);
 		
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("veterinario", veterinariosBD);
-		System.out.println(veterinariosBD);
+		
+		
+	
 		mav.setViewName("ficha_veterinario");
 		
 		
 		return mav;
 	}
 	
-	@GetMapping("/editarVeterinario/{usuarui}")
+	@GetMapping("/editarVeterinario/{usuario}")
 	public ModelAndView editarVeterinario(@PathVariable String usuario) {
 		VeterinariosBD veterinario=veterinariosDAO.findByUsuario(usuario);
+		List<Provincias> provincia=(List<Provincias>) provinciasDAO.findAll();
 		
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("veterinario", veterinario);
+		mav.addObject("listaprovincias", provincia);
 		mav.setViewName("editar_veterinario");
 		
 		

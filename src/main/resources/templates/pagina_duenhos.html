@@ -20,9 +20,13 @@
         <div class="form-row">
           <div class="col-md-4 mb-3">
             <label for="CampoProvincia">Provincia</label>
-            <select id="Provincia" class="form-control">
-                <option>Selecciona Provincia</option>
-              </select>
+            <select
+						id="" class="form-control" >
+						<option value="null">Selccionar provincia</option>
+						<option th:each="provincias:${listaprovincias}"  th:value="${provincias.nombre}"
+						 th:text="${provincias.nombre}"></option>
+
+					</select>
           </div>
           <div class="col-md-4 mb-3">
             <label for="CampoIdDueño">Id dueño</label>

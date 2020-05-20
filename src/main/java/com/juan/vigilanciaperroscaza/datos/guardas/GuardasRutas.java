@@ -15,8 +15,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.juan.vigilanciaperroscaza.datos.cacerias.CaceriasBD;
 import com.juan.vigilanciaperroscaza.datos.cacerias.CaceriasDAO;
+import com.juan.vigilanciaperroscaza.datos.provincias.Provincias;
+import com.juan.vigilanciaperroscaza.datos.provincias.ProvinciasDAO;
 import com.juan.vigilanciaperroscaza.datos.roles.Rol;
 import com.juan.vigilanciaperroscaza.datos.roles.RolDAO;
+import com.juan.vigilanciaperroscaza.datos.veterinarios.VeterinariosBD;
 
 import antlr.debug.GuessingEvent;
 
@@ -30,19 +33,30 @@ public class GuardasRutas {
 	private RolDAO rolDAO;
 	
 	@Autowired
+	private ProvinciasDAO provinciasDAO;
+	
+	@Autowired
 	private CaceriasDAO caceriasDAO;
 	
 	@GetMapping("/listaguardas")
-	public String listaguardas() {
+	public ModelAndView listaguardas() {
 		
-		return "pagina_guardas";
+		List<Provincias> provincia=(List<Provincias>)provinciasDAO.findAll();
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("listaprovincias", provincia);
+		mav.setViewName("pagina_guardas");
+		
+		return mav;
+		
+		
 	}
 	
 	@GetMapping("/registrarGuarda")
 	public ModelAndView registrarGuarda() {
-		
+		List<Provincias> provincia=(List<Provincias>) provinciasDAO.findAll();
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("guardaRegistrado", new Guardas());
+		mav.addObject("listaprovincias", provincia);
 		mav.setViewName("registro_guardas");
 		
 		return mav;
@@ -67,12 +81,14 @@ public class GuardasRutas {
 	
 	@GetMapping("/buscarGuardas")
 	public ModelAndView buscarGuardas() {
-		
+		List<GuardasBD> listaGuardas=(List<GuardasBD>)guardasDAO.findAll();
+		List<Provincias> provincia=(List<Provincias>) provinciasDAO.findAll();
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("pagina_guardas");
 		mav.addObject("guarda", new GuardasBD());
+		mav.addObject("listaprovincias", provincia);
 		
-		List<GuardasBD> listaGuardas=(List<GuardasBD>)guardasDAO.findAll();
+		
 		mav.addObject("guardas", listaGuardas);
 		
 		
@@ -103,8 +119,10 @@ public class GuardasRutas {
 		
 		ModelAndView mav=new ModelAndView();
 		GuardasBD guarda=guardasDAO.findByUsuario(usuario);
-		System.out.println(guarda);
+		List<Provincias> provincia=(List<Provincias>) provinciasDAO.findAll();
+
 		mav.addObject("guarda", guarda);
+		mav.addObject("listaprovincias", provincia);
 		
 		
 		mav.setViewName("editar_guarda");

@@ -1,69 +1,78 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-   <link rel="stylesheet" href="/css/estiloProyecto.css">
-     <script src="/js/scriptproyecto.js" type="text/javascript"></script>
-    <title>Listado de cacerias</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/css/estiloProyecto.css">
+<script src="/js/scriptproyecto.js" type="text/javascript"></script>
+<title>Listado de cacerias</title>
 </head>
 <body onload="anhadir()">
-    <!--Meter el borde con CSS-->
-<div class=" m-3 borde">
-    <form class="m-2">
-        <div class="form-row">
-          <div class="col-md-4 mb-3">
-            <label for="Provincia">Provincia</label>
-            <select id="Provincia" class="form-control">
-                <option>Selecciona Provincia</option>
-              </select>
-          </div>
-          <div class="col-md-4 mb-3">
-            <label for="CampoIdGuarda">Id guarda</label>
-            <input type="text" class="form-control" id="CampoIdGuarda" placeholder="id guarda">
-          </div>
-          <div class="col-md-4 mb-3">
-            <label for="fechaCaceria">Fecha caceria</label>
-            <input type="date" class="form-control" id="fechaCaceria" placeholder="Fecha caceria">
-          </div>
-        </div>
-        <a class="btn boton" type="button" th:href="@{/buscarCacerias}">Buscar</a>
-        <button class="btn boton ml-5" type="submit">Añadir</button>
-      </form>
-    </div>
+	<!--Meter el borde con CSS-->
+	<div class=" m-3 borde">
+		<form class="m-2">
+			<div class="form-row">
+				<div class="col-md-4 mb-3">
+					<label for="Provincia">Provincia</label> <select id=""
+						class="form-control">
+						<option value="null">Selccionar provincia</option>
+						<option th:each="provincias:${listaprovincias}"
+							th:value="${provincias.nombre}" th:text="${provincias.nombre}"></option>
 
-    <!--El id del guarda sea el nombre.-->
-    <div  class=" m-3 ">
-        <table class="table">
-            <thead >
-              <tr class="fila">
-                <th scope="col">Id</th>
-                <th scope="col">Provincia</th>
-                <th scope="col">Fecha</th>
-                <th scope="col">Numero de cazadors</th>
-                <th scope="col">Numero de perros</th>
-                <th scope="col">Guarda</th>
-             
-              </tr>
-              <tr th:each="caceria:${cacerias}">
-                <td ><a th:href="@{fichaCaceria/{id}(id=${caceria.id_caceria})}" th:text="${caceria.id_caceria}"></a></td>
-                <td th:text="${caceria.provincia}">Provincia</td>
-                <td th:text="${caceria.fecha}">Fecha</td>
-                <td th:text="${caceria.numero_cazadores}">Numero de cazadors</td>
-                <td th:text="${caceria.numero_perros}">Numero de perros</td>
-                <td th:text="${caceria.guardas.usuario}">Guarda</td>
-             
-              </tr>
-            </thead>
-            <tbody>
-             
-            </tbody>
-          </table>
-    </div>
+					</select>
+				</div>
+				<div class="col-md-4 mb-3">
+					<label for="CampoIdGuarda">Id guarda</label> <input type="text"
+						class="form-control" id="CampoIdGuarda" placeholder="id guarda">
+				</div>
+				<div class="col-md-4 mb-3">
+					<label for="fechaCaceria">Fecha caceria</label> <input type="date"
+						class="form-control" id="fechaCaceria" placeholder="Fecha caceria">
+				</div>
+			</div>
+			<a class="btn boton" type="button" th:href="@{/buscarCacerias}">Buscar</a>
+			<button class="btn boton ml-5" type="submit">Añadir</button>
+		</form>
+	</div>
+
+	<!--El id del guarda sea el nombre.-->
+	<div class=" m-3 ">
+		<table class="table">
+			<thead>
+				<tr class="fila">
+					<th scope="col">Id</th>
+					<th scope="col">Provincia</th>
+					<th scope="col">Fecha</th>
+					<th scope="col">Numero de cazadors</th>
+					<th scope="col">Numero de perros</th>
+					<th scope="col">Guarda</th>
+
+				</tr>
+				<tr th:each="caceria:${cacerias}">
+					<td><a
+						th:href="@{fichaCaceria/{id}(id=${caceria.id_caceria})}"
+						th:text="${caceria.id_caceria}"></a></td>
+					<td th:text="${caceria.provincia}">Provincia</td>
+					<td th:text="${caceria.fecha}">Fecha</td>
+					<td th:text="${caceria.numero_cazadores}">Numero de cazadors</td>
+					<td th:text="${caceria.numero_perros}">Numero de perros</td>
+					<td th:text="${caceria.guardas.usuario}">Guarda</td>
+
+				</tr>
+			</thead>
+			<tbody>
+
+			</tbody>
+		</table>
+	</div>
 </body>
 </html>

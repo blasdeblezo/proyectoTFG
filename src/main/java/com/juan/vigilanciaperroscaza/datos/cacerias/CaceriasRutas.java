@@ -7,17 +7,29 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.juan.vigilanciaperroscaza.datos.provincias.Provincias;
+import com.juan.vigilanciaperroscaza.datos.provincias.ProvinciasDAO;
+import com.juan.vigilanciaperroscaza.datos.veterinarios.VeterinariosBD;
+
 @Controller
 public class CaceriasRutas {
 
 	@Autowired
 	private CaceriasDAO caceriasDAO;
-	
+	@Autowired
+	private ProvinciasDAO provinciasDAO;
 	
 	@GetMapping("/listacacerias")
-	public String listacacerias() {
+	public ModelAndView listacacerias() {
 		
-		return "pagina_cacerias";
+		List<Provincias> provincia=(List<Provincias>)provinciasDAO.findAll();
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("listaprovincias", provincia);
+		mav.setViewName("pagina_cacerias");
+		
+		return mav;
+		
+	
 	}
 	
 	@GetMapping("/buscarCacerias")
@@ -37,7 +49,7 @@ public class CaceriasRutas {
 	
 	@GetMapping("/registrarCaceria")
 	public ModelAndView registroCacerias() {
-		
+		List<Provincias> provincia=(List<Provincias>) provinciasDAO.findAll();
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("caceriaRegistrada", new CaceriasBD());
 		mav.setViewName("registro_caceria");

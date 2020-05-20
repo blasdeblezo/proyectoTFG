@@ -1,69 +1,80 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <script src="/js/scriptproyecto.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="/css/estiloProyecto.css">
-    <title>Listado de veterinarios</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="/js/scriptproyecto.js" type="text/javascript"></script>
+<link rel="stylesheet" href="/css/estiloProyecto.css">
+<title>Listado de veterinarios</title>
 </head>
 <body onload="anhadir()">
-    <!--Meter el borde con CSS-->
-<div class=" m-3 borde">
-    <form class="m-2">
-        <div class="form-row">
-          <div class="col-md-4 mb-3">
-            <label for="validationDefault01">Provincia</label>
-            <select id="Provincia" class="form-control">
-                <option>Selecciona Provincia</option>
-              </select>
-          </div>
-          <div class="col-md-4 mb-3">
-            <label for="CampoIdVeterinario">Id veterinario</label>
-            <input type="text" class="form-control" id="CampoIdGuarda" placeholder="id veterinario">
-          </div>
-          <div class="col-md-4 mb-3">
-            <label for="Nombre">Nombre</label>
-            <input type="text" class="form-control" id="Nombre" placeholder="Nombre">
-          </div>
-        </div>
-        <a class="btn boton" type="button" th:href="@{/buscarVeterinarios}">Buscar</a>
-      </form>
-    </div>
+	<!--Meter el borde con CSS-->
+	<div class=" m-3 borde">
+		<form class="m-2">
+			<div class="form-row">
+				<div class="col-md-4 mb-3">
+					<label for="validationDefault01">Provincia</label> <select id=""
+						class="form-control">
+						<option value="null">Selccionar provincia</option>
+						<option th:each="provincias:${listaprovincias}"
+							th:value="${provincias.nombre}" th:text="${provincias.nombre}"></option>
+
+					</select>
+				</div>
+				<div class="col-md-4 mb-3">
+					<label for="CampoIdVeterinario">Id veterinario</label> <input
+						type="text" class="form-control" id="CampoIdGuarda"
+						placeholder="id veterinario">
+				</div>
+				<div class="col-md-4 mb-3">
+					<label for="Nombre">Nombre</label> <input type="text"
+						class="form-control" id="Nombre" placeholder="Nombre">
+				</div>
+			</div>
+			<a class="btn boton" type="button" th:href="@{/buscarVeterinarios}">Buscar</a>
+		</form>
+	</div>
 
 
-    <div  class=" m-3 ">
-        <table class="table">
-            <thead class="fila">
-              <tr>
-                <th scope="col">Usuario</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Apellidos</th>
-                <th scope="col">Dirección</th>
-                <th scope="col">Correo</th>
-                <th scope="col">Telefono</th>
-                <th></th>
-              </tr> 
-              </thead>
-               <tbody>
-               <tr th:each="veterinario:${listaVeterinarios}">
-                <td><a th:href="@{/fichaVeterinario/{usuario}(usuario=${veterinario.usuario})}" th:text="${veterinario.usuario}"></a></td>
-                <td th:text="${veterinario.nombre}">Nombre</td>
-                <td th:text="${veterinario.apellidos}">Apellidos</td>
-                <td th:text="${veterinario.direccion}">Dirección</td>
-                <td th:text="${veterinario.email}">Correo</td>
-                <td th:text="${veterinario.telefono}">Telefono</td>
-                <td ><a type="button" class="btn btn-danger" 
-                th:href="@{/eliminarVeterinario/{usuario}(usuario=${veterinario.usuario})}" th:text="Eliminar"></a></td>
-              </tr>
+	<div class=" m-3 ">
+		<table class="table">
+			<thead class="fila">
+				<tr>
+					<th scope="col">Usuario</th>
+					<th scope="col">Nombre</th>
+					<th scope="col">Apellidos</th>
+					<th scope="col">Dirección</th>
+					<th scope="col">Correo</th>
+					<th scope="col">Telefono</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="veterinario:${listaVeterinarios}">
+					<td><a
+						th:href="@{/fichaVeterinario/{usuario}(usuario=${veterinario.usuario})}"
+						th:text="${veterinario.usuario}"></a></td>
+					<td th:text="${veterinario.nombre}">Nombre</td>
+					<td th:text="${veterinario.apellidos}">Apellidos</td>
+					<td th:text="${veterinario.direccion}">Dirección</td>
+					<td th:text="${veterinario.email}">Correo</td>
+					<td th:text="${veterinario.telefono}">Telefono</td>
+					<td><a type="button" class="btn btn-danger"
+						th:href="@{/eliminarVeterinario/{usuario}(usuario=${veterinario.usuario})}"
+						th:text="Eliminar"></a></td>
+				</tr>
 
-            </tbody>
-          </table>
-    </div>
+			</tbody>
+		</table>
+	</div>
 </body>
 </html>

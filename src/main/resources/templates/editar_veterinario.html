@@ -23,8 +23,8 @@
 			th:object="${veterinario}" method="post">
             <div class="form-row">
 				<div class="form-group col-md-4">
-					<label for="campoId">Usuario</label> <input type="text"
-						class="form-control" id="campoId" placeholder="usuario"
+					<label for="campoUsuario">Usuario</label> <input type="text"
+						class="form-control" id="campoUsuario" 
 						th:field="*{usuario}" readonly>
 				</div>
 				<div class="form-group col-md-4">
@@ -64,8 +64,10 @@
 				</div>
 				<div class="form-group col-md-4">
 					<label for="campoProvincia">Provincia</label> <select
-						id="Provincia" class="form-control" th:field="*{provincia}">
-						<option th:value="*{provincia}" th:text="*{provincia}"></option>
+						id="" class="form-control" th:field="*{provincia}">
+						<option value="null">Selccionar provincia</option>
+						<option th:each="provincias:${listaprovincias}"  th:value="${provincias.nombre}"
+						 th:text="${provincias.nombre}"></option>
 
 					</select>
 				</div>
@@ -80,7 +82,7 @@
 				<div class="form-group col-md-4">
 					<label for="campoContrasenha">Rol</label> <input
 						type="text" class="form-control" id="campoRol"
-						placeholder="rol" th:field="*{rolVeterinariio}" readonly>
+						placeholder="rol" th:field="*{rolVeterinario}" readonly>
 
 				</div>
 				

@@ -19,8 +19,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.juan.vigilanciaperroscaza.datos.perro.PerrosBD;
 import com.juan.vigilanciaperroscaza.datos.perro.PerrosDAO;
+import com.juan.vigilanciaperroscaza.datos.provincias.Provincias;
+import com.juan.vigilanciaperroscaza.datos.provincias.ProvinciasDAO;
 import com.juan.vigilanciaperroscaza.datos.roles.Rol;
 import com.juan.vigilanciaperroscaza.datos.roles.RolDAO;
+import com.juan.vigilanciaperroscaza.datos.veterinarios.VeterinariosBD;
 
 
 
@@ -38,21 +41,28 @@ public class DuenhoRutas {
 	private PerrosDAO perrosDAO;
 	
 	@Autowired
+	private ProvinciasDAO provinciasDAO;
+	
+	@Autowired
 	private RolDAO rolDAO;
 	
 	@GetMapping("/listaduenhos")
-	public String listacazadores() {
+	public ModelAndView listacazadores() {
+		List<Provincias> provincia=(List<Provincias>)provinciasDAO.findAll();
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("listaprovincias", provincia);
+		mav.setViewName("pagina_duenhos");
 		
-		return "pagina_duenhos";
+		return mav;
 	}
 	
 	
 	@GetMapping("/buscarDuenhos")
 	public ModelAndView busqueda() {
-		
+		List<Provincias> provincia=(List<Provincias>)provinciasDAO.findAll();
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("pagina_duenhos");
-		
+		mav.addObject("listaprovincias", provincia);
 		
 		
 		List<DuenhoBD> listaDuenhos = (List<DuenhoBD>)duenhoDAO.findAll();
@@ -66,10 +76,12 @@ public class DuenhoRutas {
 	
 	@GetMapping("/registrarCazador")
 	public ModelAndView registrarCazadores() {
-		
+		List<Provincias> provincia=(List<Provincias>) provinciasDAO.findAll();
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("registro_duenho");
 		mav.addObject("duenhoregistro", new Duenhos());
+		mav.addObject("listaprovincias", provincia);
+
 		
 		
 		return mav;
@@ -124,13 +136,12 @@ public class DuenhoRutas {
 	public ModelAndView editarDuenho(@PathVariable String usuario) {
 		
 		DuenhoBD duenho=duenhoDAO.findById(usuario).get();
+		List<Provincias> provincia=(List<Provincias>) provinciasDAO.findAll();
 		
-	
-		
-		System.out.println(duenho);
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("editar_duenho");
 		mav.addObject("duenhoEditado", duenho);
+		mav.addObject("listaprovincias", provincia);
 	
 		
 		return mav;

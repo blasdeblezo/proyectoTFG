@@ -23,7 +23,7 @@ import com.juan.vigilanciaperroscaza.datos.veterinarios.VeterinariosBD;
 public class PerrosBD {
 
 	@Id
-	private Long id_perro;
+	private String id_perro;
 	
 	@Column
 	private String nombre;
@@ -63,11 +63,13 @@ public class PerrosBD {
 		this.duenho = duenho;
 	}
 
-	public Long getId_perro() {
+	
+
+	public String getId_perro() {
 		return id_perro;
 	}
 
-	public void setId_perro(Long id_perro) {
+	public void setId_perro(String id_perro) {
 		this.id_perro = id_perro;
 	}
 

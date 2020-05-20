@@ -1,6 +1,7 @@
 package com.juan.vigilanciaperroscaza.datos.perro;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.juan.vigilanciaperroscaza.datos.duenho.DuenhoBD;
 import com.juan.vigilanciaperroscaza.datos.duenho.DuenhoDAO;
+import com.juan.vigilanciaperroscaza.datos.provincias.Provincias;
+import com.juan.vigilanciaperroscaza.datos.provincias.ProvinciasDAO;
 
 @Controller
 public class PerrosRutas {
@@ -23,12 +26,21 @@ public class PerrosRutas {
 	@Autowired
 	private DuenhoDAO duenhoDAO;
 	
+	@Autowired
+	private ProvinciasDAO provinciasDAO;
 	
 	
 	@GetMapping("/listaperros")
-	public String listaperros() {
+	public ModelAndView listaperros() {
 		
-		return "pagina_perros";
+		List<Provincias> provincia=(List<Provincias>)provinciasDAO.findAll();
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("listaprovincias", provincia);
+		mav.setViewName( "pagina_perros");
+		
+		return mav;
+		
+		
 	}
 	
 	@GetMapping("/registrarPerro")
@@ -62,9 +74,10 @@ public class PerrosRutas {
 	public ModelAndView buscarPerro() {
 		
 		List<PerrosBD> listaPerros=(List<PerrosBD>) perrosDAO.findAll();
-		
+		List<Provincias> provincia=(List<Provincias>)provinciasDAO.findAll();
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("listaPerros", listaPerros);
+		mav.addObject("listaprovincias", provincia);
 		System.out.println(listaPerros);
 		mav.setViewName("pagina_perros");
 
@@ -73,8 +86,33 @@ public class PerrosRutas {
 		return mav;
 	}
 	
+	@GetMapping("/fichaPerro/{id}")
+	public ModelAndView fichaPerro(@PathVariable String id) {
+		
+		PerrosBD perro=perrosDAO.ficha(id);
+		ModelAndView mav=new ModelAndView();
+		
+		System.out.println(perro);
+		mav.addObject("perro", perro);
+		mav.setViewName("ficha_perro");
+		
+		return mav;
+	}
+	
+	@GetMapping("/editarPerro/{id}")
+	public ModelAndView editarPerro(@PathVariable String id) {
+		
+		PerrosBD perro=perrosDAO.ficha(id);
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("perro", perro);
+		mav.setViewName("editar_perro");
+		
+		return mav;
+		
+	}
+	
 	@GetMapping("eliminarPerro/{id}")
-	public ModelAndView eliminarPerro(@PathVariable Long id) {
+	public ModelAndView eliminarPerro(@PathVariable String id) {
 		
 		perrosDAO.deleteById(id);
 		ModelAndView mav=new ModelAndView();

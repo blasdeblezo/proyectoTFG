@@ -19,19 +19,18 @@
 
     <!--Borde con css-->
     <div class="m-2 borde">
-        <form class="m-3">
+        <form class="m-3" >
             <div class="form-row">
                 <div class="col">
                     <label for="">Nombre perro</label>
-                    <input type="text" class="form-control" placeholder="Nombre perro">
+                    <output type="text" class="form-control" th:text="${perro.nombre}"></output>
                 </div>
                 <div class="col">
-                    <label for="">Nombre dueño</label>
-                    <input type="text" class="form-control" placeholder="Dueño">
+                    <label for="">Usuario dueño</label>
+                    <output type="text" class="form-control" th:text="${perro.duenho.usuario}"></output>
                 </div>
-                <div class="col">
-                    <label for="">Id dueño</label>
-                    <input type="text" class="form-control" placeholder="Id Dueño">
+                 <div class="col">
+                  <a th:href="@{/editarPerro/{id}(id=${perro.id_perro})}" type="button" class="btn boton" th:text="editar"></a>
                 </div>
             </div>
         </form>

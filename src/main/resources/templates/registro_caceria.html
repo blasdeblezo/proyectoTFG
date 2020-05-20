@@ -28,9 +28,13 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label for="campoProvincia">Provincia</label>
-                    <select id="Provincia" class="form-control" th:field="*{provincia}">
-               
-              </select>
+                    <select
+						id="" class="form-control" th:field="*{provincia}">
+						<option value="null">Selccionar provincia</option>
+						<option th:each="provincias:${listaprovincias}"  th:value="${provincias.nombre}"
+						 th:text="${provincias.nombre}"></option>
+
+					</select>
                 </div>
             </div>
             <div class="form-row">
