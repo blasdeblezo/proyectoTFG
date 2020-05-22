@@ -20,27 +20,27 @@
 <body onload="anhadir()">
 	<!--Meter el borde con CSS-->
 	<div class=" m-3 borde">
-		<form class="m-2">
+		<form class="m-2" th:object="${filtroGuarda}" action="#" th:action="@{/buscarGuardas}" >
 			<div class="form-row">
 				<div class="col-md-4 mb-3">
 					<label for="validationDefault01">Provincia</label> <select id=""
-						class="form-control">
-						<option value="null">Selccionar provincia</option>
+						class="form-control" th:field="*{provincia}">
+						<option value="null" >Selccionar provincia</option>
 						<option th:each="provincias:${listaprovincias}"
 							th:value="${provincias.nombre}" th:text="${provincias.nombre}"></option>
 
 					</select>
 				</div>
 				<div class="col-md-4 mb-3">
-					<label for="CampoIdGuarda">Id guarda</label> <input type="text"
-						class="form-control" id="CampoIdGuarda" placeholder="id guarda">
+					<label for="CampoIdGuarda">Usuario guarda</label> <input type="text"
+						class="form-control" id="CampoIdGuarda" placeholder="Usuario guarda" th:field="*{usuario}">
 				</div>
 				<div class="col-md-4 mb-3">
 					<label for="Nombre">Nombre</label> <input type="text"
-						class="form-control" id="Nombre" placeholder="Nombre">
+						class="form-control" id="Nombre" placeholder="Nombre" th:field="*{nombre}">
 				</div>
 			</div>
-			<a type="button" class="btn boton" th:href="@{/buscarGuardas}">Buscar</a>
+			<input type="submit" class="btn boton" value="buscar">
 		</form>
 	</div>
 

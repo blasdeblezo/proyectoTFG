@@ -42,8 +42,11 @@ public class GuardasRutas {
 	public ModelAndView listaguardas() {
 		
 		List<Provincias> provincia=(List<Provincias>)provinciasDAO.findAll();
+		Guardas filtroGuarda=new Guardas();
+		
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("listaprovincias", provincia);
+		mav.addObject("filtroGuarda", filtroGuarda);
 		mav.setViewName("pagina_guardas");
 		
 		return mav;
@@ -80,9 +83,18 @@ public class GuardasRutas {
 
 	
 	@GetMapping("/buscarGuardas")
-	public ModelAndView buscarGuardas() {
-		List<GuardasBD> listaGuardas=(List<GuardasBD>)guardasDAO.findAll();
+	public ModelAndView buscarGuardas(@Valid @ModelAttribute("filtroGuarda") Guardas filtro) {
+		
+		System.out.println(filtro);
 		List<Provincias> provincia=(List<Provincias>) provinciasDAO.findAll();
+		String pr=filtro.getProvincia();
+		String usu=filtro.getUsuario();
+		String nomb=filtro.getNombre();
+		System.out.println(pr);
+		
+		List<GuardasBD> listaGuardas=(List<GuardasBD>)guardasDAO.lista(pr,usu,nomb);
+		System.out.println(listaGuardas);
+		
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("pagina_guardas");
 		mav.addObject("guarda", new GuardasBD());
