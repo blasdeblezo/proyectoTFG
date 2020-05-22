@@ -35,19 +35,29 @@ public class VeterinariosRutas {
 	@GetMapping("/listaveterinarios")
 	public ModelAndView listaVeterinarios() {
 		List<Provincias> provincia=(List<Provincias>)provinciasDAO.findAll();
+		Veterinarios filtroVeterinario=new Veterinarios();
+		
 		ModelAndView mav=new ModelAndView();
+		
 		mav.addObject("listaprovincias", provincia);
+		mav.addObject("filtroVeterinarios", filtroVeterinario);
 		mav.setViewName( "pagina_veterinarios");
+		
 		return mav;
 	}
 	
 	@GetMapping("/registrarVeterinario")
 	public ModelAndView registrarVeterinario() {
+		
 		List<Provincias> provincia=(List<Provincias>) provinciasDAO.findAll();
+		
+		
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("veterinario", new Veterinarios());
 		mav.setViewName("registrar_veterinarios");
 		mav.addObject("listaprovincias", provincia);
+		
+		
 		return mav;
 		
 	}
@@ -69,9 +79,16 @@ public class VeterinariosRutas {
 	}
 
 	@GetMapping("/buscarVeterinarios")
-	public ModelAndView buscarVeterinarios() {
-		List<VeterinariosBD> listaVeteriniarios=(List<VeterinariosBD>) veterinariosDAO.findAll();
+	public ModelAndView buscarVeterinarios(@Valid @ModelAttribute("filtroVeterinarios") Veterinarios  filtro) {
+		
+		
+		String pr=filtro.getProvincia();
+		String usu=filtro.getUsuario();
+		String nomb=filtro.getNombre();
+		
 		List<Provincias> provincia=(List<Provincias>) provinciasDAO.findAll();
+		List<VeterinariosBD> listaVeteriniarios=(List<VeterinariosBD>) veterinariosDAO.lista(pr, usu, nomb);
+		
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("listaVeterinarios", listaVeteriniarios);
 		mav.addObject("listaprovincias",provincia);

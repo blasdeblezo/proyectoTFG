@@ -19,11 +19,11 @@
 <body onload="anhadir()">
 	<!--Meter el borde con CSS-->
 	<div class=" m-3 borde">
-		<form class="m-2">
+		<form class="m-2" action="#" th:action="@{/buscarVeterinarios}" th:object="${filtroVeterinarios}">
 			<div class="form-row">
 				<div class="col-md-4 mb-3">
 					<label for="validationDefault01">Provincia</label> <select id=""
-						class="form-control">
+						class="form-control" th:field="*{provincia}">
 						<option value="null">Selccionar provincia</option>
 						<option th:each="provincias:${listaprovincias}"
 							th:value="${provincias.nombre}" th:text="${provincias.nombre}"></option>
@@ -31,16 +31,16 @@
 					</select>
 				</div>
 				<div class="col-md-4 mb-3">
-					<label for="CampoIdVeterinario">Id veterinario</label> <input
-						type="text" class="form-control" id="CampoIdGuarda"
-						placeholder="id veterinario">
+					<label for="CampoUsuarioVeterinario">Usuario veterinario</label> <input
+						type="text" class="form-control" id="CampoUsuarioGuarda"
+						placeholder="Usuario veterinario" th:field="*{usuario}">
 				</div>
 				<div class="col-md-4 mb-3">
 					<label for="Nombre">Nombre</label> <input type="text"
-						class="form-control" id="Nombre" placeholder="Nombre">
+						class="form-control" id="Nombre" placeholder="Nombre" th:field="*{nombre}">
 				</div>
 			</div>
-			<a class="btn boton" type="button" th:href="@{/buscarVeterinarios}">Buscar</a>
+			<input class="btn boton" type="submit" value="buscar">
 		</form>
 	</div>
 
