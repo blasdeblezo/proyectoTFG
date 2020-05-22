@@ -54,19 +54,19 @@ public class VeterinariosBD implements UserDetails{
 	@ManyToOne
 	private Rol rolVeterinario = new Rol();
 	
-	/*@ManyToMany(mappedBy = "veterinarios",cascade = CascadeType.ALL )
-	private List<Perros>lisPerros=new ArrayList<Perros>();
+	@ManyToMany(mappedBy = "veterinarios",cascade = CascadeType.ALL )
+	private List<PerrosBD>lisPerros=new ArrayList<PerrosBD>();
 	
-	public void addPerros(Perros perro) {
+	public void addPerros(PerrosBD perro) {
 		if(!lisPerros.contains(perro)) {
 			lisPerros.add(perro);
 			
-			List<Veterinarios>lisVeterinarios=perro.getVeterinarios();
+			List<VeterinariosBD>lisVeterinarios=perro.getVeterinarios(); 
 			if(!lisVeterinarios.contains(this)) {
 				lisVeterinarios.add(this);
 			}
 		}
-	}*/
+	}
 
 
 	

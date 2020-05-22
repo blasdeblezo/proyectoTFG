@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.hibernate.hql.internal.ast.tree.IsNullLogicOperatorNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -48,9 +49,14 @@ public class DuenhoRutas {
 	
 	@GetMapping("/listaduenhos")
 	public ModelAndView listacazadores() {
+		
 		List<Provincias> provincia=(List<Provincias>)provinciasDAO.findAll();
+		Duenhos filtrarDuenhos=new Duenhos();
+		
 		ModelAndView mav=new ModelAndView();
+		
 		mav.addObject("listaprovincias", provincia);
+		mav.addObject("filtrarDuenhos",filtrarDuenhos );
 		mav.setViewName("pagina_duenhos");
 		
 		return mav;
@@ -58,16 +64,37 @@ public class DuenhoRutas {
 	
 	
 	@GetMapping("/buscarDuenhos")
-	public ModelAndView busqueda() {
+	public ModelAndView busqueda(@Valid @ModelAttribute("filtrarDuenhos") Duenhos filtro) {
+		
 		List<Provincias> provincia=(List<Provincias>)provinciasDAO.findAll();
+		System.out.println(filtro);
+		String pr=filtro.getProvincia();
+		String usu=filtro.getUsuario();
+		String nomb=filtro.getNombre();
+	
+		/*if(pr==null) {
+			pr="%";
+			System.out.println(pr);
+		}
+		
+		if(usu==null) {
+			usu="%";
+			System.out.println(usu);
+		}
+		if(nomb==null) {
+			nomb="%";
+			System.out.println(nomb);
+		}*/
+		
+			System.out.println(pr + " " + usu + " " + nomb); 
+		List<DuenhoBD> listaDuenhos = (List<DuenhoBD>)duenhoDAO.lista(pr, usu, nomb);
+		System.out.println(listaDuenhos);
+		
+		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("pagina_duenhos");
 		mav.addObject("listaprovincias", provincia);
-		
-		
-		List<DuenhoBD> listaDuenhos = (List<DuenhoBD>)duenhoDAO.findAll();
 		mav.addObject("duenhos",listaDuenhos);
-		
+		mav.setViewName("pagina_duenhos");
 		
 		
 		return mav;

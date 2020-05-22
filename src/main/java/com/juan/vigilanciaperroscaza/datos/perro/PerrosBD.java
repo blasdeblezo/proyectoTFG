@@ -44,16 +44,18 @@ public class PerrosBD {
 	@ManyToOne
 	private DuenhoBD duenho;
 	
-	/*@ManyToMany(cascade = CascadeType.ALL)
-	private List<Veterinarios> veterinarios=new ArrayList<Veterinarios>()
+	@ManyToMany(cascade = CascadeType.ALL)
+	private List<VeterinariosBD> veterinarios=new ArrayList<VeterinariosBD>();
 	
-	public List<Veterinarios> getVeterinarios() {
+
+
+	public List<VeterinariosBD> getVeterinarios() {
 		return veterinarios;
 	}
 
-	public void setVeterinarios(List<Veterinarios> veterinarios) {
+	public void setVeterinarios(List<VeterinariosBD> veterinarios) {
 		this.veterinarios = veterinarios;
-	};*/
+	}
 
 	public DuenhoBD getDuenho() {
 		return duenho;
@@ -119,7 +121,7 @@ public class PerrosBD {
 	public String toString() {
 		return "Perros [id_perro=" + id_perro + ", nombre=" + nombre + ", raza=" + raza + ", fecha_nacimiento="
 				+ fecha_nacimiento + ", fecha_muerte=" + fecha_muerte + ", revision=" + revision + ", duenho=" + duenho
-				/*+ ", veterinarios=" + veterinarios*/ + "]";
+				+ ", veterinarios=" + veterinarios + "]";
 	}
 
 	
