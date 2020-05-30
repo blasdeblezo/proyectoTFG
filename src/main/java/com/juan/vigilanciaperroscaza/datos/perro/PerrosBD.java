@@ -127,12 +127,25 @@ public class PerrosBD {
 		this.revision = revision;
 	}
 
+
+	public List<RevisionesBD> getRevisiones() {
+		return revisiones;
+	}
+
+
+	public void setRevisiones(List<RevisionesBD> revisiones) {
+		this.revisiones = revisiones;
+	}
+
+
 	@Override
 	public String toString() {
-		return "Perros [id_perro=" + id_perro + ", nombre=" + nombre + ", raza=" + raza + ", fecha_nacimiento="
+		return "PerrosBD [id_perro=" + id_perro + ", nombre=" + nombre + ", raza=" + raza + ", fecha_nacimiento="
 				+ fecha_nacimiento + ", fecha_muerte=" + fecha_muerte + ", revision=" + revision + ", duenho=" + duenho
-				+ ", veterinarios=" + veterinarios + "]";
+				+ ", veterinarios=" + veterinarios + ", revisiones=" + revisiones + "]";
 	}
+
+	
 
 	
 	

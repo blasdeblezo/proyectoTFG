@@ -20,9 +20,9 @@
 <body>
 
 	<div class="borde m-3">
-		<form class="m-3">
-			<div class="form-row" action="#" th:action="@{/guardarPerro}"
+		<form class="m-3" action="#" th:action="@{/guardarPerro}"
 				th:object="${perroRegistrado}" method="post">
+			<div class="form-row" >
 				<div class="form-group col-md-4">
 					<label for="campoIdPerro">Id del perro</label> <input type="text"
 						class="form-control" id="campoIdPerro" placeholder="idperro"
@@ -42,15 +42,15 @@
 			<div class="form-row">
 				<div class="form-group col-md-4">
 					<label for="campoFecha">Fecha nacimiento</label> <input type="date"
-						class="form-control" id="campoFecha" placeholder="fecha">
+						class="form-control" id="campoFecha" placeholder="fecha" th:field="*{fecha_nacimiento}">
 				</div>
 				<div class="form-group col-md-4">
 					<label for="campoUsuarioDueño">Usuario</label> <select
 						id="usuarioPerro" class="form-control"
-						th:field="${perroRegistrado.duenho.usuario}">
+						th:field="${perroRegistrado.duenho}">
 						<option value="null">Selccionar duenho</option>
 						<option th:each="duenhos:${listaduenhos}"
-							th:text="${duenhos.usuario}" value="${duenhos.usuario}"></option>
+							th:text="${duenhos.usuario}" th:value="${duenhos.usuario}"></option>
 					</select>
 				</div>
 			</div>
