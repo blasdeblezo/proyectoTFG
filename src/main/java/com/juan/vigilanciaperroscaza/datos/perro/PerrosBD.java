@@ -9,10 +9,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.juan.vigilanciaperroscaza.datos.duenho.DuenhoBD;
+import com.juan.vigilanciaperroscaza.datos.revisiones.RevisionesBD;
 import com.juan.vigilanciaperroscaza.datos.veterinarios.VeterinariosBD;
 
 /*
@@ -47,7 +49,15 @@ public class PerrosBD {
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<VeterinariosBD> veterinarios=new ArrayList<VeterinariosBD>();
 	
-
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "perros")
+	private List<RevisionesBD> revisiones=new ArrayList<RevisionesBD>();
+	
+	public void addRevisiones(RevisionesBD revision) {
+		if(!revisiones.contains(revision)) {
+			revisiones.add(revision);
+		}
+	}
+	
 
 	public List<VeterinariosBD> getVeterinarios() {
 		return veterinarios;

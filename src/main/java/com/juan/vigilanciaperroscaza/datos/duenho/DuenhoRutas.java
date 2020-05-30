@@ -67,14 +67,19 @@ public class DuenhoRutas {
 	public ModelAndView busqueda(@Valid @ModelAttribute("filtrarDuenhos") Duenhos filtro) {
 		
 		List<Provincias> provincia=(List<Provincias>)provinciasDAO.findAll();
-		System.out.println(filtro);
+		System.out.println("1" +filtro.getProvincia());
 		String pr=filtro.getProvincia();
 		String usu=filtro.getUsuario();
 		String nomb=filtro.getNombre();
+		
+		
 	
 		/*if(pr==null) {
 			pr="%";
-			System.out.println(pr);
+			System.out.println("2" + pr);
+		}else {
+			
+			System.out.println("3" + pr);
 		}
 		
 		if(usu==null) {
@@ -86,7 +91,7 @@ public class DuenhoRutas {
 			System.out.println(nomb);
 		}*/
 		
-			System.out.println(pr + " " + usu + " " + nomb); 
+			
 		List<DuenhoBD> listaDuenhos = (List<DuenhoBD>)duenhoDAO.lista(pr, usu, nomb);
 		System.out.println(listaDuenhos);
 		
