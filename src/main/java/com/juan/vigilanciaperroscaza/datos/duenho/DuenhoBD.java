@@ -15,7 +15,12 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.Parent;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -35,33 +40,45 @@ import com.juan.vigilanciaperroscaza.datos.roles.Rol;
 public class DuenhoBD implements UserDetails{
 
 	@Id
+	@NotNull(message = "Usuario obligatorio")
 	private String usuario;
 
 	@Column
+	@NotNull(message = "DNI obligatorio")
 	private String dni;
 
 	@Column
+	@NotNull(message = "Nombre obligatorio")
 	private String nombre;
 
 	@Column
+	@NotNull(message = "Apellidos obligatorio")
 	private String apellidos;
 
 	@Column
+	@NotNull(message = "Dirección obligatoria")
 	private String direccion;
 
 	@Column
+	@NotNull(message = "Provincia obligatoria")
 	private String provincia;
 
 	@Column
+	@NotNull(message = "Correo obligatorio")
 	private String email;
 
 	@Column
+	@NotNull(message = "Telefono obligatorio")
 	private Integer telefono;
 
 	@Column
+	@NotNull(message = "Contraseña obligatoria")
+	@Size(min=8, message = "La contraseña tiene que tener como mínimo 8 caracteres")
+	@Pattern(regexp = "[a-zA-Z0-9]+", message="El código del producto solo puede tener letras minusculas, mayusculas o números")
 	private String contrasenha;
 	
 	@Column
+	@NotNull(message = "Aviso obligatorio")
 	private String aviso;
 	
 	@Column

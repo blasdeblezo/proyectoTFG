@@ -1,6 +1,7 @@
 package com.juan.vigilanciaperroscaza.datos.cacerias;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,6 +12,8 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import com.juan.vigilanciaperroscaza.datos.duenho.DuenhoBD;
 import com.juan.vigilanciaperroscaza.datos.guardas.GuardasBD;
@@ -25,15 +28,21 @@ public class CaceriasBD {
 	private Long id_caceria;
 
 	@Column
+	@NotNull(message = "La provincia es obligatoria")
 	private String provincia;
 
 	@Column
+	@NotNull(message = "La fecha es obligatoria")
 	private String fecha;
 
 	@Column
+	@NotNull(message = "El numero de perros es obligatoria")
+	@Min(1)
 	private Integer numero_perros;
 
 	@Column
+	@NotNull(message = "El numero de perros es obligatoria")
+	@Min(1)
 	private Integer numero_cazadores;
 
 	/*@ManyToMany(mappedBy = "cacerias",fetch=FetchType.EAGER)

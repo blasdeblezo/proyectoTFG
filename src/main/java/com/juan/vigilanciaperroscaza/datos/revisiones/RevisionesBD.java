@@ -1,9 +1,13 @@
 package com.juan.vigilanciaperroscaza.datos.revisiones;
 
+import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 import com.juan.vigilanciaperroscaza.datos.perro.PerrosBD;
 
@@ -11,22 +15,26 @@ import com.juan.vigilanciaperroscaza.datos.perro.PerrosBD;
 public class RevisionesBD {
 	
 	@Id
-	@Column
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long idRevision;
 	
 	@Column
+	@NotNull(message="El diagnostico es obligatorio")
 	private String diagnostico;
 	
 	@Column
 	private int numeroRevisiones;
 	
 	@Column
+	@NotNull(message="Nombre del perro es obligatorio")
 	private String nombrePerro;
 	
 	@Column
+	@NotNull(message="Fecha de la revision es obligatoria")
 	private String fechaRevision;
 	
 	@Column
+	@NotNull(message="Estado del perro es obligatorio")
 	private String estado;
 	
 	@ManyToOne

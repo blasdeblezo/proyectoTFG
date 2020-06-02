@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -25,16 +26,20 @@ import com.juan.vigilanciaperroscaza.datos.veterinarios.VeterinariosBD;
 public class PerrosBD {
 
 	@Id
+	@NotNull(message="id obligatorio")
 	private String id_perro;
 	
 	@Column
+	@NotNull(message = "Nombre obligatorio")
 	private String nombre;
 	
 	@Column
+	@NotNull(message = "Raza obligatoria")
 	private String raza;
 	
 	@Column
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull(message = "Fecha obligatoria")
 	private String fecha_nacimiento;
 	
 	@Column
@@ -44,6 +49,7 @@ public class PerrosBD {
 	private String revision;
 	
 	@ManyToOne
+	@NotNull(message = "Dueño obligatorio")
 	private DuenhoBD duenho;
 	
 	@ManyToOne
