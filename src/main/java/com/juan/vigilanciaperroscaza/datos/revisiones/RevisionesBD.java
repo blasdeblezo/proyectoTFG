@@ -26,6 +26,9 @@ public class RevisionesBD {
 	@Column
 	private String fechaRevision;
 	
+	@Column
+	private String estado;
+	
 	@ManyToOne
 	private PerrosBD perros=new PerrosBD();
 
@@ -76,13 +79,25 @@ public class RevisionesBD {
 	public void setPerros(PerrosBD perros) {
 		this.perros = perros;
 	}
+	
+	
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
 
 	@Override
 	public String toString() {
 		return "RevisionesBD [idRevision=" + idRevision + ", diagnostico=" + diagnostico + ", numeroRevisiones="
-				+ numeroRevisiones + ", nombrePerro=" + nombrePerro + ", fechaRevision=" + fechaRevision + ", perros="
-				+ perros + "]";
+				+ numeroRevisiones + ", nombrePerro=" + nombrePerro + ", fechaRevision=" + fechaRevision + ", estado="
+				+ estado + ", perros=" + perros + "]";
 	}
+
+
 	
 	
 }

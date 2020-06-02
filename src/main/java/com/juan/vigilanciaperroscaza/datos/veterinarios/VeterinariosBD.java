@@ -8,9 +8,11 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -54,19 +56,8 @@ public class VeterinariosBD implements UserDetails{
 	@ManyToOne
 	private Rol rolVeterinario = new Rol();
 	
-	@ManyToMany(mappedBy = "veterinarios",cascade = CascadeType.ALL )
+	@OneToMany(mappedBy = "veterinarios",fetch = FetchType.EAGER )
 	private List<PerrosBD>lisPerros=new ArrayList<PerrosBD>();
-	
-	public void addPerros(PerrosBD perro) {
-		if(!lisPerros.contains(perro)) {
-			lisPerros.add(perro);
-			
-			List<VeterinariosBD>lisVeterinarios=perro.getVeterinarios(); 
-			if(!lisVeterinarios.contains(this)) {
-				lisVeterinarios.add(this);
-			}
-		}
-	}
 
 
 	

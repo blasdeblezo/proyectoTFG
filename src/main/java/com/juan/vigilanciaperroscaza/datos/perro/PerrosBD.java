@@ -46,26 +46,34 @@ public class PerrosBD {
 	@ManyToOne
 	private DuenhoBD duenho;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	private List<VeterinariosBD> veterinarios=new ArrayList<VeterinariosBD>();
+	@ManyToOne
+	private VeterinariosBD veterinarios;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "perros")
+	/*@OneToMany(cascade = CascadeType.ALL, mappedBy = "perros")
 	private List<RevisionesBD> revisiones=new ArrayList<RevisionesBD>();
 	
 	public void addRevisiones(RevisionesBD revision) {
 		if(!revisiones.contains(revision)) {
 			revisiones.add(revision);
 		}
-	}
+	}*/
 	
 
-	public List<VeterinariosBD> getVeterinarios() {
+
+
+	public VeterinariosBD getVeterinarios() {
 		return veterinarios;
 	}
 
-	public void setVeterinarios(List<VeterinariosBD> veterinarios) {
+
+
+
+	public void setVeterinarios(VeterinariosBD veterinarios) {
 		this.veterinarios = veterinarios;
 	}
+
+
+
 
 	public DuenhoBD getDuenho() {
 		return duenho;
@@ -128,21 +136,21 @@ public class PerrosBD {
 	}
 
 
-	public List<RevisionesBD> getRevisiones() {
+	/*public List<RevisionesBD> getRevisiones() {
 		return revisiones;
 	}
 
 
 	public void setRevisiones(List<RevisionesBD> revisiones) {
 		this.revisiones = revisiones;
-	}
+	}*/
 
 
 	@Override
 	public String toString() {
 		return "PerrosBD [id_perro=" + id_perro + ", nombre=" + nombre + ", raza=" + raza + ", fecha_nacimiento="
 				+ fecha_nacimiento + ", fecha_muerte=" + fecha_muerte + ", revision=" + revision + ", duenho=" + duenho
-				+ ", veterinarios=" + veterinarios + ", revisiones=" + revisiones + "]";
+				+ ", veterinarios=" + veterinarios + ", revisiones="  + "]";
 	}
 
 	
