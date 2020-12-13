@@ -74,7 +74,6 @@ public class DuenhoBD implements UserDetails{
 	@Column
 	@NotNull(message = "Contraseña obligatoria")
 	@Size(min=8, message = "La contraseña tiene que tener como mínimo 8 caracteres")
-	@Pattern(regexp = "[a-zA-Z0-9]+", message="El código del producto solo puede tener letras minusculas, mayusculas o números")
 	private String contrasenha;
 	
 	@Column
@@ -87,8 +86,8 @@ public class DuenhoBD implements UserDetails{
 	@ManyToOne
 	private Rol rolDuenho = new Rol();
 	
-	/*@ManyToMany(cascade = CascadeType.ALL)
-	private List<CaceriasBD> cacerias = new ArrayList<CaceriasBD>();*/
+	@ManyToMany(cascade = CascadeType.ALL)
+	private List<CaceriasBD> cacerias = new ArrayList<CaceriasBD>();
 	
 	
 	
@@ -98,13 +97,13 @@ public class DuenhoBD implements UserDetails{
 	
 	
 
-	/*public List<CaceriasBD> getCacerias() {
+	public List<CaceriasBD> getCacerias() {
 		return cacerias;
 	}
 
 	public void setCacerias(List<CaceriasBD> cacerias) {
 		this.cacerias = cacerias;
-	}*/
+	}
 
 	public List<PerrosBD> getListaPerros() {
 		return listaPerros;

@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.juan.vigilanciaperroscaza.datos.cacerias.CaceriasBD;
+import com.juan.vigilanciaperroscaza.datos.cacerias.CaceriasDAO;
 import com.juan.vigilanciaperroscaza.datos.perro.PerrosBD;
 import com.juan.vigilanciaperroscaza.datos.perro.PerrosDAO;
 import com.juan.vigilanciaperroscaza.datos.provincias.Provincias;
@@ -40,6 +42,9 @@ public class DuenhoRutas {
 	
 	@Autowired
 	private PerrosDAO perrosDAO;
+	
+	@Autowired
+	private CaceriasDAO caceriasDAO;
 	
 	@Autowired
 	private ProvinciasDAO provinciasDAO;
@@ -67,19 +72,12 @@ public class DuenhoRutas {
 	public ModelAndView busqueda(@Valid @ModelAttribute("filtrarDuenhos") Duenhos filtro) {
 		
 		List<Provincias> provincia=(List<Provincias>)provinciasDAO.findAll();
-		System.out.println("1" +filtro.getProvincia());
 		String pr=filtro.getProvincia();
 		String usu=filtro.getUsuario();
 		String nomb=filtro.getNombre();
 		
-		
-	
-		/*if(pr==null) {
+		if(pr==null) {
 			pr="%";
-			System.out.println("2" + pr);
-		}else {
-			
-			System.out.println("3" + pr);
 		}
 		
 		if(usu==null) {
@@ -89,7 +87,7 @@ public class DuenhoRutas {
 		if(nomb==null) {
 			nomb="%";
 			System.out.println(nomb);
-		}*/
+		}
 		
 			
 		List<DuenhoBD> listaDuenhos = (List<DuenhoBD>)duenhoDAO.lista(pr, usu, nomb);
@@ -134,7 +132,7 @@ public class DuenhoRutas {
 		
 		duenhoDAO.save(duenho);
 		
-		mav.setViewName("registro_duenho");
+		mav.setViewName("paginadeinicio");
 		return mav;
 		
 	}
@@ -153,11 +151,13 @@ public class DuenhoRutas {
 		
 		
 		
-		/*DuenhoBD usuarioD=new DuenhoBD();
+		DuenhoBD usuarioD=new DuenhoBD();
 		usuarioD.setUsuario(usuario);
 		List<PerrosBD> perros=(List<PerrosBD>)perrosDAO.findByDuenho(usuarioD);
 		mav.addObject("perros", perros);
-		System.out.println(perros);*/
+		System.out.println(perros);
+		
+		
 		
 		mav.setViewName("ficha_duenho");
 		return mav;
@@ -183,10 +183,7 @@ public class DuenhoRutas {
 	public ModelAndView duenhoEditado(
 			@Valid @ModelAttribute("duenhoEditado") DuenhoBD duenho) {
 		
-		System.out.println(duenho);
 		
-		BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
-		duenho.setContrasenha(passwordEncoder.encode(duenho.getPassword()));
 		
 		ModelAndView mav=new ModelAndView();
 		duenhoDAO.save(duenho);

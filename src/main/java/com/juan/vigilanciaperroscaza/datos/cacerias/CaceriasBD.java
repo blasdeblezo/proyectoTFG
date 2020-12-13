@@ -41,11 +41,11 @@ public class CaceriasBD {
 	private Integer numero_perros;
 
 	@Column
-	@NotNull(message = "El numero de perros es obligatoria")
+	@NotNull(message = "El numero de cazadores es obligatoria")
 	@Min(1)
 	private Integer numero_cazadores;
 
-	/*@ManyToMany(mappedBy = "cacerias",fetch=FetchType.EAGER)
+	@ManyToMany(mappedBy = "cacerias",fetch=FetchType.EAGER)
 	private List<DuenhoBD> listaDuenhos=new ArrayList<DuenhoBD>();
 	
 	public void addCacerias(DuenhoBD duenho) {
@@ -57,7 +57,7 @@ public class CaceriasBD {
 				listaCacerias.add(this);
 			}
 		}
-	}*/
+	}
 
 	@ManyToOne
 	private GuardasBD guardas;
@@ -72,13 +72,13 @@ public class CaceriasBD {
 
 	
 
-	/*public List<DuenhoBD> getListaDuenhos() {
+	public List<DuenhoBD> getListaDuenhos() {
 		return listaDuenhos;
 	}
 
 	public void setListaDuenhos(List<DuenhoBD> listaDuenhos) {
 		this.listaDuenhos = listaDuenhos;
-	}*/
+	}
 
 	
 
@@ -126,8 +126,9 @@ public class CaceriasBD {
 
 	@Override
 	public String toString() {
-		return "Cacerias [id_caceria=" + id_caceria + ", provincia=" + provincia + ", fecha=" + fecha
-				+ ", numero_perros=" + numero_perros + ", numero_cazadores=" + numero_cazadores  + ", guardas=" + guardas + "]";
+		return "CaceriasBD [id_caceria=" + id_caceria + ", provincia=" + provincia + ", fecha=" + fecha
+				+ ", numero_perros=" + numero_perros + ", numero_cazadores=" + numero_cazadores + ", listaDuenhos="
+				+ listaDuenhos + ", guardas=" + guardas + "]";
 	}
 	
 	

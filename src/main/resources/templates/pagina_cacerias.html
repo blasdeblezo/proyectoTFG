@@ -17,29 +17,36 @@
 <title>Listado de cacerias</title>
 </head>
 <body onload="anhadir()">
+
+<div>
+	<a class="btn btn-danger" type="boton" th:href="@{/}">
+		Regresar pagina principal
+	</a>
+</div>
 	<!--Meter el borde con CSS-->
 	<div class=" m-3 borde">
-		<form class="m-2">
+		<form class="m-2" th:object="${filtrarCacerias}" action="#" th:action="@{/buscarCacerias}">
 			<div class="form-row">
 				<div class="col-md-4 mb-3">
 					<label for="Provincia">Provincia</label> <select id=""
 						class="form-control">
 						<option value="null">Selccionar provincia</option>
 						<option th:each="provincias:${listaprovincias}"
-							th:value="${provincias.nombre}" th:text="${provincias.nombre}"></option>
+							th:value="${provincias.nombre}" th:text="${provincias.nombre}" 
+							th:field="*{provincia}"></option>
 
 					</select>
 				</div>
 				<div class="col-md-4 mb-3">
-					<label for="CampoIdGuarda">Id guarda</label> <input type="text"
-						class="form-control" id="CampoIdGuarda" placeholder="id guarda">
+					<label for="CampoIdGuarda">Id caceria</label> <input type="text"
+						class="form-control" id="CampoIdGuarda" placeholder="Id caceria" th:field="*{id_caceria}">
 				</div>
 				<div class="col-md-4 mb-3">
 					<label for="fechaCaceria">Fecha caceria</label> <input type="date"
-						class="form-control" id="fechaCaceria" placeholder="Fecha caceria">
+						class="form-control" id="fechaCaceria" placeholder="Fecha caceria" th:field="*{fecha}">
 				</div>
 			</div>
-			<a class="btn boton" type="button" th:href="@{/buscarCacerias}">Buscar</a>
+			<input type="submit" class="btn boton" value="buscar" >
 			<button class="btn boton ml-5" type="submit">Añadir</button>
 		</form>
 	</div>
@@ -55,9 +62,13 @@
 					<th scope="col">Numero de cazadors</th>
 					<th scope="col">Numero de perros</th>
 					<th scope="col">Guarda</th>
+					<th></th>
 
 				</tr>
-				<tr th:each="caceria:${cacerias}">
+			</thead>
+			<tbody>
+			
+			<tr th:each="caceria:${cacerias}">
 					<td><a
 						th:href="@{fichaCaceria/{id}(id=${caceria.id_caceria})}"
 						th:text="${caceria.id_caceria}"></a></td>
@@ -66,10 +77,11 @@
 					<td th:text="${caceria.numero_cazadores}">Numero de cazadors</td>
 					<td th:text="${caceria.numero_perros}">Numero de perros</td>
 					<td th:text="${caceria.guardas.usuario}">Guarda</td>
+					<td><a type="button" class="btn btn-danger"
+						th:href="@{/eliminarCaceria/{caceria}(caceria=${caceria.id_caceria})}"
+						th:text="Eliminar"></a></td>
 
 				</tr>
-			</thead>
-			<tbody>
 
 			</tbody>
 		</table>

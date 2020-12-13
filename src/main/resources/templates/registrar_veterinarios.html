@@ -17,7 +17,11 @@
 <title>Registro dueños</title>
 </head>
 <body onload="anhadir()">
-
+<div>
+	<a class="btn btn-danger" type="boton" th:href="@{/}">
+		Regresar pagina principal
+	</a>
+</div>
 	<div class="borde m-3">
 		<form class="m-3" action="#" th:action="@{/guardarVeterinario}"
 			th:object="${veterinario}" method="post">

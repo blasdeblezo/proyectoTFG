@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.juan.vigilanciaperroscaza.datos.perro.PerrosBD;
+import com.juan.vigilanciaperroscaza.datos.perro.PerrosDAO;
 import com.juan.vigilanciaperroscaza.datos.provincias.Provincias;
 import com.juan.vigilanciaperroscaza.datos.provincias.ProvinciasDAO;
 import com.juan.vigilanciaperroscaza.datos.roles.Rol;
@@ -31,6 +33,9 @@ public class VeterinariosRutas {
 	
 	@Autowired
 	private ProvinciasDAO provinciasDAO;
+	
+	@Autowired
+	private PerrosDAO perrosDAO;
 	
 	@GetMapping("/listaveterinarios")
 	public ModelAndView listaVeterinarios() {
@@ -102,10 +107,11 @@ public class VeterinariosRutas {
 		
 		System.out.println(usuario);
 		VeterinariosBD veterinariosBD=veterinariosDAO.findByUsuario(usuario);
-		
+		List<PerrosBD> perros=(List<PerrosBD>)perrosDAO.perros(usuario);
+		System.out.println(perros);
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("veterinario", veterinariosBD);
-		
+		mav.addObject("listaperros", perros);
 		
 	
 		mav.setViewName("ficha_veterinario");

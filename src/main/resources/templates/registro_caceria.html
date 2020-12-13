@@ -10,28 +10,35 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/css/estiloProyecto.css">
+    <script src="/js/scriptproyecto.js" language="javascript" type="text/javascript"></script>
     <title>Registro caceria</title>
 </head>
 
 <body onload="anhadir()">
+<div>
+	<a class="btn btn-danger" type="boton" th:href="@{/}">
+		Regresar pagina principal
+	</a>
+</div>
 
     <div class="borde m-3">
-        <form class="m-3" action="#" th:action="@{/guardarCaceria}" th:object="${caceriaRegistrada}">
+        <form class="m-3" action="#" th:action="@{/guardarCaceria}" th:object="${caceriaRegistrada}" method="post">
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="campoId">Usuario del guarda</label>
-                    <input type="text" class="form-control" id="campoId" placeholder="usuario guarda" th:field="*{guardas}">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="campoNombre">Nombre del guarda</label>
-                    <input type="text" class="form-control" id="campoNombre" placeholder="Nombre guarda" th:field="*{guardas.nombre}">
+                     <select
+						id="" class="form-control" th:field="*{guardas.usuario}">
+						<option value="null">Selccionar guarda</option>
+						<option th:each="guardas:${listaGuardas}"  th:value="${guardas.usuario}"
+						 th:text="${guardas.usuario}"></option>
+					</select>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="campoProvincia">Provincia</label>
                     <select
 						id="" class="form-control" th:field="*{provincia}">
 						<option value="null">Selccionar provincia</option>
-						<option th:each="provincias:${listaprovincias}"  th:value="${provincias.nombre}"
+						<option th:each="provincias:${provincias}"  th:value="${provincias.nombre}"
 						 th:text="${provincias.nombre}"></option>
 
 					</select>
@@ -49,40 +56,47 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label for="campoNumeroPerros">Numero de perros</label>
-                    <input type="number" class="form-control" id="campoNumeroPerros" placeholder="Numero de perros" th:field="*{numero_perros}">
+                    <input type="number"  min="0" 
+                    class="form-control" id="campoNumeroPerros" placeholder="Numero de perros" th:field="*{numero_perros}">
                 </div>
             </div>
 
 
-            <div class="form-row">
-                <div class=" col-md-4 ">
+            <div class="form-row" id="cazadoryperro">
+                <div class="col-md-4" >
                     <label for="campoIdCazador">Usuario cazador</label>
-                    <input type="text" class="form-control" id="campoIdCazador" placeholder="id cazador" th:field="*{listaDuenhos.usuarios}">
-                    <button type="submit" class="btn boton col-md-4 mt-3">añadir cazador</button>
+                      <select
+						id="" class="form-control" >
+						<option value="null">Selccionar dueños</option>
+						<option th:each="duenho:${listaDuenhos}"  
+						 th:value="${duenho.usuario}"
+						 th:text="${duenho.nombre}"></option>
+					</select>
                 </div>
-
-            </div>
-
-            <div class="form-row">
+                
                 <div class="form-group col-md-4">
                     <label for="campoIdPerro">Id perros</label>
-                    <input type="text" class="form-control" id="campoIdPerro" placeholder="Id perros" 
-                    th:field="*{listaDuehos.listaPerros}">
-                    <button type="submit" class="btn boton col-md-4 mt-3">añadir perro</button>
+                    
+                    <select
+						id="" class="form-control" >
+						<option value="null">Selccionar perro</option>
+						<option th:each="perro:${listaPerros}"  
+						 th:value="${perro.id_perro}"
+						 th:text="${perro.nombre}"></option>
+
+					</select>   
                 </div>
-
-            </div>
-
-            <input type="submit" value="Añadir"
+               
+              </div>
+               <button onclick="nuevocazador()" class="btn boton col-md-6 mt-3">añadir cazador y perro</button>
+             
+             <div>
+           		<input type="submit" value="Añadir"
 						class="btn boton float-right">
-
-    </div>
-
-
-    </form>
-
-
-    </div>
+			</div>
+			</form>
+   </div>
+</div>
 
 
 </body>

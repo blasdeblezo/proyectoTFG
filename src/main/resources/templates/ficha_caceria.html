@@ -12,6 +12,12 @@
     <title>Ficha caceria</title>
 </head>
 <body>
+
+<div>
+	<a class="btn btn-danger" type="boton" th:href="@{/}">
+		Regresar pagina principal
+	</a>
+</div>
     <!--Meter el borde con CSS-->
 <div class=" m-3 borde">
     <form>
@@ -19,11 +25,13 @@
             <div class="form-row">
                 <div class="col-md-4 mb-3">
                     <label for="CampoIdCaceria">Id caceria</label>
-                    <input type="text" class="form-control" id="CampoIdCaceria" placeholder="id caceria">
+                    <output type="text" class="form-control" id="CampoIdCaceria" placeholder="id caceria" 
+                    th:text="${caceria.id_caceria}"></output>
                   </div>
                 <div class="col-md-4 mb-3">
                   <label for="CampoIdGuarda">Id guarda</label>
-                  <input type="text" class="form-control" id="CampoIdGuarda" placeholder="id guarda">
+                  <output type="text" class="form-control" id="CampoIdGuarda" placeholder="id guarda"
+                  th:text="${caceria.guardas.usuario}"></output>
                 </div>
               </div>
         

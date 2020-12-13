@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
 <meta charset="UTF-8">
@@ -18,7 +18,11 @@
 </head>
 
 <body>
-
+<div>
+	<a class="btn btn-danger" type="boton" th:href="@{/}">
+		Regresar pagina principal
+	</a>
+</div>
 	<div class="borde m-3">
 		<form class="m-3" action="#" th:action="@{/guardarPerro}"
 				th:object="${perroRegistrado}" method="post">

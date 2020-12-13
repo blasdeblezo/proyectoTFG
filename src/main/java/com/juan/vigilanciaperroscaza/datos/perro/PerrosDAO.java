@@ -21,8 +21,13 @@ public interface PerrosDAO extends CrudRepository<PerrosBD, String>{
 
 	List<PerrosBD> findByDuenho(DuenhoBD usuario);
 	
-	Optional<PerrosBD> findById(String id);
 	
 	@Transactional @Query(value="SELECT * FROM perrosbd WHERE id_perro=:id",nativeQuery=true)
 	PerrosBD ficha(@Param("id") String id);
+	
+	@Transactional @Query(value="SELECT * FROM perrosbd WHERE id_perro=:id",nativeQuery=true)
+	PerrosBD perrorevision(@Param("id") String id);
+	
+	@Transactional @Query(value="SELECT * FROM perrosbd WHERE veterinarios_usuario=:usuario",nativeQuery=true)
+	List<PerrosBD> perros(@Param("usuario") String usuario);
 }

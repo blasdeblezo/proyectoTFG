@@ -18,6 +18,11 @@
 <title>Listado de dueños</title>
 </head>
 <body onload="anhadir()">
+<div>
+	<a class="btn btn-danger" type="boton" th:href="@{/}">
+		Regresar pagina principal
+	</a>
+</div>
 	<!--Meter el borde con CSS-->
 	<div class=" m-3 borde">
 		<form class="m-2"  th:object="${filtrarDuenhos}" action="#" th:action="@{/buscarDuenhos}">

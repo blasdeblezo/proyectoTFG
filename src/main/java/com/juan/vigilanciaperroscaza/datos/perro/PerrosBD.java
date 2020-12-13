@@ -55,15 +55,29 @@ public class PerrosBD {
 	@ManyToOne
 	private VeterinariosBD veterinarios;
 	
-	/*@OneToMany(cascade = CascadeType.ALL, mappedBy = "perros")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "perros")
 	private List<RevisionesBD> revisiones=new ArrayList<RevisionesBD>();
 	
 	public void addRevisiones(RevisionesBD revision) {
 		if(!revisiones.contains(revision)) {
 			revisiones.add(revision);
 		}
-	}*/
+	}
 	
+
+
+
+	public List<RevisionesBD> getRevisiones() {
+		return revisiones;
+	}
+
+
+
+
+	public void setRevisiones(List<RevisionesBD> revisiones) {
+		this.revisiones = revisiones;
+	}
+
 
 
 

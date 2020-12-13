@@ -18,6 +18,12 @@
 </head>
 <body onload="anhadir()">
 
+<div>
+	<a class="btn btn-danger" type="boton" th:href="@{/}">
+		Regresar pagina principal
+	</a>
+</div>
+
 	<div class="borde m-3">
 		<form class="m-3" action="#" th:action="@{/guardarDuenho}"
 			th:object="${duenhoregistro}" method="post">
@@ -93,9 +99,9 @@
 			<div class="form-row">
 			<input type="submit" value="Añadir"
 						class="btn boton float-right">
-						</div>
+			</div>
 						
-						</form>
+		</form>
 	</div>
 
 

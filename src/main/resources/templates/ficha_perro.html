@@ -16,7 +16,11 @@
 </head>
 
 <body>
-
+<div>
+	<a class="btn btn-danger" type="boton" th:href="@{/}">
+		Regresar pagina principal
+	</a>
+</div>
     <!--Borde con css-->
     <div class="m-2 borde">
         <form class="m-3" >
@@ -31,6 +35,7 @@
                 </div>
                  <div class="col-12 mt-2">
                   <a th:href="@{/editarPerro/{id}(id=${perro.id_perro})}" type="button" class="btn boton" th:text="editar"></a>
+                  <a th:href="@{/revisionNueva/{id}(id=${perro.id_perro})}" type="button" class="btn boton"> Crear revisión</a>
                 </div>
             </div>
         </form>
@@ -46,7 +51,7 @@
                 </thead>     
                 <tbody>
                 <tr th:each="revision:${listaRevisiones}">
-                	<td> <a th:href="@{revision/id(id=${revision.idRevision})}" th:text="${revision.idRevision}"></a></td>
+                	<td> <a th:href="@{/revision/{id}(id=${revision.idRevision})}" th:text="${revision.idRevision}"></a></td>
                 	<td th:text="${revision.fechaRevision}"></td>
                 	<td th:text="${revision.estado}"></td>
                 	</tr>
@@ -55,17 +60,6 @@
 
         </div>
 
-
-        <div class="d-flex justify-content-center">
-            <form class="form-inline ">
-                <div class="form-group mx-sm-3 mb-2">
-                    <label for="FechaRevision" class="mr-3">Nueva Fecha</label>
-                    <label for="FechaRevision" class="sr-only">Fecha</label>
-                    <input type="date" class="form-control" id="FechaRevision" placeholder="Fecha">
-                </div>
-                <button type="submit" class="btn boton mb-2">Insertar</button>
-            </form>
-        </div>
     </div>
 </body>
 

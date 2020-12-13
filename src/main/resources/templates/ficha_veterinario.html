@@ -16,7 +16,11 @@
 </head>
 
 <body>
-
+<div>
+	<a class="btn btn-danger" type="boton" th:href="@{/}">
+		Regresar pagina principal
+	</a>
+</div>
     <!--Borde con css-->
     <div class="m-2 borde">
         <form class="m-3" >
@@ -80,10 +84,17 @@
                             <th scope="col">Nombre perro</th>
                             <th scope="col">Fecha nacimiento</th>
                             <th scope="col">Fecha muerte</th>
-                            <th scope="col">Revisión</th>
                         </tr>
                     </thead>
                     <tbody>
+                    	<tr th:each="perro:${listaperros}">
+                    		<td> <a th:href="@{/fichaPerro/{id}(id=${perro.id_perro})}"
+											th:text="${perro.id_perro}">id perro</a></td>
+                    		<td th:text="${perro.nombre}"></td>
+                    		<td th:text="${perro.fecha_nacimiento}"></td>
+                    		<td th:text="${perro.fecha_muerte}"></td>
+                    	</tr>
+                    	
                     </tbody>
                 </table>
             </div>

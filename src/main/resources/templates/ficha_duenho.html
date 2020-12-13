@@ -15,7 +15,11 @@
 </head>
 
 <body>
-
+<div>
+	<a class="btn btn-danger" type="boton" th:href="@{/}">
+		Regresar pagina principal
+	</a>
+</div>
     
     <div class="m-2 borde">
         <form class="m-3"  >
@@ -82,15 +86,17 @@
                             <th scope="col">Fecha muerte</th>
                             <th scope="col">Revisión</th>
                         </tr>
+                    </thead>
+                    <tbody>
                          <tr th:each="perro:${perros}">
-                            <td th:text="${perro.id_perro}" >Id perro</th>
+                            <td > <a th:href="@{/fichaPerro/{id}(id=${perro.id_perro})}"
+						th:text="${perro.id_perro}">id perro</a></th>
                             <td th:text="${perro.nombre}">Nombre perro</th>
                             <td th:text="${perro.fecha_nacimiento}">Fecha nacimiento</th>
                             <td th:text="${perro.fecha_muerte}">Fecha muerte</th>
                             <td th:text="${perro.revision}">Revisión</th>
                         </tr>
-                    </thead>
-                    <tbody>
+                   
                     </tbody>
                 </table>
             </div>
@@ -117,6 +123,11 @@
                     </tr>
                 </thead>
                 <tbody>
+                	<tr th:each="caceria:${cacerias}">
+                		<td scope="col"><a th:text="${caceria.id_caceria}"></a></td>
+                		<td scope="col" th:text="${caceria.provincia}"></td>
+                		<td scope="col" th:text="${caceria.fecha}"></td>
+                	</tr>
                 </tbody>
                 </table>
             </div>

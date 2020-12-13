@@ -18,13 +18,18 @@
 <title>Listado de guardas</title>
 </head>
 <body onload="anhadir()">
+<div>
+	<a class="btn btn-danger" type="boton" th:href="@{/}">
+		Regresar pagina principal
+	</a>
+</div>
 	<!--Meter el borde con CSS-->
 	<div class=" m-3 borde">
 		<form class="m-2" th:object="${filtroGuarda}" action="#" th:action="@{/buscarGuardas}" >
 			<div class="form-row">
 				<div class="col-md-4 mb-3">
-					<label for="validationDefault01">Provincia</label> <select id=""
-						class="form-control" th:field="*{provincia}">
+					<label for="validationDefault01">Provincia</label> 
+					<select id=""class="form-control" th:field="*{provincia}">
 						<option value="null" >Selccionar provincia</option>
 						<option th:each="provincias:${listaprovincias}"
 							th:value="${provincias.nombre}" th:text="${provincias.nombre}"></option>

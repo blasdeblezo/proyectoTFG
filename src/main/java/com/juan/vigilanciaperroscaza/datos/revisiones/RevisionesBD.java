@@ -15,15 +15,11 @@ import com.juan.vigilanciaperroscaza.datos.perro.PerrosBD;
 public class RevisionesBD {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long idRevision;
 	
 	@Column
 	@NotNull(message="El diagnostico es obligatorio")
 	private String diagnostico;
-	
-	@Column
-	private int numeroRevisiones;
 	
 	@Column
 	@NotNull(message="Nombre del perro es obligatorio")
@@ -56,13 +52,6 @@ public class RevisionesBD {
 		this.diagnostico = diagnostico;
 	}
 
-	public int getNumeroRevisiones() {
-		return numeroRevisiones;
-	}
-
-	public void setNumeroRevisiones(int numeroRevisiones) {
-		this.numeroRevisiones = numeroRevisiones;
-	}
 
 	public String getNombrePerro() {
 		return nombrePerro;
@@ -101,7 +90,7 @@ public class RevisionesBD {
 	@Override
 	public String toString() {
 		return "RevisionesBD [idRevision=" + idRevision + ", diagnostico=" + diagnostico + ", numeroRevisiones="
-				+ numeroRevisiones + ", nombrePerro=" + nombrePerro + ", fechaRevision=" + fechaRevision + ", estado="
+				 + nombrePerro + ", fechaRevision=" + fechaRevision + ", estado="
 				+ estado + ", perros=" + perros + "]";
 	}
 

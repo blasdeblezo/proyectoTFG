@@ -20,3 +20,10 @@ function anhadir(){
     }
 
 }
+
+
+function nuevoCazador(){
+	var itm = document.getElementById("cazadoryperro");
+	  var cln = itm.cloneNode(true);
+	  document.getElementById("cazadoryperro").appendChild(cln);
+}

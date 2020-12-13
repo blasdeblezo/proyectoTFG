@@ -20,6 +20,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.juan.vigilanciaperroscaza.datos.cacerias.Cacerias;
 import com.juan.vigilanciaperroscaza.datos.cacerias.CaceriasBD;
 import com.juan.vigilanciaperroscaza.datos.roles.Rol;
 
@@ -68,14 +69,26 @@ public class GuardasBD implements UserDetails{
 	@ManyToOne
 	private Rol rolGuarda = new Rol();
 	
-	/*@OneToMany(mappedBy = "guardas",cascade = CascadeType.ALL)
-	private List<Cacerias>lisCacerias=new ArrayList<Cacerias>();*/
+	@OneToMany(mappedBy = "guardas",cascade = CascadeType.ALL)
+	private List<CaceriasBD>lisCacerias=new ArrayList<CaceriasBD>();
 
 	
 
 	
 
 	
+	public List<CaceriasBD> getLisCacerias() {
+		return lisCacerias;
+	}
+
+	public void setLisCacerias(List<CaceriasBD> lisCacerias) {
+		this.lisCacerias = lisCacerias;
+	}
+
+	public void setTelefono(Integer telefono) {
+		this.telefono = telefono;
+	}
+
 	public Rol getRolGuarda() {
 		return rolGuarda;
 	}

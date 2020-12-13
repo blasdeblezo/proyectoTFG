@@ -76,6 +76,18 @@ public class VeterinariosBD implements UserDetails{
 
 	
 
+	public List<PerrosBD> getLisPerros() {
+		return lisPerros;
+	}
+
+	public void setLisPerros(List<PerrosBD> lisPerros) {
+		this.lisPerros = lisPerros;
+	}
+
+	public void setTelefono(Integer telefono) {
+		this.telefono = telefono;
+	}
+
 	public Rol getRolVeterinario() {
 		return rolVeterinario;
 	}

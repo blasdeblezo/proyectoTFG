@@ -1,6 +1,6 @@
 package com.juan.vigilanciaperroscaza.datos.cacerias;
 
-
+import com.juan.vigilanciaperroscaza.datos.guardas.GuardasBD;
 
 public class Cacerias {
 	
@@ -18,8 +18,20 @@ public class Cacerias {
 
 
 	private Integer numero_cazadores;
+	
+	private GuardasBD guarda;
 
 	
+
+	public GuardasBD getGuarda() {
+		return guarda;
+	}
+
+
+	public void setGuarda(GuardasBD guarda) {
+		this.guarda = guarda;
+	}
+
 
 	public Long getId_caceria() {
 		return id_caceria;
@@ -69,6 +81,7 @@ public class Cacerias {
 	public void setNumero_cazadores(Integer numero_cazadores) {
 		this.numero_cazadores = numero_cazadores;
 	}
+	
 
 
 	@Override

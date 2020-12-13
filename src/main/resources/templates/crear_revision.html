@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/css/estiloProyecto.css">
+<title>Revision perro</title>
+</head>
+
+<body>
+
+<div>
+	<a class="btn btn-danger" type="boton" th:href="@{/}">
+		Regresar pagina principal
+	</a>
+</div>
+
+	<div class="borde m-3">
+		<form class="m-3" action="#" th:action="@{/editadoRevision}"
+			th:object="${revision}"  method="post">
+			<div class="form-row" >
+			
+				<div class="form-group col-md-4" >
+					<label for="campoNombrePerro">Id revision</label> <input
+						type="number" class="form-control" th:field="*{idRevision}">
+				</div>
+				
+				<div class="form-group col-md-4">
+					<label for="campoNombrePerro">Estado</label> <input
+						type="text" class="form-control" th:field="*{estado}">
+				</div>
+				<div class="form-group col-md-4">
+					<label for="campoRaza">fecha</label> <input type="date"
+						class="form-control" id="campoRaza" th:field="*{fechaRevision}">
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-4">
+					<label for="campoFecha">Nombre</label> <input type="text" onlyread
+						class="form-control" id="campoFecha"  th:field="*{nombrePerro}"  th:field="${perro.nombre}">
+				</div>
+				<div class="form-group col-md-4">
+					<label for="campoFecha">Id del perro</label> <input type="text" 
+						class="form-control" id="campoFecha" th:field="*{perros.id_perro}"  th:field="${perro.id_perro}">
+
+				</div>
+				
+			</div>
+			
+			<div class="form-row">
+				<div class="form-group col-md-4">
+					<label for="campoDiagnostico">Diagnostico</label> 
+					<textarea type="text"
+						 id="campoFecha" th:field="*{diagnostico}"
+						rows="10" cols="100">
+					
+					</textarea>
+						
+				</div>
+				
+			</div>
+			
+			<div class="form-row">
+			
+				<input type="submit" value="Guardar" class="btn boton float-right" th:href="@/enviarCorreo/{email}(email=${perro.duenho.email)">
+				
+				<a type="button" class="btn btn-danger ml-5" 
+						th:href="@{/fichaPerro/{id}(id=${perro.id_perro})}">Cancelar</a>
+			
+			
+			</div>
+
+		</form>
+	</div>
+
+
+
+</body>
+
+</html>

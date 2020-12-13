@@ -20,6 +20,8 @@ import com.juan.vigilanciaperroscaza.datos.provincias.ProvinciasDAO;
 import com.juan.vigilanciaperroscaza.datos.revisiones.RevisionesBD;
 import com.juan.vigilanciaperroscaza.datos.revisiones.RevisionesDAO;
 
+import ch.qos.logback.core.rolling.helper.RenameUtil;
+
 @Controller
 public class PerrosRutas {
 
@@ -78,10 +80,12 @@ public class PerrosRutas {
 	}
 	
 	@GetMapping("/buscarPerro")
-	public ModelAndView buscarPerro() {
+	public ModelAndView buscarPerro(@Valid @ModelAttribute("filterPerros") Perros filtro) {
+		
+		
+		List<Provincias> provincia=(List<Provincias>)provinciasDAO.findAll();
 		
 		List<PerrosBD> listaPerros=(List<PerrosBD>) perrosDAO.findAll();
-		List<Provincias> provincia=(List<Provincias>)provinciasDAO.findAll();
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("listaPerros", listaPerros);
 		mav.addObject("listaprovincias", provincia);
@@ -108,6 +112,19 @@ public class PerrosRutas {
 		return mav;
 	}
 	
+	@GetMapping("/revision/{id}")
+	public ModelAndView revisionPerro(@PathVariable Long id) {
+		
+		
+		ModelAndView mav = new ModelAndView();
+		
+		RevisionesBD revision = revisionesDAO.revisionPerro(id);
+		mav.addObject("revision", revision);
+		System.out.println(revision);
+		mav.setViewName("revision_perro");
+		return mav;
+	}
+	
 	@GetMapping("/editarPerro/{id}")
 	public ModelAndView editarPerro(@PathVariable String id) {
 		
@@ -126,6 +143,8 @@ public class PerrosRutas {
 	
 	@PostMapping("/perroEditado")
 	public ModelAndView perroEditado(@Valid @ModelAttribute("perroEditado") PerrosBD perro) {
+		
+		System.out.println(perro);
 		
 		ModelAndView mav=new ModelAndView();
 		perrosDAO.save(perro);
