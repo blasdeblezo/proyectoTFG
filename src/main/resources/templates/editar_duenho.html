@@ -87,10 +87,10 @@
 					</select>
 				</div>
 			</div>
-			<div class="form-row" style="hidden:none">
+			<div class="form-row" style="display:none">
 				<div class="form-group col-md-4">
 					<label for="campoContrasenha">Contrasña</label> <input
-						type="password" class="form-control" id="campoContrasenha"
+						class="form-control" id="campoContrasenha"
 						 th:field="*{contrasenha}" >
 
 				</div>
@@ -106,6 +106,7 @@
             <div class="col-3">
             	<input type="submit" value="Guardar"
 						class="btn boton float-right">
+						
 						<a type="button" class="btn btn-danger" 
 						th:href="@{/fichaDuenho/{usuario}(usuario=*{usuario})}">Cancelar</a>
 						</div>

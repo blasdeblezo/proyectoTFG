@@ -82,11 +82,11 @@ public class DuenhoRutas {
 		
 		if(usu==null) {
 			usu="%";
-			System.out.println(usu);
+			
 		}
 		if(nomb==null) {
 			nomb="%";
-			System.out.println(nomb);
+			
 		}
 		
 			

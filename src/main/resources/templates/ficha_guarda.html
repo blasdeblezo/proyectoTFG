@@ -95,7 +95,9 @@
 						</thead>
 						<tbody>
 						<tr th:each="caceria:${cacerias}">
-							<td th:text="${caceria.id_caceria}">Id caceria</td>
+							
+                            <td > <a th:href="@{/fichaCaceria/{id}(id=${caceria.id_caceria})}"
+						th:text="${caceria.id_caceria}">id caceria</a></td>
 							<td th:text="${caceria.provincia}">Provincia</td>
 							<td th:text="${caceria.fecha}">Fecha</td>
 						</tr>

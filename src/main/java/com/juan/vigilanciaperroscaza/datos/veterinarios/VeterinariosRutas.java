@@ -91,6 +91,19 @@ public class VeterinariosRutas {
 		String usu=filtro.getUsuario();
 		String nomb=filtro.getNombre();
 		
+		if(pr == null) {
+			pr = "%";
+		}
+		
+		if(usu == null) {
+			usu = "%";
+		}
+		
+		if(nomb == null) {
+			nomb = "%";
+		}
+		
+		
 		List<Provincias> provincia=(List<Provincias>) provinciasDAO.findAll();
 		List<VeterinariosBD> listaVeteriniarios=(List<VeterinariosBD>) veterinariosDAO.lista(pr, usu, nomb);
 		

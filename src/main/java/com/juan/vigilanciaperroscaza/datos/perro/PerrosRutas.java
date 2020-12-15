@@ -41,8 +41,10 @@ public class PerrosRutas {
 	public ModelAndView listaperros() {
 		
 		List<Provincias> provincia=(List<Provincias>)provinciasDAO.findAll();
+		PerrosBD filtro = new PerrosBD();
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("listaprovincias", provincia);
+		mav.addObject("filterPerros", filtro);
 		mav.setViewName( "pagina_perros");
 		
 		return mav;
@@ -80,11 +82,30 @@ public class PerrosRutas {
 	}
 	
 	@GetMapping("/buscarPerro")
-	public ModelAndView buscarPerro(@Valid @ModelAttribute("filterPerros") Perros filtro) {
+	public ModelAndView buscarPerro() {
 		
 		
 		List<Provincias> provincia=(List<Provincias>)provinciasDAO.findAll();
+		/*String pr= filtro.getDuenho().getUsuario();
+		String id_usuario= filtro.getDuenho().getUsuario();
+		String id_perro= filtro.getId_perro();
 		
+		if(pr==null) {
+			pr="%";
+			System.out.println(pr);
+		}
+		
+		if(id_usuario==null) {
+			id_usuario="%";
+			System.out.println(id_usuario);
+			
+		}
+		if(id_perro==null) {
+			id_perro="%";
+			System.out.println(id_perro);
+		}*/
+		
+		//List<PerrosBD> listaPerros=(List<PerrosBD>) perrosDAO.listaPerros(id_perro, id_usuario, pr);
 		List<PerrosBD> listaPerros=(List<PerrosBD>) perrosDAO.findAll();
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("listaPerros", listaPerros);

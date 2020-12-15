@@ -25,7 +25,7 @@
 </div>
 	<!--Meter el borde con CSS-->
 	<div class=" m-3 borde">
-		<form class="m-2">
+		<form class="m-2"  th:object="${filterPerros}" action="#" th:action="@{/buscarPerro}">
 			<div class="form-row">
 				<div class="col-md-4 mb-3">
 					<label for="validationDefault01">Provincia</label> <select id=""
@@ -45,8 +45,7 @@
 						class="form-control" id="CampoIdPerro" placeholder="id perro">
 				</div>
 			</div>
-			<a class="btn boton align-items-right" type="submit"
-				th:href="@{/buscarPerro}">Buscar</a>
+			<input type="submit" class="btn boton" value="buscar" >
 		</form>
 	</div>
 
